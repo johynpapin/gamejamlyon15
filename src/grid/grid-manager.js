@@ -19,7 +19,7 @@ export default class GridManager {
   next () {
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
-      if (cell.tile.targetX < 0){
+      if (cell.tile.targetX < 0) {
         this.grid.cells[ingredient.x][ingredient.y].ingredient = null
         continue
       }
@@ -49,11 +49,11 @@ export default class GridManager {
     let currentCell = cell
     const stack = []
 
-    while (!this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY)) {
+    while (!this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY) && (cell.tile instanceof MovingTile)) {
       stack.push(currentCell)
       currentCell = this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY]
     }
-    if (this.grid.is.FullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
+    if (this.grid.is.FullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) || !(cell.tile instanceof MovingTile)) {
       while (stack.length > 0) {
         currentCell = stack.pop()
         this.grid.cells[currentCell.ingredient.x][currentCell.ingredient.y].ingredient.hasMoved = true
