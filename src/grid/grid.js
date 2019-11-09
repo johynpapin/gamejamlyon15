@@ -5,8 +5,8 @@ export default class Grid {
   constructor (level) {
     this.sizeX = level.sizeX
     this.sizeY = level.sizeY
+    this.level = level
     this.cells = this.createCells(level)
-    this.load(level)
     this.ingredients = []
   }
 
