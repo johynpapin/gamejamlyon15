@@ -8,12 +8,17 @@ export default class Grid {
   constructor (level) {
     this.sizeX = level.sizeX + 2
     this.sizeY = level.sizeY + 2
-    this.cells = this.createCells(level)
-    this.load(level)
+    this.level = level
+    this.cells = this.createCells()
+    this.load()
     this.ingredients = []
   }
 
-  createCells (level) {
+  possibilies () {
+    return this.level.ingredients
+  }
+
+  createCells () {
     const cells = []
 
     for (let x = 0; x < this.sizeX; x++) {
@@ -45,6 +50,12 @@ export default class Grid {
     return cells
   }
 
+  load () {
+    for (const [key, value] of this.level.tileMap) {
+      this.cells[key.x][key.y].tile = value
+    }
+  }
+
   isFree (x, y) {
     const cell = this.cells[x][y]
 
@@ -61,12 +72,6 @@ export default class Grid {
     const cell = this.cells[x][y]
 
     return cell.utensil !== null && !cell.utensil.isFree()
-  }
-
-  load (level) {
-    for (const [key, value] of level.tileMap) {
-      this.cells[key.x][key.y].tile = value
-    }
   }
 
   draw (container, resources, offset) {
