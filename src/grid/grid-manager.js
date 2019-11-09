@@ -21,14 +21,18 @@ export default class GridManager {
 
   next () {
     const toDelete = []
+
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
-      if (cell.tile.targetX < 0) {
-        toDelete.push(ingredient)
-        this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-        continue
-      }
+
       if (cell.tile instanceof MovingTile) {
+        if (cell.tile.targetX < 0) {
+          toDelete.push(ingredient)
+          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
+          ingredient.destroy()
+          continue
+        }
+
         if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
           this.grid.cells[ingredient.x][ingredient.y].ingredient = null
           ingredient.x = cell.tile.targetX
@@ -41,6 +45,7 @@ export default class GridManager {
         }
       }
     }
+
     for (const ingredient of toDelete) {
       this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
     }
@@ -85,9 +90,9 @@ export default class GridManager {
     } else {
       while (stack.length > 0) {
         currentCell = stack.pop()
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient = currentCell.ingredient
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.x = currentCell.tile.targetX
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.y = currentCell.tile.targetY
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient = currentCell.ingredient
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.x = currentCell.tile.targetX
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.y = currentCell.tile.targetY
         this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.hasMoved = true
       }
       if (cycle) {

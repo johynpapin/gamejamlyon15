@@ -8,4 +8,11 @@ export default class Ingredient {
     this.x += dx
     this.y += dy
   }
+
+  destroy () {
+    if (this.sprite) {
+      // TODO: bad
+      this.sprite.visible = false
+    }
+  }
 }
