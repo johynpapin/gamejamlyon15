@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
 import Tile from './tile'
 
-class TileWarm extends Tile {
+export default class TileWarm extends Tile {
   draw (container, resources, offset) {
     if (!this.sprite) {
       this.sprite = new PIXI.Sprite(resources.warnTile)

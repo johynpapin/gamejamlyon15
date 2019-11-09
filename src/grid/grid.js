@@ -1,5 +1,5 @@
 import Cell from './cell'
-import TileNeutral from './tile/tile-neutral'
+import TileNeutral from './tiles/tile-neutral'
 
 export default class Grid {
   constructor (level) {

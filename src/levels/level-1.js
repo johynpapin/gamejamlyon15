@@ -1,7 +1,8 @@
 import Level from './level'
-import * as tile from '../tile'
+import TileCold from '../grid/tiles/tile-cold'
+import TileWarm from '../grid/tiles/tile-warm'
 
-class Level1 extends Level {
+export default class Level1 extends Level {
   constructor () {
     super()
     this.sizeX = 3
@@ -14,9 +15,9 @@ class Level1 extends Level {
     const errorMsg = 'tile out of grid boundaries'
     const key1 = { x: 1, y: 0 }
     console.assert(key1.x < this.sizeX && key1.y < this.sizeY, { key: key1, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
-    this.tileMap.set(key1, new tile.TileCold())
+    this.tileMap.set(key1, new TileCold())
     const key2 = { x: 1, y: 2 }
     console.assert(key2.x < this.sizeX && key2.y < this.sizeY, { key: key2, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
-    this.tileMap.set(key2, new tile.TileWarm())
+    this.tileMap.set(key2, new TileWarm())
   }
 }
