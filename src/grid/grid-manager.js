@@ -20,9 +20,11 @@ export default class GridManager {
   }
 
   next () {
+    const toDelete = []
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
-      if (cell.tile.targetX <= 0) {
+      if (cell.tile.targetX < 0) {
+        toDelete.push(ingredient)
         this.grid.cells[ingredient.x][ingredient.y].ingredient = null
         continue
       }
@@ -39,6 +41,9 @@ export default class GridManager {
         }
       }
     }
+  for (const ingredient of toDelete) {
+    this.grid.ingredients.slice(this.grid.ingredients.indexOf(ingredient), 1)
+  }
 
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
