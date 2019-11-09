@@ -30,18 +30,14 @@ export default class Grid {
     }
   }
 
-  initSprite (resources) {
-
-  }
-
-  draw (resources, offset) {
+  draw (container, resources, offset) {
     for (const ingredient of this.ingredients) {
-      ingredient.draw(resources, offset)
+      ingredient.draw(container, resources, offset)
     }
 
     for (const line of this.cells) {
       for (const cell of line) {
-        cell.draw(resources, offset)
+        cell.draw(container, resources, offset)
       }
     }
   }

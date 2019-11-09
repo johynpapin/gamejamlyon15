@@ -37,8 +37,11 @@ const resources = [{
   name: 'arrowUp',
   url: '/assets/Arrow_Up.png'
 }, {
-  name: 'cold',
+  name: 'coldTile',
   url: '/assets/Cold_v1.png'
+}, {
+  name: 'warmTile',
+  url: '/assets/Warm_v1.png'
 }, {
   name: 'econome',
   url: '/assets/Econome_v1.png'

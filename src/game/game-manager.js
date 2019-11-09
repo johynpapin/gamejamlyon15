@@ -8,7 +8,7 @@ import GridManager from '../grid/grid-manager'
 
 import Ingredient from '../ingredients/ingredient'
 
-class GameManager {
+export default class GameManager {
   constructor () {
     this.ordersManager = new OrdersManager(this)
     this.gridManager = new GridManager(this)
