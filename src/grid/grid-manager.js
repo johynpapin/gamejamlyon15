@@ -20,12 +20,14 @@ export default class GridManager {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
       if (cell.tile instanceof MovingTile) {
         if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
+          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
           ingredient.x = cell.tile.targetX
           ingredient.y = cell.tile.targetY
+          this.grid.cells[ingredient.x][ingredient.y].ingredient = ingredient
           ingredient.hasMoved = true
           // TODO IF FREEUSTENSIL
         } else if (this.grid.hasIngredient(cell.tile.targetX, cell.tile.targetY)) {
-
+          this.chainIngredient(cell)
         }
       }
     }
@@ -36,16 +38,35 @@ export default class GridManager {
     }
   }
 
-  chainIngredient(cell) {
-    let cycle_cell = cell
-    let current_cell = cell
-    let stack = []
+  chainIngredient (cell) {
+    const cycle = false
+    const cycleCell = cell
+    let currentCell = cell
+    const stack = []
 
-    while(!this.grid.isFullUtensil(current_cell.tile.targetX, current_cell.tile.targetY) && !this.grid.isFree(current_cell.tile.targetX, current_cell.tile.targetY)) {
-      stack.push(current_cell)
-      current_cell = this.grid.cell[targetX][targetY]
+    while (!this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY)) {
+      stack.push(currentCell)
+      currentCell = this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY]
     }
-    if (this.grid
+    if (this.grid.is.FullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
+      while (stack.length > 0) {
+        currentCell = stack.pop()
+        this.grid.cells[currentCell.ingredient.x][currentCell.ingredient.y].ingredient.hasMoved = true
+      }
+    } else {
+      while (stack.length > 0) {
+        currentCell = stack.pop()
+        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient = currentCell.ingredient
+        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.x = currentCell.tile.targetX
+        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.y = currentCell.tile.targetY
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.hasMoved = true
+      }
+      if (cycle) {
+        this.grid.cells[cycleCell.tile.targetX][cycleCell.tile.targetY].ingredient = cycleCell.ingredient
+      } else {
+        this.grid.cells[cycleCell.ingredient.x][cycleCell.ingredient.y].ingredient = null
+      }
+    }
   }
 
   draw (stage, resources) {
