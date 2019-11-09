@@ -1,5 +1,7 @@
 import Cell from './cell'
 import TileNeutral from './tiles/tile-neutral'
+import TileEmpty from './tiles/tile-empty'
+// import TileConnector from './tiles/tile-connector'
 
 export default class Grid {
   constructor (level) {
@@ -17,7 +19,14 @@ export default class Grid {
       cells.push([])
 
       for (let y = 0; y < this.sizeY; y++) {
-        cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
+        if (x === this.sizeX - 3 && y === this.sizeY - 3) {
+          cells[x].push(new Cell(x, y, new TileEmpty(x, y), null))
+        } else if (x === this.sizeX - 3 || y === this.sizeY - 3) {
+          // TODO: add direction to the TileConnector
+          // cells[x].push(new Cell(x, y, new TileConnector(x, y), null))
+        } else {
+          cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
+        }
       }
     }
 

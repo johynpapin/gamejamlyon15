@@ -3,7 +3,7 @@ import Level1 from '../levels/level-1'
 
 import Grid from './grid'
 
-import MovingTile from '../ingredient/tiles/moving-tile'
+import MovingTile from './tiles/moving-tile'
 
 export default class GridManager {
   constructor (gameManager) {
