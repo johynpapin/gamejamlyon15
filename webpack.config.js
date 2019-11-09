@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -9,10 +10,14 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist')
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new CopyPlugin([{
+      from: path.resolve(__dirname, 'assets'),
+      to: path.resolve(__dirname, 'dist/assets')
+    }]),
     new HtmlWebpackPlugin({
       title: 'Game Jam Lyon 15'
     })
