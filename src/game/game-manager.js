@@ -6,9 +6,9 @@ import Level1 from '../levels/level-1'
 
 export default class GameManager {
   constructor () {
+    this.level = new Level1()
     this.ordersManager = new OrdersManager(this)
     this.gridManager = new GridManager(this)
-    this.level = new Level1()
     this.achieved = 0
   }
 

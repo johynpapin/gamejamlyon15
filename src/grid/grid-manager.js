@@ -17,8 +17,6 @@ export default class GridManager {
   }
 
   next () {
-    this.checkConnectors()
-
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
       if (cell.tile.targetX < 0) {
@@ -93,6 +91,8 @@ export default class GridManager {
   }
 
   draw (stage, resources) {
+    this.checkConnectors()
+
     if (!this.container) {
       this.container = new PIXI.Container()
 
