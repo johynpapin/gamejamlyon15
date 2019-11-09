@@ -22,7 +22,7 @@ export default class GridManager {
   next () {
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
-      if (cell.tile.targetX < 0) {
+      if (cell.tile.targetX <= 0) {
         this.grid.cells[ingredient.x][ingredient.y].ingredient = null
         continue
       }
