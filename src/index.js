@@ -14,6 +14,7 @@ PIXI.utils.sayHello(type)
 const app = new PIXI.Application()
 
 // Make the game fill the window
+app.renderer.backgroundColor = 0xadff4d
 app.renderer.view.style.position = 'absolute'
 app.renderer.view.style.display = 'block'
 app.renderer.autoResize = true
@@ -38,7 +39,25 @@ const resources = [{
   url: '/assets/Patate_v1.png'
 }, {
   name: 'background',
-  url: '/assets/Background_v1_640_480.png'
+  url: '/assets/bp0.png'
+}, {
+  name: 'arrowTop',
+  url: '/assets/Arrow_Up.png'
+}, {
+  name: 'arrowRight',
+  url: '/assets/Arrow_R.png'
+}, {
+  name: 'arrowDown',
+  url: '/assets/Arrow_Down.png'
+}, {
+  name: 'arrowLeft',
+  url: '/assets/Arrow_L.png'
+}, {
+  name: 'rollDown',
+  url: '/assets/Roll_Basic_v1.png'
+}, {
+  name: 'rollLeft',
+  url: '/assets/Roll_Horizontal_v1.png'
 }]
 
 const loader = new PIXI.Loader()
@@ -50,15 +69,6 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
-  const background = new PIXI.Sprite(resources.background.texture)
-
-  background.x = 0
-  background.y = 0
-  background.width = window.innerWidth
-  background.height = window.innerHeight
-
-  app.stage.addChild(background)
-
   gameManager.draw(app.stage, resources)
 
   app.ticker.add(delta => gameLoop(resources, delta))

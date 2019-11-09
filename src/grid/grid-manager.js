@@ -36,16 +36,16 @@ export default class GridManager {
     }
   }
 
-  chainIngredient(cell) {
-    let cycle_cell = cell
+  chainIngredient (cell) {
+    const cycle_cell = cell
     let current_cell = cell
-    let stack = []
+    const stack = []
 
-    while(!this.grid.isFullUtensil(current_cell.tile.targetX, current_cell.tile.targetY) && !this.grid.isFree(current_cell.tile.targetX, current_cell.tile.targetY)) {
+    while (!this.grid.isFullUtensil(current_cell.tile.targetX, current_cell.tile.targetY) && !this.grid.isFree(current_cell.tile.targetX, current_cell.tile.targetY)) {
       stack.push(current_cell)
       current_cell = this.grid.cell[targetX][targetY]
     }
-    if (this.grid
+    // if (this.grid
   }
 
   draw (stage, resources) {

@@ -1,6 +1,7 @@
 import Cell from './cell'
 import TileNeutral from './tiles/tile-neutral'
 import TileEmpty from './tiles/tile-empty'
+import MovingTile from './tiles/moving-tile'
 // import TileConnector from './tiles/tile-connector'
 
 export default class Grid {
@@ -19,12 +20,23 @@ export default class Grid {
       cells.push([])
 
       for (let y = 0; y < this.sizeY; y++) {
-        if (x === this.sizeX - 3 && y === this.sizeY - 3) {
+        if (x === this.sizeX - 2 && y === this.sizeY - 2) {
+          // Empty tile (bottom right)
           cells[x].push(new Cell(x, y, new TileEmpty(x, y), null))
-        } else if (x === this.sizeX - 3 || y === this.sizeY - 3) {
-          // TODO: add direction to the TileConnector
+        } else if ((x === this.sizeX - 2 && y < this.sizeY - 2) || (y === this.sizeY - 2 && x < this.sizeX - 2)) {
+          // Connector tile
           // cells[x].push(new Cell(x, y, new TileConnector(x, y), null))
+        } else if (x === this.sizeX - 1 || y === this.sizeY - 1) {
+          // Conveyor belt
+          const target = { x: x, y: y }
+          if (x === this.sizeX - 1) {
+            target.y--
+          } else {
+            target.x++
+          }
+          cells[x].push(new Cell(x, y, new MovingTile(x, y, target, true), null))
         } else {
+          // Normal grid
           cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
         }
       }
