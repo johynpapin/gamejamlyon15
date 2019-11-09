@@ -3,7 +3,7 @@ import Level1 from '../levels/level-1'
 
 import Grid from './grid'
 
-import MovingTile from '../ingredient/tiles/moving-tile'
+import MovingTile from './tiles/moving-tile'
 
 export default class GridManager {
   constructor (gameManager) {
@@ -51,8 +51,15 @@ export default class GridManager {
   draw (stage, resources) {
     if (!this.container) {
       this.container = new PIXI.Container()
+
+      this.container.scale.x = 4
+      this.container.scale.y = 4
+
       stage.addChild(this.container)
     }
+
+    this.container.x = window.innerWidth / 2 - this.container.width / 2
+    this.container.y = window.innerHeight / 2 - this.container.height / 2
 
     this.grid.draw(this.container, resources, { x: 0, y: 0 })
   }

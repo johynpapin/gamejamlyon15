@@ -1,10 +1,12 @@
 import Cell from './cell'
 import TileNeutral from './tiles/tile-neutral'
+import TileEmpty from './tiles/tile-empty'
+// import TileConnector from './tiles/tile-connector'
 
 export default class Grid {
   constructor (level) {
-    this.sizeX = level.sizeX
-    this.sizeY = level.sizeY
+    this.sizeX = level.sizeX + 2
+    this.sizeY = level.sizeY + 2
     this.cells = this.createCells(level)
     this.load(level)
     this.ingredients = []
@@ -17,7 +19,14 @@ export default class Grid {
       cells.push([])
 
       for (let y = 0; y < this.sizeY; y++) {
-        cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
+        if (x === this.sizeX - 3 && y === this.sizeY - 3) {
+          cells[x].push(new Cell(x, y, new TileEmpty(x, y), null))
+        } else if (x === this.sizeX - 3 || y === this.sizeY - 3) {
+          // TODO: add direction to the TileConnector
+          // cells[x].push(new Cell(x, y, new TileConnector(x, y), null))
+        } else {
+          cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
+        }
       }
     }
 
@@ -34,6 +43,12 @@ export default class Grid {
     const cell = this.cells[x][y]
 
     return cell.ingredient !== null
+  }
+
+  isFullUtensil (x, y) {
+    const cell = this.cells[x][y]
+
+    return cell.utensil !== null && !cell.utensil.isFree()
   }
 
   load (level) {
