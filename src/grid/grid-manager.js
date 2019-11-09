@@ -3,6 +3,8 @@ import Level1 from '../levels/level-1'
 
 import Grid from './grid'
 
+import MovingTile from '../ingredient/tiles/moving-tile'
+
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
@@ -15,7 +17,17 @@ export default class GridManager {
 
   next () {
     for (const ingredient of this.grid.ingredients) {
+      const cell = this.grid.cells[ingredient.x][ingredient.y]
+      if (cell.tile instanceof MovingTile) {
+        if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
+          ingredient.x = cell.tile.targetX
+          ingredient.y = cell.tile.targetY
+          ingredient.hasMoved = true
+          // TODO IF FREEUSTENSIL
+        } else if (this.grid.hasIngredient(cell.tile.targetX, cell.tile.targetY)) {
 
+        }
+      }
     }
 
     // Spawn new ingredient
