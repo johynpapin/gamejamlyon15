@@ -1,4 +1,4 @@
-class Level {
+export default class Level {
   constructor () {
     this.tileMap = new Map()
   }

@@ -4,7 +4,7 @@ import Tile from './tile'
 export default class TileCold extends Tile {
   draw (container, resources, offset) {
     if (!this.sprite) {
-      this.sprite = new PIXI.Sprite(resources.coldTile)
+      this.sprite = new PIXI.Sprite(resources.coldTile.texture)
       container.addChild(this.sprite)
     }
 

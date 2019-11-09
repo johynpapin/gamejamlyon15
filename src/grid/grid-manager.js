@@ -12,9 +12,13 @@ export default class GridManager {
   draw (stage, resources) {
     if (!this.container) {
       this.container = new PIXI.Container()
-      this.stage.addChid(this.container)
+      stage.addChild(this.container)
     }
 
     this.grid.draw(this.container, resources, { x: 0, y: 0 })
+  }
+
+  next () {
+
   }
 }
