@@ -8,7 +8,7 @@ class TileWarm extends Tile {
       this.container.addChild(this.sprite)
     }
 
-    this.sprite.x = this.x * 32 + offset.x
-    this.sprite.y = this.y * 32 + offset.y
+    this.sprite.x = this.x * this.sprite.width + offset.x
+    this.sprite.y = this.y * this.sprite.height + offset.y
   }
 }
