@@ -1,6 +1,7 @@
 import Level from './level'
 import TileCold from '../grid/tiles/tile-cold'
 import TileWarm from '../grid/tiles/tile-warm'
+import Potato from '../ingredients/potato'
 
 export default class Level1 extends Level {
   constructor () {
@@ -8,6 +9,7 @@ export default class Level1 extends Level {
     this.sizeX = 3
     this.sizeY = 3
     this.initTile()
+    this.initIngredients()
   }
 
   // 3 x 3 grid
@@ -19,5 +21,10 @@ export default class Level1 extends Level {
     const key2 = { x: 1, y: 2 }
     console.assert(key2.x < this.sizeX && key2.y < this.sizeY, { key: key2, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
     this.tileMap.set(key2, new TileWarm(key2.x, key2.y))
+  }
+
+  // possibles ingredients for this level
+  initIngredients () {
+    this.ingredients.push(Potato)
   }
 }

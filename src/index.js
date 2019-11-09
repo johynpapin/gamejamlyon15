@@ -33,6 +33,9 @@ const resources = [{
 }, {
   name: 'mainTileNeutral',
   url: '/assets/Main_Tile_Neutral_v1.png'
+}, {
+  name: 'potato',
+  url: '/assets/Patate_v1.png'
 }]
 
 const loader = new PIXI.Loader()
