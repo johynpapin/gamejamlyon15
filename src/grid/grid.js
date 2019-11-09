@@ -24,6 +24,12 @@ export default class Grid {
     return cells
   }
 
+  isFree (x, y) {
+    const cell = this.cells[x][y]
+
+    return cell.ingredient === null && (cell.utensil === null || cell.utensil.isFree())
+  }
+
   hasIngredient (x, y) {
     const cell = this.cells[x][y]
 
