@@ -1,10 +1,10 @@
 import * as PIXI from 'pixi.js'
 import Tile from './tile'
 
-class TileNeutral extends Tile {
+export default class TileNeutral extends Tile {
   draw (container, resources, offset) {
     if (!this.sprite) {
-      this.sprite = new PIXI.Sprite(resources.mainTileNeutral)
+      this.sprite = new PIXI.Sprite(resources.mainTileNeutral.texture)
       container.addChild(this.sprite)
     }
 
