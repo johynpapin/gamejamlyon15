@@ -8,6 +8,7 @@ export default class Level1 extends Level {
     super()
     this.sizeX = 3
     this.sizeY = 3
+    this.maxOrders = 6
     this.initTile()
     this.initIngredients()
   }

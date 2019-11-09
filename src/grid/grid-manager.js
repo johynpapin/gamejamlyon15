@@ -8,7 +8,7 @@ import MovingTile from './tiles/moving-tile'
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
-    this.grid = new Grid(new Level1())
+    this.grid = new Grid(gameManager.level)
   }
 
   spawnIngredient () {
