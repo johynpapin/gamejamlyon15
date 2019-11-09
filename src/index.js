@@ -71,18 +71,13 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
-  const orderAngleL = new PIXI.Sprite(resources.orderAngleL.texture)
-
-  console.log(orderAngleL)
-
-  orderAngleL.x = app.renderer.width / 2
-  orderAngleL.y = app.renderer.height / 2
-
-  app.stage.addChild(orderAngleL)
+  gameManager.draw(app.stage)
 
   app.ticker.add(delta => gameLoop(delta))
 }
 
 // The game loop
 function gameLoop (delta) {
+  gameManager.next()
+  gameManager.draw(app.stage)
 }
