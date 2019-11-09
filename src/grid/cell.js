@@ -6,13 +6,21 @@ export default class Cell {
     this.utensil = utensil
   }
 
-  draw (resources, offset) {
+  set tile (tile) {
+    this.tile = tile
+  }
+
+  set utensil (utensil) {
+    this.utensil = utensil
+  }
+
+  draw (container, resources, offset) {
     if (this.tile !== null) {
-      this.tile.draw(resources, offset)
+      this.tile.draw(container, resources, offset)
     }
 
     if (this.utensil !== null) {
-      this.utensil.draw(resources, offset)
+      this.utensil.draw(container, resources, offset)
     }
   }
 }

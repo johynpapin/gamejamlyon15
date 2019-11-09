@@ -37,8 +37,11 @@ const resources = [{
   name: 'arrowUp',
   url: '/assets/Arrow_Up.png'
 }, {
-  name: 'cold',
+  name: 'coldTile',
   url: '/assets/Cold_v1.png'
+}, {
+  name: 'warmTile',
+  url: '/assets/Warm_v1.png'
 }, {
   name: 'econome',
   url: '/assets/Econome_v1.png'
@@ -71,18 +74,13 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
-  const orderAngleL = new PIXI.Sprite(resources.orderAngleL.texture)
+  gameManager.draw(resources, app.stage)
 
-  console.log(orderAngleL)
-
-  orderAngleL.x = app.renderer.width / 2
-  orderAngleL.y = app.renderer.height / 2
-
-  app.stage.addChild(orderAngleL)
-
-  app.ticker.add(delta => gameLoop(delta))
+  app.ticker.add(delta => gameLoop(resources, delta))
 }
 
 // The game loop
-function gameLoop (delta) {
+function gameLoop (resources, delta) {
+  gameManager.next()
+  gameManager.draw(resources, app.stage)
 }

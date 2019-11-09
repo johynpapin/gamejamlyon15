@@ -7,6 +7,7 @@ class Level1 extends Level {
     this.initTile()
   }
 
+  // 3 x 3 grid
   initTile () {
     this.tileMap.set({ x: 1, y: 0 }, new tile.TileCold())
     this.tileMap.set({ x: 1, y: 2 }, new tile.TileWarm())

@@ -2,10 +2,11 @@ import Order from './order'
 import Orders from './orders'
 
 export default class OrdersManager {
-  constructor (orders) {
+  constructor (gameManager, orders) {
     this.reinit()
     this.orders = orders
     this.number = orders.ordering.length
+    this.gameManager = game Manager
   }
 
   reinit () {
