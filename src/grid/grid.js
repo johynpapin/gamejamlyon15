@@ -21,4 +21,11 @@ export default class Grid {
 
     return cells
   }
+
+  initSprite (resources) {
+
+  }
+
+  draw (resources) {
+  }
 }
