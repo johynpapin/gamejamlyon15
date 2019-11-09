@@ -8,7 +8,7 @@ import MovingTile from './tiles/moving-tile'
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
-    this.grid = new Grid(new Level1())
+    this.grid = new Grid(gameManager.level)
   }
 
   spawnIngredient () {
@@ -21,6 +21,10 @@ export default class GridManager {
 
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
+      if (cell.tile.targetX < 0){
+        this.grid.cells[ingredient.x][ingredient.y].ingredient = null
+        continue
+      }
       if (cell.tile instanceof MovingTile) {
         if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
           this.grid.cells[ingredient.x][ingredient.y].ingredient = null
