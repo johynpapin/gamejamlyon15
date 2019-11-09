@@ -1,5 +1,0 @@
-class Tile {
-  constructor () {
-    // TODO:
-  }
-}

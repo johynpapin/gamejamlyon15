@@ -1,4 +1,4 @@
-import Cell from './cell.js'
+import Cell from './cell'
 
 export default class Grid {
   constructor (sizeX, sizeY) {
