@@ -4,6 +4,7 @@ export default class Cell {
     this.y = y
     this.tile = tile
     this.utensil = utensil
+    this.ingredient = null
   }
 
   draw (container, resources, offset) {
