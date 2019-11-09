@@ -6,6 +6,7 @@ export default class Grid {
     this.sizeX = level.sizeX
     this.sizeY = level.sizeY
     this.cells = this.createCells(level)
+    this.load(level)
     this.ingredients = []
   }
 
@@ -13,16 +14,20 @@ export default class Grid {
     const cells = []
 
     for (let x = 0; x < this.sizeX; x++) {
-      cells[x] = []
+      cells.push([])
 
-      for (let y = 0; x < this.sizeY; x++) {
-        cells[x][y] = new Cell(x, y, new TileNeutral(x, y), null)
+      for (let y = 0; y < this.sizeY; y++) {
+        cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
       }
     }
 
-    this.load(level)
-
     return cells
+  }
+
+  hasIngredient (x, y) {
+    const cell = this.cells[x][y]
+
+    return cell.ingredient !== null
   }
 
   load (level) {

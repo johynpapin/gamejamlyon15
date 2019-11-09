@@ -35,6 +35,11 @@ export default class OrdersManager {
         this.reinit()
       }
     }
+
     this.tics = this.tics + 1
+  }
+
+  draw (stage, resources) {
+
   }
 }

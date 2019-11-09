@@ -15,9 +15,9 @@ export default class Level1 extends Level {
     const errorMsg = 'tile out of grid boundaries'
     const key1 = { x: 1, y: 0 }
     console.assert(key1.x < this.sizeX && key1.y < this.sizeY, { key: key1, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
-    this.tileMap.set(key1, new TileCold())
+    this.tileMap.set(key1, new TileCold(key1.x, key1.y))
     const key2 = { x: 1, y: 2 }
     console.assert(key2.x < this.sizeX && key2.y < this.sizeY, { key: key2, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
-    this.tileMap.set(key2, new TileWarm())
+    this.tileMap.set(key2, new TileWarm(key2.x, key2.y))
   }
 }
