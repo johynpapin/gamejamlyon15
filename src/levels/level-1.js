@@ -2,8 +2,10 @@ import Level from './level'
 import * as tile from '../tile'
 
 class Level1 extends Level {
-  constructor (sizeX, sizeY) {
-    super(sizeX, sizeY)
+  constructor () {
+    super()
+    this.sizeX = 3
+    this.sizeY = 3
     this.initTile()
   }
 

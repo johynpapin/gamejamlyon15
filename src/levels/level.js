@@ -1,7 +1,5 @@
 class Level {
-  constructor (sizeX, sizeY) {
-    this.sizeX = sizeX
-    this.sizeY = sizeY
+  constructor () {
     this.tileMap = new Map()
   }
 
