@@ -1,36 +1,59 @@
 import Cell from './cell'
 import TileNeutral from './tiles/tile-neutral'
 import TileEmpty from './tiles/tile-empty'
+import MovingTile from './tiles/moving-tile'
 // import TileConnector from './tiles/tile-connector'
 
 export default class Grid {
   constructor (level) {
     this.sizeX = level.sizeX + 2
     this.sizeY = level.sizeY + 2
-    this.cells = this.createCells(level)
-    this.load(level)
+    this.level = level
+    this.cells = this.createCells()
+    this.load()
     this.ingredients = []
   }
 
-  createCells (level) {
+  possibilies () {
+    return this.level.ingredients
+  }
+
+  createCells () {
     const cells = []
 
     for (let x = 0; x < this.sizeX; x++) {
       cells.push([])
 
       for (let y = 0; y < this.sizeY; y++) {
-        if (x === this.sizeX - 3 && y === this.sizeY - 3) {
+        if (x === this.sizeX - 2 && y === this.sizeY - 2) {
+          // Empty tile (bottom right)
           cells[x].push(new Cell(x, y, new TileEmpty(x, y), null))
-        } else if (x === this.sizeX - 3 || y === this.sizeY - 3) {
-          // TODO: add direction to the TileConnector
+        } else if ((x === this.sizeX - 2 && y < this.sizeY - 2) || (y === this.sizeY - 2 && x < this.sizeX - 2)) {
+          // Connector tile
           // cells[x].push(new Cell(x, y, new TileConnector(x, y), null))
+        } else if (x === this.sizeX - 1 || y === this.sizeY - 1) {
+          // Conveyor belt
+          const target = { x: x, y: y }
+          if (x === this.sizeX - 1) {
+            target.y--
+          } else {
+            target.x++
+          }
+          cells[x].push(new Cell(x, y, new MovingTile(x, y, target, true), null))
         } else {
+          // Normal grid
           cells[x].push(new Cell(x, y, new TileNeutral(x, y), null))
         }
       }
     }
 
     return cells
+  }
+
+  load () {
+    for (const [key, value] of this.level.tileMap) {
+      this.cells[key.x][key.y].tile = value
+    }
   }
 
   isFree (x, y) {
@@ -49,12 +72,6 @@ export default class Grid {
     const cell = this.cells[x][y]
 
     return cell.utensil !== null && !cell.utensil.isFree()
-  }
-
-  load (level) {
-    for (const [key, value] of level.tileMap) {
-      this.cells[key.x][key.y].tile = value
-    }
   }
 
   draw (container, resources, offset) {
