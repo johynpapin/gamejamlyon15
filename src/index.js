@@ -74,8 +74,15 @@ function setup (loader, resources) {
   app.ticker.add(delta => gameLoop(resources, delta))
 }
 
+let ticks = 0
+
 // The game loop
 function gameLoop (resources, delta) {
-  gameManager.next()
+  ticks += delta
+
+  if (ticks >= 10) {
+    ticks = 0
+    gameManager.next()
+  }
   gameManager.draw(app.stage, resources)
 }

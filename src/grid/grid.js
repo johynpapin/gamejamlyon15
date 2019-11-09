@@ -32,7 +32,7 @@ export default class Grid {
           // Connector tile
           const target = { x: x, y: y }
           if (x === this.sizeX - 2) {
-            target.y--
+            target.y++
           } else {
             target.x++
           }
@@ -41,7 +41,7 @@ export default class Grid {
           // Conveyor belt
           const target = { x: x, y: y }
           if (x === this.sizeX - 1) {
-            target.y--
+            target.y++
           } else {
             target.x++
           }
