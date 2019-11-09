@@ -1,3 +1,5 @@
+import * as PIXI from 'pixijs'
+
 import Grid from './grid'
 
 class GridManager {
@@ -5,7 +7,12 @@ class GridManager {
     this.grid = new Grid()
   }
 
-  draw (resources, offset) {
-    this.grid.draw(resources, offset)
+  draw (stage, resources) {
+    if (!this.container) {
+      this.container = new PIXI.Container()
+      this.stage.addChid(this.container)
+    }
+
+    this.grid.draw(this.container, resources, { x: 0, y: 0 })
   }
 }

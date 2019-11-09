@@ -2,9 +2,10 @@ import * as PIXI from 'pixi.js'
 import Tile from './tile'
 
 class TileWarm extends Tile {
-  draw (resources, offset) {
+  draw (container, resources, offset) {
     if (!this.sprite) {
-      this.sprite = new PIXI.Sprite(resources.mainTileNeutral)
+      this.sprite = new PIXI.Sprite(resources.warnTile)
+      this.container.addChild(this.sprite)
     }
 
     this.sprite.x = this.x * 32 + offset.x
