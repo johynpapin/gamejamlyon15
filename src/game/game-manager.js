@@ -10,7 +10,19 @@ import Ingredient from '../ingredients/ingredient'
 
 class GameManager {
   constructor () {
-    this.gridManager = new GridManager(this)
     this.ordersManager = new OrdersManager(this)
+    this.gridManager = new GridManager(this)
+  }
+
+  next () {
+    console.log('[GameManager] next')
+
+    this.ordersManager.next()
+    this.gridManager.next()
+  }
+
+  draw (resources, stage) {
+    this.ordersManager.draw(resources, stage)
+    this.gridManager.draw(resources, stage)
   }
 }
