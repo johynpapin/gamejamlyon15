@@ -1,5 +1,10 @@
 class Peeler {
-  constructor() {
+  constructor () {
+    this.addedState = 'peel'
+    this.hasOtherResult = true
+  }
 
+  produce (ingredient) {
+    // TODO:
   }
 }
