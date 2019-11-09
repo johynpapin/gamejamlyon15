@@ -6,7 +6,7 @@ export default class OrdersManager {
     this.reinit()
     this.orders = orders
     this.number = orders.ordering.length
-    this.gameManager = game Manager
+    this.gameManager = gameManager
   }
 
   reinit () {

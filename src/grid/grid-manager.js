@@ -1,9 +1,9 @@
-import * as PIXI from 'pixijs'
+import * as PIXI from 'pixi.js'
 import Level1 from '../levels/level-1'
 
 import Grid from './grid'
 
-class GridManager {
+export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
     this.grid = new Grid(new Level1())
