@@ -69,7 +69,7 @@ export default class GridManager {
       stack.push(currentCell)
       currentCell = this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY]
     }
-    if (this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) || !(currentCell.tile instanceof MovingTile)) {
+    if (!(currentCell.tile instanceof MovingTile) || this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
       while (stack.length > 0) {
         currentCell = stack.pop()
         this.grid.cells[currentCell.ingredient.x][currentCell.ingredient.y].ingredient.hasMoved = true
