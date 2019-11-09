@@ -1,4 +1,4 @@
-class Ingredient {
+export default class Ingredient {
   constructor (x, y) {
     this.x = x
     this.y = y
