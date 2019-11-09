@@ -1,8 +1,9 @@
 import Grid from './grid'
 
 class GridManager {
-  constructor () {
+  constructor (gameManager) {
     this.grid = new Grid()
+    this.gameManager = gameManager
   }
 
   draw (resources, offset) {
