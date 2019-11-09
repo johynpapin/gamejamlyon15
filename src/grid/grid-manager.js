@@ -13,7 +13,10 @@ export default class GridManager {
 
   spawnIngredient () {
     const possibilies = this.grid.possibilies()
-    this.grid.ingredients.push(new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0))
+    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
+
+    this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient
+    this.grid.ingredients.push(newIngredient)
   }
 
   next () {
@@ -72,7 +75,7 @@ export default class GridManager {
     if (!(currentCell.tile instanceof MovingTile) || this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
       while (stack.length > 0) {
         currentCell = stack.pop()
-        this.grid.cells[currentCell.ingredient.x][currentCell.ingredient.y].ingredient.hasMoved = true
+        currentCell.ingredient.hasMoved = true
       }
     } else {
       while (stack.length > 0) {
