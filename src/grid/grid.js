@@ -32,18 +32,20 @@ export default class Grid {
           // Connector tile
           const target = { x: x, y: y }
           if (x === this.sizeX - 2) {
-            target.y++
+            target.x--
           } else {
-            target.x++
+            target.y++
           }
           cells[x].push(new Cell(x, y, new TileConnector(x, y, target), null))
         } else if (x === this.sizeX - 1 || y === this.sizeY - 1) {
           // Conveyor belt
           const target = { x: x, y: y }
-          if (x === this.sizeX - 1) {
+          if (x === this.sizeX - 1 && y === this.sizeY - 1) {
+            target.x--
+          } else if (x === this.sizeX - 1) {
             target.y++
           } else {
-            target.x++
+            target.x--
           }
           cells[x].push(new Cell(x, y, new MovingTile(x, y, target, true), null))
         } else {

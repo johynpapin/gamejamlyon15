@@ -80,7 +80,7 @@ let ticks = 0
 function gameLoop (resources, delta) {
   ticks += delta
 
-  if (ticks >= 10) {
+  if (ticks >= 100) {
     ticks = 0
     gameManager.next()
   }
