@@ -5,7 +5,7 @@ import Tile from './tile'
 // S : 2
 // W : 3
 
-export default class movingTile extends Tile {
+export default class MovingTile extends Tile {
   constructor (x, y, nextCell) {
     super(x, y)
     this.targetX = nextCell.x
