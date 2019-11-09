@@ -8,7 +8,7 @@ import MovingTile from './tiles/moving-tile'
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
-    this.grid = new Grid(new Level1())
+    this.grid = new Grid(gameManager.level)
   }
 
   spawnIngredient () {
@@ -17,6 +17,8 @@ export default class GridManager {
   }
 
   next () {
+    this.checkConnectors()
+
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
       if (cell.tile.targetX < 0) {
@@ -40,6 +42,22 @@ export default class GridManager {
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
+    }
+  }
+
+  checkConnectors () {
+    for (let y = 0; y < this.grid.sizeY - 1; y++) {
+      const movingCell = this.grid.cells[this.grid.sizeX - 1][y]
+      const connectorCell = this.grid.cells[this.grid.sizeX - 2][y]
+
+      if (connectorCell.tile.connected) {
+        console.log('connected')
+        movingCell.tile.targetX = connectorCell.x
+        movingCell.tile.targetY = connectorCell.y
+      } else {
+        movingCell.tile.targetX = movingCell.tile.x
+        movingCell.tile.targetY = movingCell.tile.y + 1
+      }
     }
   }
 
