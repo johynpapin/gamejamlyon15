@@ -41,9 +41,9 @@ export default class GridManager {
         }
       }
     }
-  for (const ingredient of toDelete) {
-    this.grid.ingredients.slice(this.grid.ingredients.indexOf(ingredient), 1)
-  }
+    for (const ingredient of toDelete) {
+      this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
+    }
 
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
