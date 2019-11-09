@@ -1,9 +1,10 @@
 import Cell from './cell'
+import TileNeutral from './tile/tile-neutral'
 
 export default class Grid {
-  constructor (sizeX, sizeY, level) {
-    this.sizeX = sizeX
-    this.sizeY = sizeY
+  constructor (level) {
+    this.sizeX = level.sizeX
+    this.sizeY = level.sizeY
     this.cells = this.createCells(level)
     this.ingredients = []
   }
@@ -11,11 +12,11 @@ export default class Grid {
   createCells (level) {
     const cells = []
 
-    for (let i = 0; i < this.sizeX; i++) {
-      cells[i] = []
+    for (let x = 0; x < this.sizeX; x++) {
+      cells[x] = []
 
-      for (let j = 0; i < this.sizeY; i++) {
-        cells[i][j] = new Cell(i, j, null, null)
+      for (let y = 0; x < this.sizeY; x++) {
+        cells[x][y] = new Cell(x, y, new TileNeutral(x, y), null)
       }
     }
 
