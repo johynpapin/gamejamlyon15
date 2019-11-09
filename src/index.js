@@ -71,13 +71,13 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
-  gameManager.draw(app.stage)
+  gameManager.draw(resources, app.stage)
 
-  app.ticker.add(delta => gameLoop(delta))
+  app.ticker.add(delta => gameLoop(resources, delta))
 }
 
 // The game loop
-function gameLoop (delta) {
+function gameLoop (resources, delta) {
   gameManager.next()
-  gameManager.draw(app.stage)
+  gameManager.draw(resources, app.stage)
 }
