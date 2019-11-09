@@ -1,0 +1,5 @@
+class Utensil {
+  constructor () {
+    // TODO:
+  }
+}
