@@ -23,6 +23,7 @@ export default class OrdersManager {
   resolvedOrder (order) {
     this.orders.slice(this.orders.indexOf(order), 1)
     this.number -= 1
+    this.gameManager.notifyResolveOrder()
   }
 
   next () {
