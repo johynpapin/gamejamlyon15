@@ -10,7 +10,8 @@ export default class GridManager {
   }
 
   spawnIngredient () {
-
+    const possibilies = this.grid.possibilies()
+    this.grid.ingredients.push(new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0))
   }
 
   next () {
