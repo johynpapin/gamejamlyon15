@@ -14,13 +14,13 @@ export default class Cell {
     this.utensil = utensil
   }
 
-  draw (resources, offset) {
+  draw (container, resources, offset) {
     if (this.tile !== null) {
-      this.tile.draw(resources, offset)
+      this.tile.draw(container, resources, offset)
     }
 
     if (this.utensil !== null) {
-      this.utensil.draw(resources, offset)
+      this.utensil.draw(container, resources, offset)
     }
   }
 }
