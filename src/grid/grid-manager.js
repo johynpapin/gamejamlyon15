@@ -13,17 +13,26 @@ export default class GridManager {
 
   spawnIngredient () {
     const possibilies = this.grid.possibilies()
-    this.grid.ingredients.push(new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0))
+    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
+
+    this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient
+    this.grid.ingredients.push(newIngredient)
   }
 
   next () {
+    const toDelete = []
+
     for (const ingredient of this.grid.ingredients) {
       const cell = this.grid.cells[ingredient.x][ingredient.y]
-      if (cell.tile.targetX < 0){
-        this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-        continue
-      }
+
       if (cell.tile instanceof MovingTile) {
+        if (cell.tile.targetX < 0) {
+          toDelete.push(ingredient)
+          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
+          ingredient.destroy()
+          continue
+        }
+
         if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
           this.grid.cells[ingredient.x][ingredient.y].ingredient = null
           ingredient.x = cell.tile.targetX
@@ -37,9 +46,29 @@ export default class GridManager {
       }
     }
 
+    for (const ingredient of toDelete) {
+      this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
+    }
+
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
+    }
+  }
+
+  checkConnectors () {
+    for (let y = 0; y < this.grid.sizeY - 1; y++) {
+      const movingCell = this.grid.cells[this.grid.sizeX - 1][y]
+      const connectorCell = this.grid.cells[this.grid.sizeX - 2][y]
+
+      if (connectorCell.tile.connected) {
+        console.log('connected')
+        movingCell.tile.targetX = connectorCell.x
+        movingCell.tile.targetY = connectorCell.y
+      } else {
+        movingCell.tile.targetX = movingCell.tile.x
+        movingCell.tile.targetY = movingCell.tile.y + 1
+      }
     }
   }
 
@@ -49,21 +78,21 @@ export default class GridManager {
     let currentCell = cell
     const stack = []
 
-    while (!this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY)) {
+    while ((currentCell.tile instanceof MovingTile) && !this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY)) {
       stack.push(currentCell)
       currentCell = this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY]
     }
-    if (this.grid.is.FullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
+    if (!(currentCell.tile instanceof MovingTile) || this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
       while (stack.length > 0) {
         currentCell = stack.pop()
-        this.grid.cells[currentCell.ingredient.x][currentCell.ingredient.y].ingredient.hasMoved = true
+        currentCell.ingredient.hasMoved = true
       }
     } else {
       while (stack.length > 0) {
         currentCell = stack.pop()
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient = currentCell.ingredient
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.x = currentCell.tile.targetX
-        this.grid.cells[currentCell.tile.targetX][currentCell.targetY].ingredient.y = currentCell.tile.targetY
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient = currentCell.ingredient
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.x = currentCell.tile.targetX
+        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.y = currentCell.tile.targetY
         this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.hasMoved = true
       }
       if (cycle) {
@@ -75,6 +104,8 @@ export default class GridManager {
   }
 
   draw (stage, resources) {
+    this.checkConnectors()
+
     if (!this.container) {
       this.container = new PIXI.Container()
 

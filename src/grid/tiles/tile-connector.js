@@ -16,15 +16,15 @@ export default class TileConnector extends MovingTile {
     if (!this.sprite) {
       if (this.x === this.targetX) {
         if (this.y < this.targetY) {
-          this.sprite = new PIXI.Sprite(resources.arrowRight.texture)
-        } else {
-          this.sprite = new PIXI.Sprite(resources.arrowLeft.texture)
-        }
-      } else {
-        if (this.x < this.targetX) {
           this.sprite = new PIXI.Sprite(resources.arrowTop.texture)
         } else {
           this.sprite = new PIXI.Sprite(resources.arrowDown.texture)
+        }
+      } else {
+        if (this.x < this.targetX) {
+          this.sprite = new PIXI.Sprite(resources.arrowRight.texture)
+        } else {
+          this.sprite = new PIXI.Sprite(resources.arrowLeft.texture)
         }
       }
       container.addChild(this.sprite)

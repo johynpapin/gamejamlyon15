@@ -8,4 +8,11 @@ export default class Ingredient {
   addState (state) {
     this.state.push(state)
   }
+
+  destroy () {
+    if (this.sprite) {
+      // TODO: bad
+      this.sprite.visible = false
+    }
+  }
 }
