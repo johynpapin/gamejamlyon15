@@ -36,6 +36,9 @@ const resources = [{
 }, {
   name: 'potato',
   url: '/assets/Patate_v1.png'
+}, {
+  name: 'background',
+  url: '/assets/Background_v1_640_480.png'
 }]
 
 const loader = new PIXI.Loader()
@@ -47,6 +50,15 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
+  const background = new PIXI.Sprite(resources.background.texture)
+
+  background.x = 0
+  background.y = 0
+  background.width = window.innerWidth
+  background.height = window.innerHeight
+
+  app.stage.addChild(background)
+
   gameManager.draw(app.stage, resources)
 
   app.ticker.add(delta => gameLoop(resources, delta))

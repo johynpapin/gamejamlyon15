@@ -3,8 +3,8 @@ import TileNeutral from './tiles/tile-neutral'
 
 export default class Grid {
   constructor (level) {
-    this.sizeX = level.sizeX
-    this.sizeY = level.sizeY
+    this.sizeX = level.sizeX + 2
+    this.sizeY = level.sizeY + 2
     this.cells = this.createCells(level)
     this.load(level)
     this.ingredients = []
@@ -34,6 +34,12 @@ export default class Grid {
     const cell = this.cells[x][y]
 
     return cell.ingredient !== null
+  }
+
+  isFullUtensil (x, y) {
+    const cell = this.cells[x][y]
+
+    return cell.utensil !== null && !cell.utensil.isFree()
   }
 
   load (level) {
