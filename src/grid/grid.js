@@ -24,6 +24,12 @@ export default class Grid {
     return cells
   }
 
+  hasIngredient (x, y) {
+    const cell = this.cells[x][y]
+
+    return cell.ingredient !== null
+  }
+
   load (level) {
     for (const [key, value] of level.tileMap) {
       this.cells[key.x][key.y].tile = value
