@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js'
 import './index.css'
 
+import GameManager from './game/game-manager'
+
 let type = 'WebGL'
 
 if (!PIXI.utils.isWebGLSupported()) {
@@ -18,6 +20,8 @@ app.renderer.autoResize = true
 app.renderer.resize(window.innerWidth, window.innerHeight)
 
 document.body.appendChild(app.view)
+
+const gameManager = new GameManager()
 
 // List of all the images
 const resources = [{
@@ -67,18 +71,13 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
-  const orderAngleL = new PIXI.Sprite(resources.orderAngleL.texture)
-
-  console.log(orderAngleL)
-
-  orderAngleL.x = app.renderer.width / 2
-  orderAngleL.y = app.renderer.height / 2
-
-  app.stage.addChild(orderAngleL)
+  gameManager.draw(app.stage)
 
   app.ticker.add(delta => gameLoop(delta))
 }
 
 // The game loop
 function gameLoop (delta) {
+  gameManager.next()
+  gameManager.draw(app.stage)
 }
