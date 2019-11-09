@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js'
 import './index.css'
 
+import GameManager from './game/game-manager'
+
 let type = 'WebGL'
 
 if (!PIXI.utils.isWebGLSupported()) {
@@ -18,6 +20,8 @@ app.renderer.autoResize = true
 app.renderer.resize(window.innerWidth, window.innerHeight)
 
 document.body.appendChild(app.view)
+
+const gameManager = new GameManager()
 
 // List of all the images
 const resources = [{

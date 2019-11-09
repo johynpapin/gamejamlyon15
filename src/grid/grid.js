@@ -34,6 +34,15 @@ export default class Grid {
 
   }
 
-  draw (resources) {
+  draw (resources, offset) {
+    for (const ingredient of this.ingredients) {
+      ingredient.draw(resources, offset)
+    }
+
+    for (const line of this.cells) {
+      for (const cell of line) {
+        cell.draw(resources, offset)
+      }
+    }
   }
 }
