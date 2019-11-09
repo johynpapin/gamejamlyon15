@@ -3,6 +3,8 @@ import Level1 from '../levels/level-1'
 
 import Grid from './grid'
 
+import MovingTile from './tiles/moving-tile'
+
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
@@ -16,7 +18,17 @@ export default class GridManager {
 
   next () {
     for (const ingredient of this.grid.ingredients) {
+      const cell = this.grid.cells[ingredient.x][ingredient.y]
+      if (cell.tile instanceof MovingTile) {
+        if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
+          ingredient.x = cell.tile.targetX
+          ingredient.y = cell.tile.targetY
+          ingredient.hasMoved = true
+          // TODO IF FREEUSTENSIL
+        } else if (this.grid.hasIngredient(cell.tile.targetX, cell.tile.targetY)) {
 
+        }
+      }
     }
 
     // Spawn new ingredient
@@ -25,11 +37,30 @@ export default class GridManager {
     }
   }
 
+  chainIngredient(cell) {
+    let cycle_cell = cell
+    let current_cell = cell
+    let stack = []
+
+    while(!this.grid.isFullUtensil(current_cell.tile.targetX, current_cell.tile.targetY) && !this.grid.isFree(current_cell.tile.targetX, current_cell.tile.targetY)) {
+      stack.push(current_cell)
+      current_cell = this.grid.cell[targetX][targetY]
+    }
+    if (this.grid
+  }
+
   draw (stage, resources) {
     if (!this.container) {
       this.container = new PIXI.Container()
+
+      this.container.scale.x = 4
+      this.container.scale.y = 4
+
       stage.addChild(this.container)
     }
+
+    this.container.x = window.innerWidth / 2 - this.container.width / 2
+    this.container.y = window.innerHeight / 2 - this.container.height / 2
 
     this.grid.draw(this.container, resources, { x: 0, y: 0 })
   }
