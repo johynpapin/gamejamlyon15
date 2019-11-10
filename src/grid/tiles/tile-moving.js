@@ -14,16 +14,23 @@ export default class MovingTile extends Tile {
     this.conveyorBelt = conveyorBelt
   }
 
-  apply (grid) {
-    if (this.targetX < 0 || grid.cells[this.x][this.y].ingredient === null) {
-    // TODO
+  apply (grid, id) {
+    const cell = grid.cells[this.x][this.y]
+
+    if (this.targetX === -1 && this.targetY === grid.sixeY) {
+      cell.ingredient = null
+      return null
+    } else if (!cell.ingredient || cell.ingredient.lastId === id) {
+      return null
     } else if (grid.isFree(this.targetX, this.targetY)) {
-      var currentIngredient = grid.cells[this.x][this.y].ingredient
+      const currentIngredient = grid.cells[this.x][this.y].ingredient
       currentIngredient.x = this.targetX
       currentIngredient.y = this.targetY
-      // grid.cells[this.targetX][this.targetY].ingredient = grid.cells[this.x][this.y].ingredient
+      currentIngredient.lastId = id
+
       grid.cells[this.targetX][this.targetY].ingredient = currentIngredient
-      grid.cells[this.x][this.y].ingredient = null
+      cell.ingredient = null
+
       return null
     } else {
       return [grid.cells[this.targetX][this.targetY].tile]
@@ -33,17 +40,23 @@ export default class MovingTile extends Tile {
   draw (container, resources) {
     if (!this.sprite) {
       if (this.conveyorBelt) {
-        this.sprite = new PIXI.Sprite(resources.rollDown.texture)
-        this.sprite2 = new PIXI.Sprite(resources.rollLeft.texture)
-        this.sprite2.visible = false
-        container.addChild(this.sprite2)
-
-        if (this.x === this.targetX) {
-          this.sprite.visible = true
-          this.sprite2.visible = false
+        if (this.x === this.y) {
+          this.sprite = new PIXI.AnimatedSprite(resources.rollTurn.spritesheet.animations['Roll_Turn-Sheet'])
+          this.sprite.animationSpeed = 0.1
+          this.sprite.zIndex = 2
+          this.sprite.play()
         } else {
-          this.sprite.visible = false
-          this.sprite2.visible = true
+          if (this.x === this.targetX) {
+            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+            this.sprite.animationSpeed = 0.1
+            this.sprite.play()
+          } else {
+            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+            this.sprite.angle = 90
+            this.sprite.pivot.y = this.sprite.height
+            this.sprite.animationSpeed = 0.1
+            this.sprite.play()
+          }
         }
       } else {
         if (this.x === this.targetX) {
@@ -61,19 +74,6 @@ export default class MovingTile extends Tile {
         }
       }
       container.addChild(this.sprite)
-    }
-
-    if (this.conveyorBelt) {
-      this.sprite2.x = this.x * this.sprite2.width
-      this.sprite2.y = this.y * this.sprite2.height
-
-      if (this.x === this.targetX) {
-        this.sprite.visible = true
-        this.sprite2.visible = false
-      } else {
-        this.sprite.visible = false
-        this.sprite2.visible = true
-      }
     }
 
     this.sprite.x = this.x * this.sprite.width

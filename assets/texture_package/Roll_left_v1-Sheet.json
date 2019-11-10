@@ -1,6 +1,6 @@
 {"frames": {
 
-"Main_Tile_Neutral_v2-Sheet-0.png":
+"Roll_left_v1-Sheet-0.png":
 {
 	"frame": {"x":0,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Main_Tile_Neutral_v2-Sheet-1.png":
+"Roll_left_v1-Sheet-1.png":
 {
 	"frame": {"x":32,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -16,24 +16,64 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Main_Tile_Neutral_v2-Sheet-2.png":
+"Roll_left_v1-Sheet-2.png":
 {
 	"frame": {"x":64,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
+},
+"Roll_left_v1-Sheet-3.png":
+{
+	"frame": {"x":96,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Roll_left_v1-Sheet-4.png":
+{
+	"frame": {"x":128,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Roll_left_v1-Sheet-5.png":
+{
+	"frame": {"x":160,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Roll_left_v1-Sheet-6.png":
+{
+	"frame": {"x":192,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Roll_left_v1-Sheet-7.png":
+{
+	"frame": {"x":224,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
 }},
 "animations": {
-	"Main_Tile_Neutral_v2-Sheet": ["Main_Tile_Neutral_v2-Sheet-0.png","Main_Tile_Neutral_v2-Sheet-1.png","Main_Tile_Neutral_v2-Sheet-2.png"]
+	"Roll_left_v1-Sheet": ["Roll_left_v1-Sheet-0.png","Roll_left_v1-Sheet-1.png","Roll_left_v1-Sheet-2.png","Roll_left_v1-Sheet-3.png","Roll_left_v1-Sheet-4.png","Roll_left_v1-Sheet-5.png","Roll_left_v1-Sheet-6.png","Roll_left_v1-Sheet-7.png"]
 },
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "Roll_left_v1-Sheet.png",
 	"format": "RGBA8888",
-	"size": {"w":96,"h":32},
+	"size": {"w":256,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:49b0433c54ae7044f069202b07da0f78:cce6de105d29437ec9273d80a6110cf5:5ab98ec84912f1ae7b4db4c04954a052$"
+	"smartupdate": "$TexturePacker:SmartUpdate:43f3a85dcb7f4096c7e034f35d2a411a:2189bf9c9fc1679338a4042fdcfb098e:5ab98ec84912f1ae7b4db4c04954a052$"
 }
 }
