@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import './index.css'
+import { Howl } from 'howler'
 
 import GameManager from './game/game-manager'
 
@@ -141,3 +142,12 @@ function scaleScene () {
 scaleScene()
 
 window.addEventListener('resize', scaleScene)
+
+// Audio
+
+const sound = new Howl({
+  src: ['/assets/sky-factory-zone-Music/sky-factory-zone.mp3'],
+  loop: true
+})
+
+sound.play()

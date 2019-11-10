@@ -8,10 +8,13 @@ export default class GameManager {
     this.ordersManager = new OrdersManager(this)
     this.gridManager = new GridManager(this)
     this.achieved = 0
+    this.paused = false
   }
 
   next () {
-    console.log('[GameManager] next')
+    if (this.paused) {
+      return
+    }
 
     if (this.achieved === this.level.maxOrders) {
       console.log('Level ended successfully')
