@@ -129,4 +129,4 @@ function scaleScene () {
   app.renderer.resize(w, h)
 }
 
-scaleScene()
+// scaleScene()
