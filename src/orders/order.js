@@ -14,8 +14,8 @@ export default class Order {
       this.rectangle = new PIXI.Graphics()
 
       this.rectangle.beginFill(0xffff00)
-      this.rectangle.lineStyle(5, 0xff0000)
-      this.rectangle.drawRect(0, 100 * position, 300, 100)
+      this.rectangle.lineStyle(2, 0xff0000)
+      this.rectangle.drawRect(0, 32 * position, 128, 32)
 
       this.container.addChild(this.rectangle)
       container.addChild(this.container)
