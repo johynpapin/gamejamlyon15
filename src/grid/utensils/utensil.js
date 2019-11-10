@@ -1,10 +1,11 @@
-class Utensil {
-  constructor (x, y) {
-    this.x = x
-    this.y = y
+import Waste from './../ingredients/waste'
+
+export default class Utensil {
+  constructor (cell) {
+    this.cell = cell
     this.state = null
     this.hasOtherResult = false
-    // map -> []: ''
+    // map -> [key_0, ..., key_n]: 'value'
     this.transitions = this.createTransitions()
   }
 
@@ -17,8 +18,12 @@ class Utensil {
         }
       } else {
         ingredient.destroy()
-        // create new ingredient waste
+        this.cell.ingredient = new Waste()
       }
     }
+  }
+
+  isFree () {
+    return this.cell.ingredient == null
   }
 }

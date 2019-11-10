@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js'
+import Utensil from './utensil'
 import utensils from './utensils'
 
-export default class Fryer {
+export default class Fryer extends Utensil {
   constructor () {
+    super()
     this.state = utensils.fryer.state
     this.hasOtherResult = false
   }

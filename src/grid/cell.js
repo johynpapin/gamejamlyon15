@@ -7,8 +7,14 @@ export default class Cell {
     this.ingredient = null
   }
 
-  addUtensil (utensil) {
-    this.utensil = utensil
+  addUtensil (Utensil) {
+    this.utensil = new Utensil(this)
+  }
+
+  next () {
+    if (this.ingredient != null) {
+      this.utensil.apply(this.ingredient)
+    }
   }
 
   draw (container, resources, offset) {
