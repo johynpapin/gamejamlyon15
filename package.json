@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/johynpapin/gamejamlyon15#readme",
   "dependencies": {
+    "howler": "^2.1.2",
     "pixi.js": "^5.2.0"
   },
   "devDependencies": {

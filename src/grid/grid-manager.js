@@ -39,6 +39,16 @@ export default class GridManager {
     }
   }
 
+  nextUtensils () {
+    for (let x = 0; x < this.grid.sizeX; x++) {
+      for (let y = 0; y < this.grid.sizeY; y++) {
+        if (this.grid.cells[x][y].utensil != null) {
+          this.grid.cells[x][y].utensil.next()
+        }
+      }
+    }
+  }
+
   spawnIngredient () {
     const possibilies = this.grid.possibilies
     const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0, this.grid)
@@ -48,6 +58,8 @@ export default class GridManager {
 
   next () {
     this.applyTiles()
+
+    this.nextUtensils()
 
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
@@ -91,10 +103,11 @@ export default class GridManager {
   draw (container, resources) {
     if (!this.container) {
       this.container = new GridContainer()
-
+      this.container.scale.set(1.5)
       this.container.sortableChildren = true
 
       this.trash = new PIXI.AnimatedSprite(resources.trash.spritesheet.animations['Trashbin_v1-Sheet'])
+      this.trash.scale.set(1.5)
       this.trash.animationSpeed = 0.1
       this.trash.play()
 
@@ -102,8 +115,8 @@ export default class GridManager {
       container.addChild(this.trash)
     }
 
-    this.container.x = container.width / 2 - this.container.width / 2
-    this.container.y = container.height / 2 - this.container.height / 2
+    this.container.x = 640 / 2 - this.container.width / 2
+    this.container.y = 480 / 2 - this.container.height / 2
 
     this.trash.x = this.container.x - this.trash.width
     this.trash.y = this.container.y + this.container.height - this.trash.height
