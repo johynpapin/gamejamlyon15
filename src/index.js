@@ -3,6 +3,8 @@ import './index.css'
 
 import GameManager from './game/game-manager'
 
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
+
 let type = 'WebGL'
 
 if (!PIXI.utils.isWebGLSupported()) {
@@ -11,7 +13,9 @@ if (!PIXI.utils.isWebGLSupported()) {
 
 PIXI.utils.sayHello(type)
 
-const app = new PIXI.Application()
+const app = new PIXI.Application({
+  antialias: false
+})
 
 // Make the game fill the window
 // app.renderer.backgroundColor = 0xadff4d
@@ -61,7 +65,7 @@ const resources = [{
   url: '/assets/Roll_Basic_v1.png'
 }, {
   name: 'rollTurn',
-  url: '/assets/Roll_Turn.png'
+  url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
 }]
 
 const loader = new PIXI.Loader()

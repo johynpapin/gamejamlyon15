@@ -40,8 +40,9 @@ export default class MovingTile extends Tile {
     if (!this.sprite) {
       if (this.conveyorBelt) {
         if (this.x === this.y) {
-          this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+          this.sprite = new PIXI.AnimatedSprite(resources.rollTurn.spritesheet.animations['Roll_Turn-Sheet'])
           this.sprite.animationSpeed = 0.1
+          this.sprite.zIndex = 2
           this.sprite.play()
         } else {
           if (this.x === this.targetX) {

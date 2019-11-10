@@ -92,6 +92,8 @@ export default class GridManager {
     if (!this.container) {
       this.container = new GridContainer()
 
+      this.container.sortableChildren = true
+
       this.container.scale.x = 4
       this.container.scale.y = 4
 
