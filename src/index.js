@@ -71,18 +71,16 @@ loader
 function setup (loader, resources) {
   gameManager.draw(app.stage, resources)
 
-  app.ticker.add(delta => gameLoop(resources, delta))
+  app.ticker.add(delta => drawLoop(resources, delta))
+
+  setInterval(gameLoop, 1000)
 }
 
-let ticks = 0
+function drawLoop (resources, delta) {
+  gameManager.draw(app.stage, resources)
+}
 
 // The game loop
 function gameLoop (resources, delta) {
-  ticks += delta
-
-  if (ticks >= 100) {
-    ticks = 0
-    gameManager.next()
-  }
-  gameManager.draw(app.stage, resources)
+  gameManager.next()
 }
