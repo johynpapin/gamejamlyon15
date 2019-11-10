@@ -14,16 +14,18 @@ if (!PIXI.utils.isWebGLSupported()) {
 PIXI.utils.sayHello(type)
 
 const app = new PIXI.Application({
-  antialias: false
+  antialias: false,
+  width: 640,
+  height: 480
 })
+
+const ratio = 640 / 480
 
 // Make the game fill the window
 // app.renderer.backgroundColor = 0xadff4d
 app.renderer.backgroundColor = 0x332222
 app.renderer.view.style.position = 'absolute'
 app.renderer.view.style.display = 'block'
-app.renderer.autoResize = true
-app.renderer.resize(window.innerWidth, window.innerHeight)
 
 document.body.appendChild(app.view)
 
@@ -75,6 +77,9 @@ const resources = [{
 }, {
   name: 'background',
   url: '/assets/texture_package/Background.json'
+}, {
+  name: 'trash',
+  url: '/assets/texture_package/Trashbin_v1-Sheet.json'
 }]
 
 const loader = new PIXI.Loader()
@@ -88,9 +93,7 @@ loader
 function setup (loader, resources) {
   const background = new PIXI.AnimatedSprite(resources.background.spritesheet.animations['Background_v1-Sheet'])
 
-  background.height = window.innerHeight
-  background.width = window.innerWidth
-  background.alpha = 0.1 fooSprite.scale.set(window.innerHeight / someConstantPixelLength);
+  background.alpha = 0.1
 
   background.animationSpeed = 0.025
   background.play()
@@ -112,3 +115,18 @@ function drawLoop (resources, delta) {
 function gameLoop (resources, delta) {
   gameManager.next()
 }
+
+function scaleScene () {
+  let w = window.innerWidth
+  let h = window.innerWidth / ratio
+
+  if (window.innerWidth / window.innerHeight >= ratio) {
+    w = window.innerHeight * ratio
+    h = window.innerHeight
+  }
+
+  app.stage.scale.set(window.innerWidth / w)
+  app.renderer.resize(w, h)
+}
+
+scaleScene()

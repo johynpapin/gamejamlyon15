@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 import Tile from './tile'
 
 export default class TileNeutral extends Tile {
-  draw (container, resources, offset) {
+  draw (container, resources) {
     if (!this.sprite) {
       this.sprite = new PIXI.AnimatedSprite(resources.mainTileNeutral.spritesheet.animations['Main_Tile_Neutral_v2-Sheet'])
       this.sprite.animationSpeed = 0.1
@@ -10,7 +10,7 @@ export default class TileNeutral extends Tile {
       container.addChild(this.sprite)
     }
 
-    this.sprite.x = this.x * this.sprite.width + offset.x
-    this.sprite.y = this.y * this.sprite.height + offset.y
+    this.sprite.x = this.x * this.sprite.width
+    this.sprite.y = this.y * this.sprite.height
   }
 }
