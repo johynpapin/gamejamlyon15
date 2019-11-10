@@ -14,7 +14,7 @@ PIXI.utils.sayHello(type)
 const app = new PIXI.Application()
 
 // Make the game fill the window
-//app.renderer.backgroundColor = 0xadff4d
+// app.renderer.backgroundColor = 0xadff4d
 app.renderer.backgroundColor = 0x332222
 app.renderer.view.style.position = 'absolute'
 app.renderer.view.style.display = 'block'
@@ -27,12 +27,6 @@ const gameManager = new GameManager()
 
 // List of all the images
 const resources = [{
-  name: 'coldTile',
-  url: '/assets/Cold_v1.png'
-}, {
-  name: 'warmTile',
-  url: '/assets/Warm_v1.png'
-}, {
   name: 'mainTileNeutral',
   url: '/assets/Main_Tile_Neutral_v1.png'
 }, {

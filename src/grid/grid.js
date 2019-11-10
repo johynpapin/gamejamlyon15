@@ -10,7 +10,7 @@ export default class Grid {
     this.sizeY = level.sizeY + 2
     this.level = level
     this.cells = this.createCells()
-    this.load()
+    this.utensils = this.createUtensils()
     this.ingredients = []
   }
 
@@ -58,9 +58,10 @@ export default class Grid {
     return cells
   }
 
-  load () {
-    for (const [key, value] of this.level.tileMap) {
-      this.cells[key.x][key.y].tile = value
+  createUtensils () {
+    for (const [key, value] of this.level.utensilsMap) {
+      const Utensil = value
+      this.cells[key.x][key.y].tile = new Utensil(key.x, key.y)
     }
   }
 

@@ -1,17 +1,17 @@
 import * as PIXI from 'pixi.js'
-import ustensils from './ustensils'
+import utensils from './utensils'
 
 export default class Peeler {
   constructor () {
-    this.state = ustensils.peeler.state
+    this.state = utensils.peeler.state
     this.hasOtherResult = true
   }
 
   createTransitions () {
     const transitions = new Map()
 
-    transitions.set([ustensils.knife.state], this.state)
-    transitions.set([ustensils.pot.state], this.state)
+    transitions.set([utensils.knife.state], this.state)
+    transitions.set([utensils.pot.state], this.state)
     transitions.set([this.state], this.state)
 
     return transitions

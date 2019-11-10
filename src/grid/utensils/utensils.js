@@ -1,26 +1,26 @@
-export const statesUtensil = {
+export const utensils = {
   knife: {
-    name: 'knife',
+    name: 'Knife',
     state: 'cut'
   },
   peeler: {
-    name: 'peeler',
+    name: 'Peeler',
     state: 'peel'
   },
   pot: {
-    name: 'pot',
+    name: 'Pot',
     state: 'cooked'
   },
   fryer: {
-    name: 'fryer',
+    name: 'Fryer',
     state: 'fry'
   },
   blender: {
-    name: 'blender',
+    name: 'Blender',
     state: 'blend'
   },
   pan: {
-    name: 'pan',
+    name: 'Pan',
     state: 'sauteed'
   }
 }
