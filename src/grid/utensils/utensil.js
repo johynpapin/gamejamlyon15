@@ -1,13 +1,28 @@
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
-  constructor (cell) {
+  constructor (cell, targetCell) {
     this.cell = cell
-    console.log(this.cell)
+    this.targetCell = targetCell
     this.state = null
     this.hasOtherResult = false
     // map -> [key_0, ..., key_n]: 'value'
     this.transitions = this.createTransitions()
+    this.reinit()
+  }
+
+  reinit () {
+    this.tics = 5
+  }
+
+  next () {
+    if (this.tics === 0 && this.targetCell.isFree()) {
+      this.targetCell = this.cell.ingredient
+      this.cell.ingredient = null
+      this.reinit()
+    } else if (this.cell.ingredient != null) {
+      this.tics--
+    }
   }
 
   apply (ingredient) {
@@ -25,6 +40,6 @@ export default class Utensil {
   }
 
   isFree () {
-    return this.cell.ingredient == null
+    return this.cell.isFree()
   }
 }

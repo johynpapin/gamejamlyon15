@@ -14,13 +14,13 @@ export default class Level1 {
     const utensilsMap = new Map()
     const errorMsg = 'utensil out of grid boundaries'
 
-    const key1 = { x: 1, y: 0 }
-    console.assert(key1.x < this.sizeX && key1.y < this.sizeY,
+    const key1 = { x: 1, y: 0, targetX: 1, targetY: 1 }
+    console.assert(key1.x < this.sizeX && key1.y < this.sizeY && key1.targetX < this.sizeX && key1.targetY < this.sizeY,
       { key: key1, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
     utensilsMap.set(key1, utensils.peeler.class)
 
-    const key2 = { x: 1, y: 2 }
-    console.assert(key2.x < this.sizeX && key2.y < this.sizeY,
+    const key2 = { x: 1, y: 2, targetX: 0, targetY: 2 }
+    console.assert(key2.x < this.sizeX && key2.y < this.sizeY && key2.targetX < this.sizeX && key2.targetY < this.sizeY,
       { key: key2, sizeX: this.sizeX, sizeY: this.sizeY, err: errorMsg })
     utensilsMap.set(key2, utensils.fryer.class)
 

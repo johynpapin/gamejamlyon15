@@ -7,15 +7,12 @@ export default class Cell {
     this.ingredient = null
   }
 
-  addUtensil (Utensil) {
-    console.log(this, 'nope')
-    this.utensil = new Utensil(this)
+  addUtensil (Utensil, targetCell) {
+    this.utensil = new Utensil(this, targetCell)
   }
 
-  next () {
-    if (this.ingredient != null) {
-      this.utensil.apply(this.ingredient)
-    }
+  isFree () {
+    return this.ingredient == null
   }
 
   draw (container, resources, offset) {
