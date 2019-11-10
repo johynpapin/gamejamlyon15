@@ -1,4 +1,4 @@
-import Potato from '../ingredients/potato'
+import ingredients from '../grid/ingredients/ingredients'
 import utensils from '../grid/utensils/utensils'
 
 export default class Level1 {
@@ -28,8 +28,8 @@ export default class Level1 {
   }
 
   initIngredients () {
-    const ingredients = [Potato]
+    const possibles = [ingredients.potato]
 
-    return ingredients
+    return possibles
   }
 }

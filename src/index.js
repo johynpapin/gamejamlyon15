@@ -43,6 +43,12 @@ const resources = [{
   name: 'fryer',
   url: '/assets/Friteuse_v1.png'
 }, {
+  name: 'knife',
+  url: '/assets/Couteau_v1.png'
+}, {
+  name: 'pot',
+  url: '/assets/Marmite_v1.png'
+}, {
   name: 'background',
   url: '/assets/bp0.png'
 }, {
