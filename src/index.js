@@ -38,10 +38,10 @@ const resources = [{
   url: '/assets/Patate_v1.png'
 }, {
   name: 'peeler',
-  url: '/assets/Econome_v1.png'
+  url: '/assets/Econome_Top_Down_v1.png'
 }, {
   name: 'fryer',
-  url: '/assets/Friteuse_v1.png'
+  url: '/assets/Friteuse_Top_Down_v1.png'
 }, {
   name: 'knife',
   url: '/assets/Couteau_v1.png'

@@ -28,7 +28,7 @@ export default class Peeler extends Utensil {
       container.addChild(this.sprite)
     }
 
-    this.sprite.x = this.x * this.sprite.width + offset.x
-    this.sprite.y = this.y * this.sprite.height + offset.y
+    this.sprite.x = this.cell.x * this.sprite.width
+    this.sprite.y = this.cell.y * this.sprite.height
   }
 }
