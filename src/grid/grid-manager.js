@@ -35,7 +35,7 @@ export default class GridManager {
   }
 
   spawnIngredient () {
-    const possibilies = this.grid.possibilies()
+    const possibilies = this.grid.possibilies
     const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
 
     this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient

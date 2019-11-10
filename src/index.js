@@ -36,6 +36,9 @@ const resources = [{
   name: 'peeler',
   url: '/assets/Econome_v1.png'
 }, {
+  name: 'fryer',
+  url: '/assets/Friteuse_v1.png'
+}, {
   name: 'background',
   url: '/assets/bp0.png'
 }, {

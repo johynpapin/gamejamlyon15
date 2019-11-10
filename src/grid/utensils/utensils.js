@@ -1,26 +1,29 @@
-export const utensils = {
-  knife: {
-    name: 'Knife',
-    state: 'cut'
-  },
+import Peeler from './peeler'
+import Fryer from './fryer'
+
+export default {
+  // knife: {
+  //   class: Knife,
+  //   state: 'cut'
+  // },
   peeler: {
-    name: 'Peeler',
+    class: Peeler,
     state: 'peel'
   },
-  pot: {
-    name: 'Pot',
-    state: 'cooked'
-  },
+  // pot: {
+  //   class: Pot,
+  //   state: 'cooked'
+  // },
   fryer: {
-    name: 'Fryer',
+    class: Fryer,
     state: 'fry'
-  },
-  blender: {
-    name: 'Blender',
-    state: 'blend'
-  },
-  pan: {
-    name: 'Pan',
-    state: 'sauteed'
   }
+  // blender: {
+  //   class: Blender,
+  //   state: 'blend'
+  // },
+  // pan: {
+  //   class: Pan,
+  //   state: 'sauteed'
+  // }
 }
