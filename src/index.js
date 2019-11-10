@@ -90,7 +90,7 @@ function setup (loader, resources) {
 
   background.height = window.innerHeight
   background.width = window.innerWidth
-  background.alpha = 0.1 fooSprite.scale.set(window.innerHeight / someConstantPixelLength);
+  background.alpha = 0.1
 
   background.animationSpeed = 0.025
   background.play()
