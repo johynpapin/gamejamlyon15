@@ -11,25 +11,25 @@ export default class GridManager {
 
   resolve (dictionnary, tile) {
     var appliedTile = tile.apply(this.grid)
-
     if (appliedTile === null) {
       if (tile in dictionnary) {
         this.resolve(dictionnary, dictionnary[tile])
       }
     } else {
       for (const currentTile in appliedTile) {
-        dictionnary[currentTile] = tile
-        this.resolve(dictionnary, currentTile)
+        dictionnary[appliedTile[currentTile]] = tile
+        this.resolve(dictionnary, appliedTile[currentTile])
       }
     }
   }
 
   applyTiles () {
-    var dict = {}
-    for (const indice1 in this.grid.cells) {
-      for (const indice2 in this.grid.cells[indice1]) {
-        if (this.grid.cells[indice1][indice2] instanceof MovingTile) {
-          this.resolve(dict, this.grid.cells[indice1][indice2])
+    let dict = {}
+    for (let indice1 = 0; indice1 < this.grid.sizeX; indice1++) {
+      for (let indice2 = 0; indice2 < this.grid.sizeY; indice2++) {
+        if (this.grid.cells[indice1][indice2].tile instanceof MovingTile) {
+          dict = {}
+          this.resolve(dict, this.grid.cells[indice1][indice2].tile)
         }
       }
     }
@@ -75,11 +75,11 @@ export default class GridManager {
     for (const ingredient of toDelete) {
       this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
     }
-
+*/
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
-    } */
+    }
   }
 
   checkConnectors () {

@@ -15,8 +15,14 @@ export default class MovingTile extends Tile {
   }
 
   apply (grid) {
-    if (grid.isFree(this.targetX, this.targetY)) {
-      grid.cells[this.targetX][this.targetY].ingredient = grid.cells[this.x][this.y].ingredient
+    if (this.targetX < 0 || grid.cells[this.x][this.y].ingredient === null) {
+    // TODO
+    } else if (grid.isFree(this.targetX, this.targetY)) {
+      var currentIngredient = grid.cells[this.x][this.y].ingredient
+      currentIngredient.x = this.targetX
+      currentIngredient.y = this.targetY
+      // grid.cells[this.targetX][this.targetY].ingredient = grid.cells[this.x][this.y].ingredient
+      grid.cells[this.targetX][this.targetY].ingredient = currentIngredient
       grid.cells[this.x][this.y].ingredient = null
       return null
     } else {
