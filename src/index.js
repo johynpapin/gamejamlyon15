@@ -28,7 +28,7 @@ const gameManager = new GameManager()
 // List of all the images
 const resources = [{
   name: 'mainTileNeutral',
-  url: '/assets/Main_Tile_Neutral_v1.png'
+  url: '/assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
 }, {
   name: 'potato',
   url: '/assets/Patate_v1.png'
