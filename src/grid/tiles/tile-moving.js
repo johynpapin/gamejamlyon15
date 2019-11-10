@@ -14,6 +14,16 @@ export default class MovingTile extends Tile {
     this.conveyorBelt = conveyorBelt
   }
 
+  apply (grid) {
+    if (grid.isFree(this.targetX, this.targetY)) {
+      grid.cells[this.targetX][this.targetY].ingredient = grid.cells[this.x][this.y].ingredient
+      grid.cells[this.x][this.y].ingredient = null
+      return null
+    } else {
+      return [grid.cells[this.targetX][this.targetY].tile]
+    }
+  }
+
   draw (container, resources) {
     if (!this.sprite) {
       if (this.conveyorBelt) {
