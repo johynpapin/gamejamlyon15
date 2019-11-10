@@ -17,17 +17,12 @@ export default class MovingTile extends Tile {
   draw (container, resources) {
     if (!this.sprite) {
       if (this.conveyorBelt) {
-        this.sprite = new PIXI.Sprite(resources.rollDown.texture)
-        this.sprite2 = new PIXI.Sprite(resources.rollLeft.texture)
-        this.sprite2.visible = false
-        container.addChild(this.sprite2)
-
-        if (this.x === this.targetX) {
-          this.sprite.visible = true
-          this.sprite2.visible = false
+        if (this.x === this.y) {
+          this.sprite = new PIXI.Sprite(resources.rollTurn.texture)
+        } else if (this.x === this.targetX) {
+          this.sprite = new PIXI.Sprite(resources.rollDown.texture)
         } else {
-          this.sprite.visible = false
-          this.sprite2.visible = true
+          this.sprite = new PIXI.Sprite(resources.rollLeft.texture)
         }
       } else {
         if (this.x === this.targetX) {
@@ -45,19 +40,6 @@ export default class MovingTile extends Tile {
         }
       }
       container.addChild(this.sprite)
-    }
-
-    if (this.conveyorBelt) {
-      this.sprite2.x = this.x * this.sprite2.width
-      this.sprite2.y = this.y * this.sprite2.height
-
-      if (this.x === this.targetX) {
-        this.sprite.visible = true
-        this.sprite2.visible = false
-      } else {
-        this.sprite.visible = false
-        this.sprite2.visible = true
-      }
     }
 
     this.sprite.x = this.x * this.sprite.width

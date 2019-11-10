@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js'
 import Grid from './grid'
 import MovingTile from './tiles/tile-moving'
+import GridContainer from './grid-container'
 
 export default class GridManager {
   constructor (gameManager) {
@@ -10,7 +11,7 @@ export default class GridManager {
 
   spawnIngredient () {
     const possibilies = this.grid.possibilies()
-    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
+    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0, this.grid)
 
     this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient
     this.grid.ingredients.push(newIngredient)
@@ -104,7 +105,7 @@ export default class GridManager {
     this.checkConnectors()
 
     if (!this.container) {
-      this.container = new PIXI.Container()
+      this.container = new GridContainer()
 
       this.container.scale.x = 4
       this.container.scale.y = 4

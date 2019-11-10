@@ -58,6 +58,9 @@ const resources = [{
 }, {
   name: 'rollLeft',
   url: '/assets/Roll_Horizontal_v1.png'
+}, {
+  name: 'rollTurn',
+  url: '/assets/Roll_Turn.png'
 }]
 
 const loader = new PIXI.Loader()
