@@ -1,0 +1,20 @@
+{"frames": {
+
+"Sp_Launcher_v1-Sheet.png":
+{
+	"frame": {"x":0,"y":0,"w":192,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":192,"h":32},
+	"sourceSize": {"w":192,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Sp_Launcher_v1-Sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":192,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f43afb8dcbe9c3db3aa97c83a31bd701:24b752bb315a53b6197dc00305698fcf:393db1522e13a2622d83e5619b26fefa$"
+}
+}
