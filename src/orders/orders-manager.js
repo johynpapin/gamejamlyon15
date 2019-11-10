@@ -31,7 +31,7 @@ export default class OrdersManager {
     if (this.number === 0) {
       this.createOrder()
       this.reinit()
-    } else if (this.number < 3) {
+    } else if (this.gameManager.level.number && this.number < 3) {
       if (this.ticks >= this.threshold) {
         this.createOrder()
         this.reinit()
