@@ -55,9 +55,7 @@ export default class Grid {
 
   loadUtensils (level) {
     for (const [key, value] of level.utensilsMap) {
-      console.log(key, this.cells[key.x][key.y])
       this.cells[key.x][key.y].addUtensil(value)
-      console.log('->', key, this.cells[key.x][key.y])
     }
   }
 

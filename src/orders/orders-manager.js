@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js'
 import Order from './order'
 import Orders from './orders'
 
@@ -10,8 +11,8 @@ export default class OrdersManager {
   }
 
   reinit () {
-    this.tics = 0
-    this.threshold = Math.floor(Math.random() * 30) + 20
+    this.ticks = 0
+    this.threshold = Math.floor(Math.random() * 10) + 5
   }
 
   createOrder () {
@@ -31,16 +32,24 @@ export default class OrdersManager {
       this.createOrder()
       this.reinit()
     } else if (this.number < 3) {
-      if (this.tics >= this.treshold) {
+      if (this.ticks >= this.treshold) {
         this.createOrder()
         this.reinit()
       }
     }
 
-    this.tics = this.tics + 1
+    this.ticks++
   }
 
   draw (stage, resources) {
+    if (!this.container) {
+      this.container = new PIXI.Container()
 
+      this.container.sortableChildren = true
+
+      stage.addChild(this.container)
+    }
+
+    this.orders.draw(this.container, resources)
   }
 }

@@ -51,8 +51,6 @@ export default class Ingredient {
   }
 
   onDragStart (event) {
-    console.log('start')
-
     this.sprite.alpha = 0.75
     this.draggingData = event.data
     this.dragging = true
