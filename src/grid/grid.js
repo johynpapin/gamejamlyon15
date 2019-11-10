@@ -1,8 +1,8 @@
 import Cell from './cell'
-import TileNeutral from './tiles/tile-neutral'
-import TileEmpty from './tiles/tile-empty'
-import MovingTile from './tiles/moving-tile'
+import MovingTile from './tiles/tile-moving'
 import TileConnector from './tiles/tile-connector'
+import TileEmpty from './tiles/tile-empty'
+import TileNeutral from './tiles/tile-neutral'
 
 export default class Grid {
   constructor (level) {

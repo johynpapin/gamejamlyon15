@@ -4,9 +4,11 @@ class Utensil {
     this.y = y
     this.state = null
     this.hasOtherResult = false
+    this.transitions = new Map()
   }
 
-  use (ingredient) {
+  apply (ingredient) {
+    // // TODO: test with transitions table
     ingredient.addState(this.state)
 
     if (this.hasOtherResult) {

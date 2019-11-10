@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import MovingTile from './moving-tile'
+import MovingTile from './tile-moving'
 
 export default class TileConnector extends MovingTile {
   constructor (x, y, nextCell, connected = false) {
