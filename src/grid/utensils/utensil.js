@@ -1,12 +1,10 @@
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
-  constructor (cell, targetCell, targetOpt) {
+  constructor (cell, targetCell) {
     this.cell = cell
     this.targetCell = targetCell
-    this.targetOpt = targetOpt
     this.state = null
-    this.hasOtherResult = false
     // map -> [key_0, ..., key_n]: 'value'
     this.transitions = this.createTransitions()
     this.reinit()
@@ -17,28 +15,25 @@ export default class Utensil {
   }
 
   next () {
-    if (this.tics === 0) {
-      if ((this.targetOpt == null && this.targetCell.isFree()) || (this.targetOpt != null && this.targetCell.isFree() && this.targetOpt.isFree())) {
-        this.targetCell.ingredient = this.cell.ingredient
-        this.targetCell.ingredient.x = this.targetCell.x
-        this.targetCell.ingredient.y = this.targetCell.y
-        this.cell.ingredient = null
-        this.reinit()
-      }
+    if (this.tics === 0 && this.targetCell.isFree()) {
+      this.apply()
+      this.targetCell.ingredient = this.cell.ingredient
+      this.targetCell.ingredient.x = this.targetCell.x
+      this.targetCell.ingredient.y = this.targetCell.y
+      this.cell.ingredient = null
+      this.reinit()
     } else if (this.cell.ingredient != null) {
       this.tics--
     }
   }
 
-  apply (ingredient) {
+  apply () {
+    console.log('on apply')
     for (const [key, value] of this.transitions) {
-      if (ingredient.containsStates(key)) {
-        ingredient.addState(value)
-        if (this.hasOtherResult) {
-          this.produce()
-        }
+      if (this.cell.ingredient.containsStates(key)) {
+        this.cell.ingredient.addState(value[0])
       } else {
-        ingredient.destroy()
+        this.cell.ingredient.destroy()
         this.cell.ingredient = new Waste()
       }
     }

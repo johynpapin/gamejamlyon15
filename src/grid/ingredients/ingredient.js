@@ -23,6 +23,10 @@ export default class Ingredient {
     this.state.push(state)
   }
 
+  clone () {
+    return { ...this, states: [...this.states] }
+  }
+
   destroy () {
     if (this.sprite) {
       // TODO: bad

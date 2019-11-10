@@ -1,12 +1,11 @@
 import * as PIXI from 'pixi.js'
-import Utensil from './utensil'
 import utensils from './utensils'
+import Utensil from './utensil'
 
 export default class Knife extends Utensil {
-  constructor (cell, targetCell, targetOpt) {
-    super(cell, targetCell, targetOpt)
+  constructor (cell, targetCell) {
+    super(cell, targetCell)
     this.state = utensils.knife.state
-    this.hasOtherResult = false
   }
 
   createTransitions () {

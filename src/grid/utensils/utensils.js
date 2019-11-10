@@ -10,7 +10,8 @@ export default {
   },
   peeler: {
     class: Peeler,
-    state: 'peel'
+    state: 'peel',
+    stateOpt: 'peeling'
   },
   pot: {
     class: Pot,
