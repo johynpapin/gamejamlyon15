@@ -14,7 +14,8 @@ PIXI.utils.sayHello(type)
 const app = new PIXI.Application()
 
 // Make the game fill the window
-app.renderer.backgroundColor = 0xadff4d
+//app.renderer.backgroundColor = 0xadff4d
+app.renderer.backgroundColor = 0x332222
 app.renderer.view.style.position = 'absolute'
 app.renderer.view.style.display = 'block'
 app.renderer.autoResize = true

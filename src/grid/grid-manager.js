@@ -8,6 +8,32 @@ export default class GridManager {
     this.grid = new Grid(gameManager.level)
   }
 
+  resolve (dictionnary, tile) {
+    var appliedTile = tile.apply(this.grid)
+
+    if (appliedTile === null) {
+      if (tile in dictionnary) {
+        this.resolve(dictionnary, dictionnary[tile])
+      }
+    } else {
+      for (const currentTile in appliedTile) {
+        dictionnary[currentTile] = tile
+        this.resolve(dictionnary, currentTile)
+      }
+    }
+  }
+
+  applyTiles () {
+    var dict = {}
+    for (const indice1 in this.grid.cells) {
+      for (const indice2 in this.grid.cells[indice1]) {
+        if (this.grid.cells[indice1][indice2] instanceof MovingTile) {
+          this.resolve(dict, this.grid.cells[indice1][indice2])
+        }
+      }
+    }
+  }
+
   spawnIngredient () {
     const possibilies = this.grid.possibilies()
     const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
@@ -17,6 +43,8 @@ export default class GridManager {
   }
 
   next () {
+    this.applyTiles()
+    /*
     const toDelete = []
 
     for (const ingredient of this.grid.ingredients) {
@@ -50,7 +78,7 @@ export default class GridManager {
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
-    }
+    } */
   }
 
   checkConnectors () {
