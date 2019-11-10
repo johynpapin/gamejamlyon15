@@ -8,6 +8,7 @@ export default class Cell {
   }
 
   addUtensil (Utensil) {
+    console.log(this, 'nope')
     this.utensil = new Utensil(this)
   }
 

@@ -3,6 +3,7 @@ import Waste from './../ingredients/waste'
 export default class Utensil {
   constructor (cell) {
     this.cell = cell
+    console.log(this.cell)
     this.state = null
     this.hasOtherResult = false
     // map -> [key_0, ..., key_n]: 'value'

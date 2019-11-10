@@ -19,7 +19,6 @@ export default class MovingTile extends Tile {
     const beanY = grid.sizeY
 
     if (cell.ingredient && this.targetX === -1 && this.targetY === beanY - 1) {
-      console.log('ici')
       cell.ingredient.sprite.visible = false
       cell.ingredient = null
       return null

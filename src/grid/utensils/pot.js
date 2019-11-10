@@ -3,8 +3,8 @@ import Utensil from './utensil'
 import utensils from './utensils'
 
 export default class Pot extends Utensil {
-  constructor () {
-    super()
+  constructor (cell) {
+    super(cell)
     this.state = utensils.pot.state
     this.hasOtherResult = false
   }
