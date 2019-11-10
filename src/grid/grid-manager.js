@@ -41,7 +41,7 @@ export default class GridManager {
   }
 
   next () {
-    this.applysTiles()
+    this.applyTiles()
     /*
     const toDelete = []
 
