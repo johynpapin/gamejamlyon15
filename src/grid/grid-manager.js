@@ -9,27 +9,27 @@ export default class GridManager {
     this.grid = new Grid(gameManager.level)
   }
 
-  resolve (dictionnary, tile) {
-    var appliedTile = tile.apply(this.grid)
-    if (appliedTile === null) {
-      if (tile in dictionnary) {
-        this.resolve(dictionnary, dictionnary[tile])
+  resolve (dict, tile) {
+    const blockingTiles = tile.apply(this.grid)
+
+    if (blockingTiles === null) {
+      if (tile in dict) {
+        this.resolve(dict, dict[tile])
       }
     } else {
-      for (const currentTile in appliedTile) {
-        dictionnary[appliedTile[currentTile]] = tile
-        this.resolve(dictionnary, appliedTile[currentTile])
+      for (const blockingTile of blockingTiles) {
+        dict[blockingTile] = tile
       }
     }
   }
 
   applyTiles () {
-    let dict = {}
-    for (let indice1 = 0; indice1 < this.grid.sizeX; indice1++) {
-      for (let indice2 = 0; indice2 < this.grid.sizeY; indice2++) {
-        if (this.grid.cells[indice1][indice2].tile instanceof MovingTile) {
-          dict = {}
-          this.resolve(dict, this.grid.cells[indice1][indice2].tile)
+    const dict = {}
+
+    for (let x = 0; x < this.grid.sizeX; x++) {
+      for (let y = 0; y < this.grid.sizeY; y++) {
+        if (this.grid.cells[x][y].tile.apply) {
+          this.resolve(dict, this.grid.cells[x][y].tile)
         }
       }
     }
