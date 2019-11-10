@@ -1,0 +1,20 @@
+{"frames": {
+
+"Directionnal_Tile_v1-Sheet.png":
+{
+	"frame": {"x":0,"y":0,"w":576,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":576,"h":32},
+	"sourceSize": {"w":576,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Directionnal_Tile_v1-Sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":576,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:4c060aefb20497783862402b5d199137:4a81516773bcb2732993a1a3df320925:9d82af9a2581e7adfaab533adb2e1873$"
+}
+}

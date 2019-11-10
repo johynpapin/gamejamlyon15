@@ -1,0 +1,20 @@
+{"frames": {
+
+"Roll_left_v1-Sheet.png":
+{
+	"frame": {"x":0,"y":0,"w":256,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":32},
+	"sourceSize": {"w":256,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Roll_left_v1-Sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:c7a368642abe85dc6e2b398655397cbd:d65e92cd4506b5efa539bf802b009a1b:5ab98ec84912f1ae7b4db4c04954a052$"
+}
+}

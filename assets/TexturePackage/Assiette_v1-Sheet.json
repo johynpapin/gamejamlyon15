@@ -1,0 +1,21 @@
+{"frames": {
+
+"Assiette_v1-Sheet.png":
+{
+	"frame": {"x":0,"y":0,"w":224,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":224,"h":32},
+	"sourceSize": {"w":224,"h":32},
+	"anchor": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Assiette_v1-Sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":224,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:185b4643866cdfb459865b7726551893:ca558578d1a0eee8e2a8eb594247aefc:34f0c4c4f8a06fe5b8abd4592f6d4668$"
+}
+}
