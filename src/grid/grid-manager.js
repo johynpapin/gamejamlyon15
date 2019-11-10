@@ -1,9 +1,6 @@
 import * as PIXI from 'pixi.js'
-import Level1 from '../levels/level-1'
-
 import Grid from './grid'
-
-import MovingTile from './tiles/moving-tile'
+import MovingTile from './tiles/tile-moving'
 
 export default class GridManager {
   constructor (gameManager) {

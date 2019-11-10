@@ -1,8 +1,6 @@
-import OrdersManager from '../orders/orders-manager'
-
 import GridManager from '../grid/grid-manager'
-
 import Level1 from '../levels/level-1'
+import OrdersManager from '../orders/orders-manager'
 
 export default class GameManager {
   constructor () {

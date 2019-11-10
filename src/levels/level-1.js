@@ -1,7 +1,7 @@
 import Level from './level'
+import Potato from '../ingredients/potato'
 import TileCold from '../grid/tiles/tile-cold'
 import TileWarm from '../grid/tiles/tile-warm'
-import Potato from '../ingredients/potato'
 
 export default class Level1 extends Level {
   constructor () {
