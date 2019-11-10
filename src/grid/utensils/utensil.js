@@ -13,13 +13,15 @@ export default class Utensil {
   }
 
   reinit () {
-    this.tics = 5
+    this.tics = 3
   }
 
   next () {
     if (this.tics === 0) {
-      if ((this.targetOpt == null && this.targetCell.isFree) || (this.targetOpt != null && this.targetCell.isFree() && this.targetOpt.isFree())) {
-        this.targetCell = this.cell.ingredient
+      if ((this.targetOpt == null && this.targetCell.isFree()) || (this.targetOpt != null && this.targetCell.isFree() && this.targetOpt.isFree())) {
+        this.targetCell.ingredient = this.cell.ingredient
+        this.targetCell.ingredient.x = this.targetCell.x
+        this.targetCell.ingredient.y = this.targetCell.y
         this.cell.ingredient = null
         this.reinit()
       }

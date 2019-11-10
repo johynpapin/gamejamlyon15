@@ -39,6 +39,16 @@ export default class GridManager {
     }
   }
 
+  nextUtensils () {
+    for (let x = 0; x < this.grid.sizeX; x++) {
+      for (let y = 0; y < this.grid.sizeY; y++) {
+        if (this.grid.cells[x][y].utensil != null) {
+          this.grid.cells[x][y].utensil.next()
+        }
+      }
+    }
+  }
+
   spawnIngredient () {
     const possibilies = this.grid.possibilies
     const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0, this.grid)
@@ -48,6 +58,8 @@ export default class GridManager {
 
   next () {
     this.applyTiles()
+
+    this.nextUtensils()
 
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
