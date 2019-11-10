@@ -28,11 +28,21 @@ export default class MovingTile extends Tile {
     if (!this.sprite) {
       if (this.conveyorBelt) {
         if (this.x === this.y) {
-          this.sprite = new PIXI.Sprite(resources.rollTurn.texture)
-        } else if (this.x === this.targetX) {
-          this.sprite = new PIXI.Sprite(resources.rollDown.texture)
+          this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+          this.sprite.animationSpeed = 0.1
+          this.sprite.play()
         } else {
-          this.sprite = new PIXI.Sprite(resources.rollLeft.texture)
+          if (this.x === this.targetX) {
+            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+            this.sprite.animationSpeed = 0.1
+            this.sprite.play()
+          } else {
+            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+            this.sprite.angle = 90
+            this.sprite.pivot.y = this.sprite.height
+            this.sprite.animationSpeed = 0.1
+            this.sprite.play()
+          }
         }
       } else {
         if (this.x === this.targetX) {

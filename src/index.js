@@ -14,7 +14,7 @@ PIXI.utils.sayHello(type)
 const app = new PIXI.Application()
 
 // Make the game fill the window
-//app.renderer.backgroundColor = 0xadff4d
+// app.renderer.backgroundColor = 0xadff4d
 app.renderer.backgroundColor = 0x332222
 app.renderer.view.style.position = 'absolute'
 app.renderer.view.style.display = 'block'
@@ -57,11 +57,11 @@ const resources = [{
   name: 'arrowLeft',
   url: '/assets/Arrow_L.png'
 }, {
+  name: 'rollLeft',
+  url: '/assets/texture_package/Roll_left_v1-Sheet.json'
+}, {
   name: 'rollDown',
   url: '/assets/Roll_Basic_v1.png'
-}, {
-  name: 'rollLeft',
-  url: '/assets/Roll_Horizontal_v1.png'
 }, {
   name: 'rollTurn',
   url: '/assets/Roll_Turn.png'
