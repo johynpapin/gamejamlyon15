@@ -4,15 +4,21 @@ class Utensil {
     this.y = y
     this.state = null
     this.hasOtherResult = false
-    this.transitions = new Map()
+    // map -> []: ''
+    this.transitions = this.createTransitions()
   }
 
   apply (ingredient) {
-    // // TODO: test with transitions table
-    ingredient.addState(this.state)
-
-    if (this.hasOtherResult) {
-      this.produce()
+    for (const [key, value] of this.transitions) {
+      if (ingredient.containsStates(key)) {
+        ingredient.addState(value)
+        if (this.hasOtherResult) {
+          this.produce()
+        }
+      } else {
+        ingredient.destroy()
+        // create new ingredient waste
+      }
     }
   }
 }
