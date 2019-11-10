@@ -10,6 +10,29 @@ export default class GameManager {
     this.achieved = 0
   }
 
+  check (ingredient) {
+    let boo = true
+    for (const indice in this.level.orders) {
+      if (ingredient.instanceof(this.level.order[indice].ingredient)) {
+        for (const state1 of this.level.order[indice].state) {
+          if (boo) {
+            boo = false
+            for (const state2 of this.ingredient.states) {
+              if (state1 === state2) {
+                boo = true
+              }
+            }
+          } else {
+            return false
+          }
+        }
+        this.level.order.splice(indice, 1)
+        return true
+      }
+    }
+    return false
+  }
+
   next () {
     console.log('[GameManager] next')
 

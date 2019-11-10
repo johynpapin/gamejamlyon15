@@ -6,7 +6,7 @@ import GridContainer from './grid-container'
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
-    this.grid = new Grid(gameManager.level)
+    this.grid = new Grid(this, gameManager.level)
     this.ticks = 0
   }
 

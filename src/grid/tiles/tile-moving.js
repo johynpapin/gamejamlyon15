@@ -22,6 +22,8 @@ export default class MovingTile extends Tile {
       cell.ingredient.sprite.visible = false
       cell.ingredient = null
       return null
+    } else if (cell.ingredient && this.targetX === -1 && this.targetY === grid.sizeY - 3) {
+      grid.gridManager.gameManager.check(cell.ingredient)
     } else if (!cell.ingredient || cell.ingredient.lastId === id) {
       return null
     } else if (grid.isFree(this.targetX, this.targetY)) {

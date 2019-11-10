@@ -5,7 +5,8 @@ import TileEmpty from './tiles/tile-empty'
 import TileNeutral from './tiles/tile-neutral'
 
 export default class Grid {
-  constructor (level) {
+  constructor (gridManager, level) {
+    this.gridManager = gridManager
     this.sizeX = level.sizeX + 2
     this.sizeY = level.sizeY + 2
     this.possibilies = level.ingredients
