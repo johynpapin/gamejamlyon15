@@ -89,20 +89,22 @@ loader
   .add(resources)
   .load(setup)
 
+const mainContainer = new PIXI.Container()
+
 // Setup the game
 function setup (loader, resources) {
   const background = new PIXI.AnimatedSprite(resources.background.spritesheet.animations['Background_v1-Sheet'])
 
-  background.height = window.innerHeight
-  background.width = window.innerWidth
   background.alpha = 0.1
 
   background.animationSpeed = 0.025
   background.play()
 
-  app.stage.addChild(background)
+  mainContainer.addChild(background)
 
-  gameManager.draw(app.stage, resources)
+  gameManager.draw(mainContainer, resources)
+
+  app.stage.addChild(mainContainer)
 
   app.ticker.add(delta => drawLoop(resources, delta))
 
@@ -119,6 +121,8 @@ function gameLoop (resources, delta) {
 }
 
 function scaleScene () {
+  console.log('scaling')
+
   let w = window.innerWidth
   let h = window.innerWidth / ratio
 
@@ -127,8 +131,13 @@ function scaleScene () {
     h = window.innerHeight
   }
 
-  app.stage.scale.set(window.innerWidth / w)
+  console.log('hey')
+
+  mainContainer.scale.x = w / 640
+  mainContainer.scale.y = h / 480
   app.renderer.resize(w, h)
 }
 
-// scaleScene()
+scaleScene()
+
+window.addEventListener('resize', scaleScene)
