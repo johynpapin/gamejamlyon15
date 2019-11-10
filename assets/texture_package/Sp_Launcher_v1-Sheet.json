@@ -1,6 +1,6 @@
 {"frames": {
 
-"Roll_left_v1-Sheet-0.png":
+"Sp_Launcher_v1-Sheet-0.png":
 {
 	"frame": {"x":0,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Roll_left_v1-Sheet-1.png":
+"Sp_Launcher_v1-Sheet-1.png":
 {
 	"frame": {"x":32,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Roll_left_v1-Sheet-2.png":
+"Sp_Launcher_v1-Sheet-2.png":
 {
 	"frame": {"x":64,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Roll_left_v1-Sheet-3.png":
+"Sp_Launcher_v1-Sheet-3.png":
 {
 	"frame": {"x":96,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -32,7 +32,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Roll_left_v1-Sheet-4.png":
+"Sp_Launcher_v1-Sheet-4.png":
 {
 	"frame": {"x":128,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -40,40 +40,24 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Roll_left_v1-Sheet-5.png":
+"Sp_Launcher_v1-Sheet-5.png":
 {
 	"frame": {"x":160,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
-},
-"Roll_left_v1-Sheet-6.png":
-{
-	"frame": {"x":192,"y":0,"w":32,"h":32},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-	"sourceSize": {"w":32,"h":32}
-},
-"Roll_left_v1-Sheet-7.png":
-{
-	"frame": {"x":224,"y":0,"w":32,"h":32},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-	"sourceSize": {"w":32,"h":32}
 }},
 "animations": {
-	"Roll_left_v1-Sheet": ["Roll_left_v1-Sheet-0.png","Roll_left_v1-Sheet-1.png","Roll_left_v1-Sheet-2.png","Roll_left_v1-Sheet-3.png","Roll_left_v1-Sheet-4.png","Roll_left_v1-Sheet-5.png","Roll_left_v1-Sheet-6.png","Roll_left_v1-Sheet-7.png"]
+	"Sp_Launcher_v1-Sheet": ["Sp_Launcher_v1-Sheet-0.png","Sp_Launcher_v1-Sheet-1.png","Sp_Launcher_v1-Sheet-2.png","Sp_Launcher_v1-Sheet-3.png","Sp_Launcher_v1-Sheet-4.png","Sp_Launcher_v1-Sheet-5.png"]
 },
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "Roll_left_v1-Sheet.png",
+	"image": "Sp_Launcher_v1-Sheet.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":32},
+	"size": {"w":192,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:1316af1ce82a5def51585511c8485e05:2189bf9c9fc1679338a4042fdcfb098e:5ab98ec84912f1ae7b4db4c04954a052$"
+	"smartupdate": "$TexturePacker:SmartUpdate:357bfbea60574fb6471a027e7dbd4986:dd361d4225c049b67307cfbe7d055239:393db1522e13a2622d83e5619b26fefa$"
 }
 }
