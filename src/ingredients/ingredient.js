@@ -10,6 +10,15 @@ export default class Ingredient {
     this.draggingData = null
   }
 
+  containsStates (requiredStates) {
+    for (const state of requiredStates) {
+      if (!this.states.includes(state)) {
+        return false
+      }
+    }
+    return true
+  }
+
   addState (state) {
     this.state.push(state)
   }
