@@ -1,9 +1,10 @@
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
-  constructor (cell, targetCell) {
+  constructor (cell, targetCell, targetOpt) {
     this.cell = cell
     this.targetCell = targetCell
+    this.targetOpt = targetOpt
     this.state = null
     this.hasOtherResult = false
     // map -> [key_0, ..., key_n]: 'value'
@@ -16,10 +17,12 @@ export default class Utensil {
   }
 
   next () {
-    if (this.tics === 0 && this.targetCell.isFree()) {
-      this.targetCell = this.cell.ingredient
-      this.cell.ingredient = null
-      this.reinit()
+    if (this.tics === 0) {
+      if ((this.targetOpt == null && this.targetCell.isFree) || (this.targetOpt != null && this.targetCell.isFree() && this.targetOpt.isFree())) {
+        this.targetCell = this.cell.ingredient
+        this.cell.ingredient = null
+        this.reinit()
+      }
     } else if (this.cell.ingredient != null) {
       this.tics--
     }
