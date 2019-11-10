@@ -49,9 +49,6 @@ const resources = [{
   name: 'pot',
   url: '/assets/Marmite_v1.png'
 }, {
-  name: 'background',
-  url: '/assets/bp0.png'
-}, {
   name: 'arrowTop',
   url: '/assets/Arrow_Up.png'
 }, {
@@ -75,6 +72,9 @@ const resources = [{
 }, {
   name: 'launcher',
   url: '/assets/texture_package/Sp_Launcher_v1-Sheet.json'
+}, {
+  name: 'background',
+  url: '/assets/texture_package/Background.json'
 }]
 
 const loader = new PIXI.Loader()
@@ -86,6 +86,17 @@ loader
 
 // Setup the game
 function setup (loader, resources) {
+  const background = new PIXI.AnimatedSprite(resources.background.spritesheet.animations['Background_v1-Sheet'])
+
+  background.height = window.innerHeight
+  background.width = window.innerWidth
+  background.alpha = 0.1 fooSprite.scale.set(window.innerHeight / someConstantPixelLength);
+
+  background.animationSpeed = 0.025
+  background.play()
+
+  app.stage.addChild(background)
+
   gameManager.draw(app.stage, resources)
 
   app.ticker.add(delta => drawLoop(resources, delta))
