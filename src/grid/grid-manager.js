@@ -101,7 +101,7 @@ export default class GridManager {
     }
 
     this.container.x = window.innerWidth / 2 - this.container.width / 2
-    this.container.y = window.innerHeight / 2 - this.container.height / 2
+    this.container.y = window.innerHeight - this.container.height - 25
 
     this.grid.draw(this.container, resources, { x: 0, y: 0 })
   }
