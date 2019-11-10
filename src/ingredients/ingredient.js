@@ -6,6 +6,15 @@ export default class Ingredient {
     this.states = []
   }
 
+  containsStates (requiredStates) {
+    for (const state of requiredStates) {
+      if (!this.states.includes(state)) {
+        return false
+      }
+    }
+    return true
+  }
+
   addState (state) {
     this.state.push(state)
   }

@@ -39,6 +39,9 @@ const resources = [{
   name: 'potato',
   url: '/assets/Patate_v1.png'
 }, {
+  name: 'peeler',
+  url: '/assets/Econome_v1.png'
+}, {
   name: 'background',
   url: '/assets/bp0.png'
 }, {
