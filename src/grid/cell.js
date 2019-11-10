@@ -1,10 +1,14 @@
 export default class Cell {
-  constructor (x, y, tile, utensil) {
+  constructor (x, y, tile) {
     this.x = x
     this.y = y
     this.tile = tile
-    this.utensil = utensil
+    this.utensil = null
     this.ingredient = null
+  }
+
+  addUtensil (utensil) {
+    this.utensil = utensil
   }
 
   draw (container, resources, offset) {
@@ -14,6 +18,10 @@ export default class Cell {
 
     if (this.utensil !== null) {
       this.utensil.draw(container, resources, offset)
+    }
+
+    if (this.ingredient !== null) {
+      this.ingredient.draw(container, resources, offset)
     }
   }
 }

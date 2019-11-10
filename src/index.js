@@ -27,12 +27,6 @@ const gameManager = new GameManager()
 
 // List of all the images
 const resources = [{
-  name: 'coldTile',
-  url: '/assets/Cold_v1.png'
-}, {
-  name: 'warmTile',
-  url: '/assets/Warm_v1.png'
-}, {
   name: 'mainTileNeutral',
   url: '/assets/Main_Tile_Neutral_v1.png'
 }, {
@@ -41,6 +35,9 @@ const resources = [{
 }, {
   name: 'peeler',
   url: '/assets/Econome_v1.png'
+}, {
+  name: 'fryer',
+  url: '/assets/Friteuse_v1.png'
 }, {
   name: 'background',
   url: '/assets/bp0.png'
