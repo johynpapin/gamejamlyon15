@@ -16,8 +16,11 @@ export default class MovingTile extends Tile {
 
   apply (grid, id) {
     const cell = grid.cells[this.x][this.y]
+    const beanY = grid.sizeY
 
-    if (this.targetX === -1 && this.targetY === grid.sixeY) {
+    if (cell.ingredient && this.targetX === -1 && this.targetY === beanY - 1) {
+      console.log('ici')
+      cell.ingredient.sprite.visible = false
       cell.ingredient = null
       return null
     } else if (!cell.ingredient || cell.ingredient.lastId === id) {
