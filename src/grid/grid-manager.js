@@ -7,18 +7,22 @@ export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
     this.grid = new Grid(gameManager.level)
+    this.ticks = 0
   }
 
   resolve (dict, tile) {
-    const blockingTiles = tile.apply(this.grid)
+    const blockingTiles = tile.apply(this.grid, this.ticks)
+    const dictKey = tile.x + '-' + tile.y
 
     if (blockingTiles === null) {
-      if (tile in dict) {
-        this.resolve(dict, dict[tile])
+      if (dictKey in dict) {
+        const tmp = dict[dictKey]
+        delete dict[dictKey]
+        this.resolve(dict, tmp)
       }
     } else {
       for (const blockingTile of blockingTiles) {
-        dict[blockingTile] = tile
+        dict[blockingTile.x + '-' + blockingTile.y] = tile
       }
     }
   }
@@ -36,66 +40,21 @@ export default class GridManager {
   }
 
   spawnIngredient () {
-    const possibilies = this.grid.possibilies()
+    const possibilies = this.grid.possibilies
     const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0, this.grid)
 
     this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient
-    this.grid.ingredients.push(newIngredient)
   }
 
   next () {
     this.applyTiles()
-    /*
-    const toDelete = []
 
-    for (const ingredient of this.grid.ingredients) {
-      const cell = this.grid.cells[ingredient.x][ingredient.y]
-
-      if (cell.tile instanceof MovingTile) {
-        if (cell.tile.targetX < 0) {
-          toDelete.push(ingredient)
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-          ingredient.destroy()
-          continue
-        }
-
-        if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-          ingredient.x = cell.tile.targetX
-          ingredient.y = cell.tile.targetY
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = ingredient
-          ingredient.hasMoved = true
-          // TODO IF FREEUSTENSIL
-        } else if (this.grid.hasIngredient(cell.tile.targetX, cell.tile.targetY)) {
-          this.chainIngredient(cell)
-        }
-      }
-    }
-
-    for (const ingredient of toDelete) {
-      this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
-    }
-*/
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
     }
-  }
 
-  checkConnectors () {
-    for (let y = 0; y < this.grid.sizeY - 1; y++) {
-      const movingCell = this.grid.cells[this.grid.sizeX - 1][y]
-      const connectorCell = this.grid.cells[this.grid.sizeX - 2][y]
-
-      if (connectorCell.tile.connected) {
-        console.log('connected')
-        movingCell.tile.targetX = connectorCell.x
-        movingCell.tile.targetY = connectorCell.y
-      } else {
-        movingCell.tile.targetX = movingCell.tile.x
-        movingCell.tile.targetY = movingCell.tile.y + 1
-      }
-    }
+    this.ticks++
   }
 
   chainIngredient (cell) {
@@ -130,8 +89,6 @@ export default class GridManager {
   }
 
   draw (stage, resources) {
-    this.checkConnectors()
-
     if (!this.container) {
       this.container = new GridContainer()
 

@@ -14,16 +14,22 @@ export default class MovingTile extends Tile {
     this.conveyorBelt = conveyorBelt
   }
 
-  apply (grid) {
-    if (this.targetX < 0 || grid.cells[this.x][this.y].ingredient === null) {
-    // TODO
+  apply (grid, id) {
+    const cell = grid.cells[this.x][this.y]
+
+    if (this.targetX < 0) {
+      return null
+    } else if (!cell.ingredient || cell.ingredient.lastId === id) {
+      return null
     } else if (grid.isFree(this.targetX, this.targetY)) {
-      var currentIngredient = grid.cells[this.x][this.y].ingredient
+      const currentIngredient = grid.cells[this.x][this.y].ingredient
       currentIngredient.x = this.targetX
       currentIngredient.y = this.targetY
-      // grid.cells[this.targetX][this.targetY].ingredient = grid.cells[this.x][this.y].ingredient
+      currentIngredient.lastId = id
+
       grid.cells[this.targetX][this.targetY].ingredient = currentIngredient
-      grid.cells[this.x][this.y].ingredient = null
+      cell.ingredient = null
+
       return null
     } else {
       return [grid.cells[this.targetX][this.targetY].tile]
