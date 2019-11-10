@@ -1,0 +1,55 @@
+{"frames": {
+
+"Couteau_Top_Down_v1-Sheet-0.png":
+{
+	"frame": {"x":1,"y":1,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Couteau_Top_Down_v1-Sheet-1.png":
+{
+	"frame": {"x":1,"y":26,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Couteau_Top_Down_v1-Sheet-2.png":
+{
+	"frame": {"x":1,"y":51,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Couteau_Top_Down_v1-Sheet-3.png":
+{
+	"frame": {"x":1,"y":76,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Couteau_Top_Down_v1-Sheet-4.png":
+{
+	"frame": {"x":1,"y":101,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+}},
+"animations": {
+	"Couteau_Top_Down_v1-Sheet": ["Couteau_Top_Down_v1-Sheet-0.png","Couteau_Top_Down_v1-Sheet-1.png","Couteau_Top_Down_v1-Sheet-2.png","Couteau_Top_Down_v1-Sheet-3.png","Couteau_Top_Down_v1-Sheet-4.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Couteau_Top_Down_v1.png",
+	"format": "RGBA8888",
+	"size": {"w":27,"h":125},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6a5075a5894e536df545aac46b009bf1:c20fc861769d3c6af8b086030a0ae2f5:2cabb4b2ada1e196bd875d4573bed4ff$"
+}
+}
