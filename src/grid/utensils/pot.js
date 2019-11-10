@@ -2,29 +2,22 @@ import * as PIXI from 'pixi.js'
 import Utensil from './utensil'
 import utensils from './utensils'
 
-export default class Peeler extends Utensil {
+export default class Pot extends Utensil {
   constructor (cell) {
     super(cell)
-    this.state = utensils.peeler.state
-    this.hasOtherResult = true
+    this.state = utensils.pot.state
+    this.hasOtherResult = false
   }
 
   createTransitions () {
     const transitions = new Map()
 
-    transitions.set([utensils.knife.state], this.state)
-    transitions.set([utensils.pot.state], this.state)
-
     return transitions
-  }
-
-  produce (ingredient) {
-    // TODO: create new ingredient ?
   }
 
   draw (container, resources, offset) {
     if (!this.sprite) {
-      this.sprite = new PIXI.Sprite(resources.peeler.texture)
+      this.sprite = new PIXI.Sprite(resources.pot.texture)
       container.addChild(this.sprite)
     }
 

@@ -5,7 +5,7 @@ export default class Ingredient {
     this.y = y
     this.hasMoved = false
     this.states = []
-    this.draggingReady = false
+    this.spriteLoaded = false
     this.dragging = false
     this.draggingData = null
   }
@@ -31,8 +31,6 @@ export default class Ingredient {
   }
 
   initDrag () {
-    this.draggingReady = true
-
     this.sprite.interactive = true
 
     this.sprite.notInBounds = true
@@ -87,7 +85,9 @@ export default class Ingredient {
   }
 
   draw () {
-    if (!this.draggingReady) {
+    if (!this.spriteLoaded) {
+      this.spriteLoaded = true
+      this.sprite.zIndex = 2
       this.initDrag()
     }
 

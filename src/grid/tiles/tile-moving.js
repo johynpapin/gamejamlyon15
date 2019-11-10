@@ -16,8 +16,10 @@ export default class MovingTile extends Tile {
 
   apply (grid, id) {
     const cell = grid.cells[this.x][this.y]
+    const beanY = grid.sizeY
 
-    if (this.targetX === -1 && this.targetY === grid.sixeY) {
+    if (cell.ingredient && this.targetX === -1 && this.targetY === beanY - 1) {
+      cell.ingredient.sprite.visible = false
       cell.ingredient = null
       return null
     } else if (!cell.ingredient || cell.ingredient.lastId === id) {
@@ -43,19 +45,16 @@ export default class MovingTile extends Tile {
         if (this.x === this.y) {
           this.sprite = new PIXI.AnimatedSprite(resources.rollTurn.spritesheet.animations['Roll_Turn-Sheet'])
           this.sprite.animationSpeed = 0.1
-          this.sprite.zIndex = 2
+          this.sprite.zIndex = 3
           this.sprite.play()
         } else {
-          if (this.x === this.targetX) {
-            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
-            this.sprite.animationSpeed = 0.1
-            this.sprite.play()
-          } else {
-            this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+          this.sprite = new PIXI.AnimatedSprite(resources.rollLeft.spritesheet.animations['Roll_left_v1-Sheet'])
+          this.sprite.animationSpeed = 0.1
+          this.sprite.play()
+
+          if (this.x !== this.targetX) {
             this.sprite.angle = 90
             this.sprite.pivot.y = this.sprite.height
-            this.sprite.animationSpeed = 0.1
-            this.sprite.play()
           }
         }
       } else {

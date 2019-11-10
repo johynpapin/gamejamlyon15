@@ -43,6 +43,12 @@ const resources = [{
   name: 'fryer',
   url: '/assets/Friteuse_v1.png'
 }, {
+  name: 'knife',
+  url: '/assets/Couteau_v1.png'
+}, {
+  name: 'pot',
+  url: '/assets/Marmite_v1.png'
+}, {
   name: 'background',
   url: '/assets/bp0.png'
 }, {
@@ -66,6 +72,9 @@ const resources = [{
 }, {
   name: 'rollTurn',
   url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
+}, {
+  name: 'launcher',
+  url: '/assets/texture_package/Sp_Launcher_v1-Sheet.json'
 }]
 
 const loader = new PIXI.Loader()
