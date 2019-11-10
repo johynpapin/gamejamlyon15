@@ -1,0 +1,47 @@
+{"frames": {
+
+"Econome_Top_Down_v1-Sheet-0.png":
+{
+	"frame": {"x":1,"y":1,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Econome_Top_Down_v1-Sheet-1.png":
+{
+	"frame": {"x":28,"y":1,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Econome_Top_Down_v1-Sheet-2.png":
+{
+	"frame": {"x":55,"y":1,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+},
+"Econome_Top_Down_v1-Sheet-3.png":
+{
+	"frame": {"x":28,"y":1,"w":25,"h":23},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":25,"h":23},
+	"sourceSize": {"w":32,"h":32}
+}},
+"animations": {
+	"Econome_Top_Down_v1-Sheet": ["Econome_Top_Down_v1-Sheet-0.png","Econome_Top_Down_v1-Sheet-1.png","Econome_Top_Down_v1-Sheet-2.png","Econome_Top_Down_v1-Sheet-3.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Couteau_Top_Down_v1.png",
+	"format": "RGBA8888",
+	"size": {"w":81,"h":25},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:8e45da448e0a589c3e0b29d776122d9b:59af95db85fe8bd9728401f68cb826eb:2cabb4b2ada1e196bd875d4573bed4ff$"
+}
+}

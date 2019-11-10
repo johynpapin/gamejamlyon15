@@ -3,8 +3,8 @@ import Utensil from './utensil'
 import utensils from './utensils'
 
 export default class Fryer extends Utensil {
-  constructor (cell) {
-    super(cell)
+  constructor (cell, targetCell, targetOpt) {
+    super(cell, targetCell, targetOpt)
     this.state = utensils.fryer.state
     this.hasOtherResult = false
   }
