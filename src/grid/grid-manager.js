@@ -27,7 +27,9 @@ export default class GridManager {
     var dict = {}
     for (const indice1 in this.grid.cells) {
       for (const indice2 in this.grid.cells[indice1]) {
-        this.resolve(dict, this.grid.cells[indice1][indice2])
+        if (this.grid.cells[indice1][indice2] instanceof MovingTile) {
+          this.resolve(dict, this.grid.cells[indice1][indice2])
+        }
       }
     }
   }
