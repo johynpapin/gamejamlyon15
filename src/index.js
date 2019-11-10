@@ -3,6 +3,8 @@ import './index.css'
 
 import GameManager from './game/game-manager'
 
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
+
 let type = 'WebGL'
 
 if (!PIXI.utils.isWebGLSupported()) {
@@ -11,7 +13,9 @@ if (!PIXI.utils.isWebGLSupported()) {
 
 PIXI.utils.sayHello(type)
 
-const app = new PIXI.Application()
+const app = new PIXI.Application({
+  antialias: false
+})
 
 // Make the game fill the window
 // app.renderer.backgroundColor = 0xadff4d
@@ -28,7 +32,7 @@ const gameManager = new GameManager()
 // List of all the images
 const resources = [{
   name: 'mainTileNeutral',
-  url: '/assets/Main_Tile_Neutral_v1.png'
+  url: '/assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
 }, {
   name: 'potato',
   url: '/assets/Patate_v1.png'
@@ -54,11 +58,14 @@ const resources = [{
   name: 'arrowLeft',
   url: '/assets/Arrow_L.png'
 }, {
+  name: 'rollLeft',
+  url: '/assets/texture_package/Roll_left_v1-Sheet.json'
+}, {
   name: 'rollDown',
   url: '/assets/Roll_Basic_v1.png'
 }, {
-  name: 'rollLeft',
-  url: '/assets/Roll_Horizontal_v1.png'
+  name: 'rollTurn',
+  url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
 }]
 
 const loader = new PIXI.Loader()

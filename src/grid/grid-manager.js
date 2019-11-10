@@ -1,34 +1,39 @@
 import * as PIXI from 'pixi.js'
 import Grid from './grid'
 import MovingTile from './tiles/tile-moving'
+import GridContainer from './grid-container'
 
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
     this.grid = new Grid(gameManager.level)
+    this.ticks = 0
   }
 
-  resolve (dictionnary, tile) {
-    var appliedTile = tile.apply(this.grid)
-    if (appliedTile === null) {
-      if (tile in dictionnary) {
-        this.resolve(dictionnary, dictionnary[tile])
+  resolve (dict, tile) {
+    const blockingTiles = tile.apply(this.grid, this.ticks)
+    const dictKey = tile.x + '-' + tile.y
+
+    if (blockingTiles === null) {
+      if (dictKey in dict) {
+        const tmp = dict[dictKey]
+        delete dict[dictKey]
+        this.resolve(dict, tmp)
       }
     } else {
-      for (const currentTile in appliedTile) {
-        dictionnary[appliedTile[currentTile]] = tile
-        this.resolve(dictionnary, appliedTile[currentTile])
+      for (const blockingTile of blockingTiles) {
+        dict[blockingTile.x + '-' + blockingTile.y] = tile
       }
     }
   }
 
   applyTiles () {
-    let dict = {}
-    for (let indice1 = 0; indice1 < this.grid.sizeX; indice1++) {
-      for (let indice2 = 0; indice2 < this.grid.sizeY; indice2++) {
-        if (this.grid.cells[indice1][indice2].tile instanceof MovingTile) {
-          dict = {}
-          this.resolve(dict, this.grid.cells[indice1][indice2].tile)
+    const dict = {}
+
+    for (let x = 0; x < this.grid.sizeX; x++) {
+      for (let y = 0; y < this.grid.sizeY; y++) {
+        if (this.grid.cells[x][y].tile.apply) {
+          this.resolve(dict, this.grid.cells[x][y].tile)
         }
       }
     }
@@ -36,65 +41,20 @@ export default class GridManager {
 
   spawnIngredient () {
     const possibilies = this.grid.possibilies
-    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0)
+    const newIngredient = new possibilies[Math.floor(Math.random() * possibilies.length)](this.grid.sizeX - 1, 0, this.grid)
 
     this.grid.cells[newIngredient.x][newIngredient.y].ingredient = newIngredient
-    this.grid.ingredients.push(newIngredient)
   }
 
   next () {
     this.applyTiles()
-    /*
-    const toDelete = []
 
-    for (const ingredient of this.grid.ingredients) {
-      const cell = this.grid.cells[ingredient.x][ingredient.y]
-
-      if (cell.tile instanceof MovingTile) {
-        if (cell.tile.targetX < 0) {
-          toDelete.push(ingredient)
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-          ingredient.destroy()
-          continue
-        }
-
-        if (this.grid.isFree(cell.tile.targetX, cell.tile.targetY)) {
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = null
-          ingredient.x = cell.tile.targetX
-          ingredient.y = cell.tile.targetY
-          this.grid.cells[ingredient.x][ingredient.y].ingredient = ingredient
-          ingredient.hasMoved = true
-          // TODO IF FREEUSTENSIL
-        } else if (this.grid.hasIngredient(cell.tile.targetX, cell.tile.targetY)) {
-          this.chainIngredient(cell)
-        }
-      }
-    }
-
-    for (const ingredient of toDelete) {
-      this.grid.ingredients.splice(this.grid.ingredients.indexOf(ingredient), 1)
-    }
-*/
     // Spawn new ingredient
     if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
       this.spawnIngredient()
     }
-  }
 
-  checkConnectors () {
-    for (let y = 0; y < this.grid.sizeY - 1; y++) {
-      const movingCell = this.grid.cells[this.grid.sizeX - 1][y]
-      const connectorCell = this.grid.cells[this.grid.sizeX - 2][y]
-
-      if (connectorCell.tile.connected) {
-        console.log('connected')
-        movingCell.tile.targetX = connectorCell.x
-        movingCell.tile.targetY = connectorCell.y
-      } else {
-        movingCell.tile.targetX = movingCell.tile.x
-        movingCell.tile.targetY = movingCell.tile.y + 1
-      }
-    }
+    this.ticks++
   }
 
   chainIngredient (cell) {
@@ -129,10 +89,10 @@ export default class GridManager {
   }
 
   draw (stage, resources) {
-    this.checkConnectors()
-
     if (!this.container) {
-      this.container = new PIXI.Container()
+      this.container = new GridContainer()
+
+      this.container.sortableChildren = true
 
       this.container.scale.x = 4
       this.container.scale.y = 4
