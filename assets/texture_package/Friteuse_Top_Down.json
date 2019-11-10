@@ -1,0 +1,71 @@
+{"frames": {
+
+"Friteuse_Top_Down_v1-Sheet-0.png":
+{
+	"frame": {"x":0,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-1.png":
+{
+	"frame": {"x":23,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-2.png":
+{
+	"frame": {"x":46,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-3.png":
+{
+	"frame": {"x":69,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-4.png":
+{
+	"frame": {"x":92,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-5.png":
+{
+	"frame": {"x":115,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+},
+"Friteuse_Top_Down_v1-Sheet-6.png":
+{
+	"frame": {"x":138,"y":0,"w":23,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":23,"h":25},
+	"sourceSize": {"w":32,"h":32}
+}},
+"animations": {
+	"Friteuse_Top_Down_v1-Sheet": ["Friteuse_Top_Down_v1-Sheet-0.png","Friteuse_Top_Down_v1-Sheet-1.png","Friteuse_Top_Down_v1-Sheet-2.png","Friteuse_Top_Down_v1-Sheet-3.png","Friteuse_Top_Down_v1-Sheet-4.png","Friteuse_Top_Down_v1-Sheet-5.png","Friteuse_Top_Down_v1-Sheet-6.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Friteuse_Top_Down.png",
+	"format": "RGBA8888",
+	"size": {"w":161,"h":25},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:96ceea3cc5d2b0360bb26b36a04b5c7d:c8f86294fdf871c883accf875db7846c:ef6891209ed08eb280b6dc871ba0842e$"
+}
+}
