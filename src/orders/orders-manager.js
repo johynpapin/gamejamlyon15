@@ -16,7 +16,7 @@ export default class OrdersManager {
   }
 
   createOrder () {
-    const newOrder = new Order(null, null, null)
+    const newOrder = this.gameManager.level.order[this.number]
     this.orders.ordering.push(newOrder)
     this.number += 1
   }
@@ -32,7 +32,7 @@ export default class OrdersManager {
       this.createOrder()
       this.reinit()
     } else if (this.number < 3) {
-      if (this.ticks >= this.treshold) {
+      if (this.ticks >= this.threshold) {
         this.createOrder()
         this.reinit()
       }
@@ -49,7 +49,6 @@ export default class OrdersManager {
 
       stage.addChild(this.container)
     }
-
     this.orders.draw(this.container, resources)
   }
 }

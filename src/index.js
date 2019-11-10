@@ -95,6 +95,8 @@ const mainContainer = new PIXI.Container()
 function setup (loader, resources) {
   const background = new PIXI.AnimatedSprite(resources.background.spritesheet.animations['Background_v1-Sheet'])
 
+  background.height = window.innerHeight
+  background.width = window.innerWidth
   background.alpha = 0.1
 
   background.animationSpeed = 0.025
