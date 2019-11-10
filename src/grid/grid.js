@@ -29,7 +29,7 @@ export default class Grid {
           if (x === this.sizeX - 2) {
             target.x--
           } else {
-            target.y++
+            target.y--
           }
           cells[x].push(new Cell(x, y, new TileConnector(x, y, target)))
         } else if (x === this.sizeX - 1 || y === this.sizeY - 1) {

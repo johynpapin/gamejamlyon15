@@ -9,22 +9,25 @@ export default class TileConnector extends MovingTile {
 
   switchConnect () {
     this.connected = !this.connected
-    console.log(this.connected)
   }
 
   draw (container, resources) {
     if (!this.sprite) {
+      this.sprite = new PIXI.AnimatedSprite(resources.launcher.spritesheet.animations['Sp_Launcher_v1-Sheet'])
+      this.sprite.animationSpeed = 0.1
+      this.sprite.play()
       if (this.x === this.targetX) {
         if (this.y < this.targetY) {
-          this.sprite = new PIXI.Sprite(resources.arrowTop.texture)
+          //          this.sprite = new PIXI.Sprite(resources.arrowTop.texture)
         } else {
-          this.sprite = new PIXI.Sprite(resources.arrowDown.texture)
+          this.sprite.angle = 90
+          this.sprite.pivot.y = this.sprite.height
+          // this.sprite = new PIXI.Sprite(resources.arrowDown.texture)
         }
       } else {
         if (this.x < this.targetX) {
-          this.sprite = new PIXI.Sprite(resources.arrowRight.texture)
+          // this.sprite = new PIXI.Sprite(resources.arrowRight.texture)
         } else {
-          this.sprite = new PIXI.Sprite(resources.arrowLeft.texture)
         }
       }
       container.addChild(this.sprite)
