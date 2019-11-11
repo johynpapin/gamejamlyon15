@@ -6,27 +6,28 @@ import Pot from './pot'
 export default {
   knife: {
     class: Knife,
-    state: 'cut'
+    states: 'cut'
   },
   peeler: {
     class: Peeler,
-    state: 'peel',
-    stateOpt: 'peeling'
+    states: ['peel', 'peeling'],
+    transitions: [[], ['cut'], ['cooked']]
   },
   pot: {
     class: Pot,
-    state: 'cooked'
+    states: 'cooked'
   },
   fryer: {
     class: Fryer,
-    state: 'fry'
+    states: 'fry',
+    transitions: [['cut'], ['peel'], ['peeling'], ['cooked']]
   }
   // blender: {
   //   class: Blender,
-  //   state: 'blend'
+  //   states: 'blend'
   // },
   // pan: {
   //   class: Pan,
-  //   state: 'sauteed'
+  //   states: 'sauteed'
   // }
 }

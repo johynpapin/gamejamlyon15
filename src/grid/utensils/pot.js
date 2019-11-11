@@ -3,15 +3,10 @@ import utensils from './utensils'
 import Utensil from './utensil'
 
 export default class Pot extends Utensil {
-  constructor (cell, targetCell) {
-    super(cell, targetCell)
-    this.state = utensils.pot.state
-  }
-
-  createTransitions () {
-    const transitions = new Map()
-
-    return transitions
+  constructor (cell, targetCells) {
+    super(cell, targetCells)
+    this.states = utensils.pot.states
+    this.transitions = utensils.pot.transitions
   }
 
   draw (container, resources, offset) {

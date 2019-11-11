@@ -1,12 +1,10 @@
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
-  constructor (cell, targetCell) {
+  constructor (cell, targetCells) {
     this.cell = cell
-    this.targetCell = targetCell
-    this.state = null
-    // map -> [key_0, ..., key_n]: 'value'
-    this.transitions = this.createTransitions()
+    this.targetCells = targetCells
+    this.createdIngredients = []
     this.reinit()
   }
 
@@ -15,12 +13,18 @@ export default class Utensil {
   }
 
   next () {
-    if (this.tics === 0 && this.targetCell.isFree()) {
+    if (this.tics === 0 && this.targetsAreFree()) {
       this.apply()
-      this.targetCell.ingredient = this.cell.ingredient
-      this.targetCell.ingredient.x = this.targetCell.x
-      this.targetCell.ingredient.y = this.targetCell.y
+
+      for (let i = 0; i < this.createdIngredients.length; i++) {
+        this.targetCells[i].ingredient = this.createdIngredients[i]
+        this.targetCells[i].ingredient.x = this.createdIngredients.x
+        this.targetCells[i].ingredient.y = this.createdIngredients.y
+      }
+
       this.cell.ingredient = null
+      this.createdIngredients = null
+
       this.reinit()
     } else if (this.cell.ingredient != null) {
       this.tics--
@@ -28,15 +32,27 @@ export default class Utensil {
   }
 
   apply () {
-    console.log('on apply')
-    for (const [key, value] of this.transitions) {
-      if (this.cell.ingredient.containsStates(key)) {
-        this.cell.ingredient.addState(value[0])
+    for (const states of this.transitions) {
+      if (this.cell.ingredient.containsStates(states)) {
+        for (const state of this.states) {
+          const newIngredient = this.cell.ingredient.clone()
+          newIngredient.addState(state)
+          this.createdIngredients.push(newIngredient)
+        }
       } else {
-        this.cell.ingredient.destroy()
-        this.cell.ingredient = new Waste()
+        this.createdIngredients.push(new Waste())
       }
     }
+    this.cell.ingredient.destroy()
+  }
+
+  targetsAreFree () {
+    for (const cell of this.targetCells) {
+      if (!cell.isFree()) {
+        return false
+      }
+    }
+    return true
   }
 
   isFree () {

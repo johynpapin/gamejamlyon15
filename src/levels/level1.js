@@ -22,16 +22,14 @@ export default class Level1 {
     const utensilsMap = new Map()
 
     const key1 = {
-      cell: { x: 1, y: 0 },
-      targetCell: { x: 1, y: 1 },
-      targetOpt: { x: 2, y: 0 }
+      cell: [1, 0],
+      targetCells: [[1, 1], [2, 0]]
     }
     utensilsMap.set(key1, utensils.peeler.class)
 
     const key2 = {
-      cell: { x: 1, y: 2 },
-      targetCell: { x: 0, y: 2 },
-      targetOpt: null
+      cell: [1, 2],
+      targetCells: [[0, 2]]
     }
     utensilsMap.set(key2, utensils.fryer.class)
 

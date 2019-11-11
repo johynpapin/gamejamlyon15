@@ -56,14 +56,13 @@ export default class Grid {
   loadUtensils (level) {
     for (const [key, value] of level.utensilsMap) {
       const cell = key.cell
-      const targetCell = this.cells[key.targetCell.x][key.targetCell.y]
+      const targetCells = []
 
-      if (key.targetOpt != null) {
-        const targetOpt = this.cells[key.targetOpt.x][key.targetOpt.y]
-        this.cells[cell.x][cell.y].addUtensil(value, targetCell, targetOpt)
-      } else {
-        this.cells[cell.x][cell.y].addUtensil(value, targetCell)
+      for (const coord of key.targetCells) {
+        targetCells.push(this.cells[coord[0]][coord[1]])
       }
+
+      this.cells[cell.x][cell.y].addUtensil(value, cell, targetCells)
     }
   }
 

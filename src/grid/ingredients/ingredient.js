@@ -20,11 +20,13 @@ export default class Ingredient {
   }
 
   addState (state) {
-    this.state.push(state)
+    this.states.push(state)
   }
 
   clone () {
-    return { ...this, states: [...this.states] }
+    const newIngredient = new this.constructor(this.x, this.y, this.grid)
+    newIngredient.states = [...this.states]
+    return newIngredient
   }
 
   destroy () {
