@@ -33,5 +33,7 @@ export default class Peeler extends Utensil {
 
     this.sprite.x = this.cell.x * this.sprite.width
     this.sprite.y = this.cell.y * this.sprite.height
+
+    this.drawLoadingBar(container, this.sprite.x, this.sprite.y)
   }
 }
