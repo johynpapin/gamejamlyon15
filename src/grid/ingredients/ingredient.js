@@ -5,7 +5,7 @@ export default class Ingredient {
   constructor (x, y, grid) {
     this.grid = grid
     this.xValue = x
-    this.yValue = y
+    this.yValue = y - 1
     this.x = x
     this.y = y
     this.hasMoved = false
@@ -14,6 +14,7 @@ export default class Ingredient {
     this.dragging = false
     this.draggingData = null
     this.deltas = 0
+    this.destroyed = false
   }
 
   get x () {
@@ -72,10 +73,7 @@ export default class Ingredient {
   }
 
   destroy () {
-    if (this.sprite) {
-      // TODO: bad
-      this.sprite.visible = false
-    }
+    this.destroyed = true
   }
 
   initDrag () {
@@ -122,6 +120,8 @@ export default class Ingredient {
         this.grid.cells[this.x][this.y].ingredient = null
         this.x = position.x
         this.y = position.y
+        this.lastX = this.x
+        this.lastY = this.y
         this.grid.cells[position.x][position.y].ingredient = this
       }
 
@@ -164,6 +164,8 @@ export default class Ingredient {
       this.sprite.y = lastTargetY - ((lastTargetY - targetY) / 60) * this.deltas % 60
     }
 
-    console.log(targetX, lastTargetX, this.sprite.x)
+    if (this.destroyed) {
+
+    }
   }
 }
