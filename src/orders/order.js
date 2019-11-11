@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js'
 export default class Order {
   constructor (recipe, name, timer) {
     this.name = name
-    this.dish = recipe // List of ingredients/recipes
+    this.dish = recipe // List { ingredient : state }
     this.timer = timer
   }
 
