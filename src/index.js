@@ -122,7 +122,6 @@ function gameLoop (resources, delta) {
 }
 
 function scaleScene () {
-  console.log('scaling')
 
   let w = window.innerWidth
   let h = window.innerWidth / ratio
@@ -132,7 +131,6 @@ function scaleScene () {
     h = window.innerHeight
   }
 
-  console.log('hey')
 
   mainContainer.scale.x = w / 640
   mainContainer.scale.y = h / 480
