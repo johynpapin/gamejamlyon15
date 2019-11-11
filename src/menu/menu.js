@@ -55,7 +55,7 @@ export default class Menu {
       container.addChild(this.container)
     }
 
-    this.container.x = 640 - this.container.width
+    this.container.x = 640 - 90
     this.container.y = 25
   }
 }

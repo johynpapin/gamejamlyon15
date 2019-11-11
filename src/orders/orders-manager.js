@@ -39,6 +39,10 @@ export default class OrdersManager {
     }
 
     for (const ord of this.orders.ordering) {
+      if (!ord) {
+        continue
+      }
+
       ord.timer--
 
       if (ord.timer <= 0) {
