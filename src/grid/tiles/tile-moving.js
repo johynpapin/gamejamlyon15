@@ -17,11 +17,12 @@ export default class MovingTile extends Tile {
   apply (grid, id) {
     const cell = grid.cells[this.x][this.y]
     const beanY = grid.sizeY
-
+    //when an ingredient is going in the bean
     if (cell.ingredient && this.targetX === -1 && this.targetY === beanY - 1) {
       cell.ingredient.sprite.visible = false
       cell.ingredient = null
       return null
+      // When an ingredient is going in the output
     } else if (cell.ingredient && this.targetX === -1 && this.targetY === grid.sizeY - 3) {
       grid.gridManager.gameManager.check(cell.ingredient)
     } else if (!cell.ingredient || cell.ingredient.lastId === id) {

@@ -27,7 +27,9 @@ export default class GameManager {
             return false
           }
         }
-        this.level.order.splice(indice, 1)
+        this.ordersManager.orders.splice(indice, 1)
+        this.ordersManager.orders.number -= 1
+        this.notifyResolveOrder()
         return true
       }
     }
