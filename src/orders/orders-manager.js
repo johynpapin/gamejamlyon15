@@ -28,11 +28,13 @@ export default class OrdersManager {
   }
 
   next () {
+    console.log(this.gameManager.level.maxOrders)
     if (this.number === 0) {
       this.createOrder()
       this.reinit()
-    } else if (this.gameManager.level.number && this.number < 3) {
+    } else if (this.number < this.gameManager.level.maxOrders && this.number < 3) {
       if (this.ticks >= this.threshold) {
+        console.log('in', this.threshold, this.ticks, this.number)
         this.createOrder()
         this.reinit()
       }
