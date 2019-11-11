@@ -15,13 +15,15 @@ export default class Knife extends Utensil {
     return transitions
   }
 
-  draw (container, resources, offset) {
+  draw (container, resources) {
     if (!this.sprite) {
-      this.sprite = new PIXI.Sprite(resources.knife.texture)
+      this.sprite = new PIXI.AnimatedSprite(resources.knife.spritesheet.animations['Couteau_Top_Down_v1-Sheet'])
+      this.sprite.animationSpeed = 0.1
+      this.sprite.play()
       container.addChild(this.sprite)
     }
 
-    this.sprite.x = this.x * this.sprite.width + offset.x
-    this.sprite.y = this.y * this.sprite.height + offset.y
+    this.sprite.x = this.x * this.sprite.width
+    this.sprite.y = this.y * this.sprite.height
   }
 }
