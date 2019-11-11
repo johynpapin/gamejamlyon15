@@ -25,5 +25,7 @@ export default class Knife extends Utensil {
 
     this.sprite.x = this.x * this.sprite.width
     this.sprite.y = this.y * this.sprite.height
+
+    this.drawLoadingBar(container, this.sprite.x, this.sprite.y)
   }
 }

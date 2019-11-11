@@ -1,5 +1,6 @@
 import GridManager from '../grid/grid-manager'
 import Level1 from '../levels/level1'
+import Level2 from '../levels/level2'
 import OrdersManager from '../orders/orders-manager'
 import Menu from '../menu/menu'
 
@@ -45,6 +46,8 @@ export default class GameManager {
 
     if (this.achieved === this.level.maxOrders) {
       console.log('Level ended successfully')
+      console.log(' Go to next level')
+      this.level = new Level2()
     }
 
     this.ordersManager.next()
