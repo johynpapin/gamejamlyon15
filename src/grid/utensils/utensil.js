@@ -18,8 +18,6 @@ export default class Utensil {
     if (this.ticks === 0 && this.targetsAreFree()) {
       this.apply(grid)
 
-      console.log(this.createdIngredients)
-
       for (let i = 0; i < this.createdIngredients.length; i++) {
         this.targetCells[i].ingredient = this.createdIngredients[i]
         this.targetCells[i].ingredient.x = this.targetCells[i].x
