@@ -15,17 +15,17 @@ export default class Cell {
     return this.ingredient == null
   }
 
-  draw (container, resources, offset) {
+  draw (container, resources) {
     if (this.tile !== null) {
-      this.tile.draw(container, resources, offset)
+      this.tile.draw(container, resources)
     }
 
     if (this.utensil !== null) {
-      this.utensil.draw(container, resources, offset)
+      this.utensil.draw(container, resources)
     }
 
     if (this.ingredient !== null) {
-      this.ingredient.draw(container, resources, offset)
+      this.ingredient.draw(container, resources)
     }
   }
 }

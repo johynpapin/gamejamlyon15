@@ -41,13 +41,13 @@ const resources = [{
   url: '/assets/Patate_v1.png'
 }, {
   name: 'peeler',
-  url: '/assets/Econome_Top_Down_v1.png'
+  url: '/assets/texture_package/Econome_Top_Down.json'
 }, {
   name: 'fryer',
-  url: '/assets/Friteuse_Top_Down_v1.png'
+  url: '/assets/texture_package/Friteuse_Top_Down.json'
 }, {
   name: 'knife',
-  url: '/assets/Couteau_v1.png'
+  url: '/assets/texture_package/Couteau_Top_Down.png'
 }, {
   name: 'pot',
   url: '/assets/Marmite_v1.png'
@@ -103,7 +103,7 @@ function setup (loader, resources) {
 
   mainContainer.addChild(background)
 
-  gameManager.draw(mainContainer, resources)
+gameManager.draw(mainContainer, resources)
 
   app.stage.addChild(mainContainer)
 
