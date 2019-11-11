@@ -35,7 +35,7 @@ const gameManager = new GameManager()
 // List of all the images
 const resources = [{
   name: 'title',
-  url: 'assets/texture_package/Title_Tile_v1.png'
+  url: 'assets/texture_package/Title_Tile_v1.json'
 }, {
   name: 'mainTileNeutral',
   url: 'assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
@@ -100,6 +100,7 @@ loader
   .load(setup)
 
 const mainContainer = new PIXI.Container()
+let showingTitle = true
 
 // Setup the game
 function setup (loader, resources) {
@@ -110,9 +111,19 @@ function setup (loader, resources) {
   background.animationSpeed = 0.025
   background.play()
 
-  mainContainer.addChild(background)
+  const title = new PIXI.AnimatedSprite(resources.title.spritesheet.animations['Title_Animated-Sheet'])
+  title.animationSpeed = 0.1
+  title.loop = false
+  title.onComplete = () => {
+    setTimeout(() => {
+      showingTitle = false
+      title.destroy()
+    }, 500)
+  }
+  title.play()
 
-  gameManager.draw(0, mainContainer, resources)
+  mainContainer.addChild(background)
+  mainContainer.addChild(title)
 
   app.stage.addChild(mainContainer)
 
@@ -122,12 +133,16 @@ function setup (loader, resources) {
 }
 
 function drawLoop (resources, delta) {
-  gameManager.draw(delta, app.stage, resources)
+  if (!showingTitle) {
+    gameManager.draw(delta, mainContainer, resources)
+  }
 }
 
 // The game loop
 function gameLoop () {
-  gameManager.next()
+  if (!showingTitle) {
+    gameManager.next()
+  }
 }
 
 function scaleScene () {

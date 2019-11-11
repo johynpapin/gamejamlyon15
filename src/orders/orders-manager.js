@@ -15,6 +15,11 @@ export default class OrdersManager {
     this.threshold = Math.floor(Math.random() * 10) + 5
   }
 
+  shift () {
+    this.orders.ordering.shift().destroy()
+    this.number--
+  }
+
   createOrder () {
     const newOrder = this.gameManager.level.order[this.number]
     this.orders.ordering.push(newOrder)
