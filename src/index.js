@@ -120,10 +120,7 @@ function scaleScene () {
     w = window.innerHeight * ratio
     h = window.innerHeight
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> f8fc1e66ed61b8056b1999baee9c9083ffe2bd47
   mainContainer.scale.x = w / 640
   mainContainer.scale.y = h / 480
   app.renderer.resize(w, h)
