@@ -46,7 +46,7 @@ export default class GridManager {
     for (let x = 0; x < this.grid.sizeX; x++) {
       for (let y = 0; y < this.grid.sizeY; y++) {
         if (this.grid.cells[x][y].utensil != null) {
-          this.grid.cells[x][y].utensil.next()
+          this.grid.cells[x][y].utensil.next(this.grid)
         }
       }
     }

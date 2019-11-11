@@ -6,7 +6,7 @@ export default class Ingredient {
     this.x = x
     this.y = y
     this.hasMoved = false
-    this.states = []
+    this.states = ['raw']
     this.spriteLoaded = false
     this.dragging = false
     this.draggingData = null
@@ -22,7 +22,13 @@ export default class Ingredient {
   }
 
   addState (state) {
-    this.state.push(state)
+    this.states.push(state)
+  }
+
+  clone () {
+    const newIngredient = new this.constructor(this.x, this.y, this.grid)
+    newIngredient.states = [...this.states]
+    return newIngredient
   }
 
   destroy () {

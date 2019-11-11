@@ -7,12 +7,12 @@ export default class Cell {
     this.ingredient = null
   }
 
-  addUtensil (Utensil, targetCell, targetOpt) {
-    this.utensil = new Utensil(this, targetCell, targetOpt)
+  addUtensil (Utensil, cell, targetCells) {
+    this.utensil = new Utensil(cell, targetCells)
   }
 
   isFree () {
-    return this.ingredient == null
+    return this.ingredient === null
   }
 
   draw (container, resources) {
