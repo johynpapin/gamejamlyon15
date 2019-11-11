@@ -64,6 +64,9 @@ const resources = [{
   name: 'launcher',
   url: '/assets/texture_package/Sp_Launcher_v1-Sheet.json'
 }, {
+  name: 'output',
+  url: '/assets/texture_package/Assiette_v1-Sheet.json'
+}, {
   name: 'background',
   url: '/assets/texture_package/Background.json'
 }, {
