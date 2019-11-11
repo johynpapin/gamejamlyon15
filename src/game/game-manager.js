@@ -24,21 +24,20 @@ export default class GameManager {
             boo = false
             console.log(ingredient.states)
             for (const state2 of ingredient.states) {
-              console.log(state1, state2)
-              console.log(state1, state2)
               if (state1 === state2) {
                 boo = true
+                console.log(state1, state2)
+                break
               }
             }
           } else {
             return false
           }
         }
-        console.log('\n')
-        console.log('ICICIEIEFFEI')
-        this.ordersManager.orders.splice(indice, 1)
+        const ord = this.ordersManager.orders.ordering.splice(indice, 1)
         this.ordersManager.orders.number -= 1
         this.notifyResolveOrder()
+        ord[0].destroy()
         return true
       }
     }
