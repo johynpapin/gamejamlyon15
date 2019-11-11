@@ -15,6 +15,8 @@ export default class MovingTile extends Tile {
   }
 
   apply (grid, id) {
+    console.log(this)
+
     const cell = grid.cells[this.x][this.y]
     // when an ingredient is going in the bean
     if (this.targetX < 0 && cell.ingredient) {
@@ -60,17 +62,18 @@ export default class MovingTile extends Tile {
           }
         }
       } else {
+        this.sprite = new PIXI.AnimatedSprite(resources.arrowLeft.spritesheet.animations['Directionnal_Tile_v1-Sheet'])
+        this.sprite.animationSpeed = 0.1
+        this.sprite.play()
+
         if (this.x === this.targetX) {
           if (this.y < this.targetY) {
-            this.sprite = new PIXI.Sprite(resources.arrowTop.texture)
           } else {
-            this.sprite = new PIXI.Sprite(resources.arrowDown.texture)
           }
         } else {
           if (this.x < this.targetX) {
-            this.sprite = new PIXI.Sprite(resources.arrowRight.texture)
+            // right
           } else {
-            this.sprite = new PIXI.Sprite(resources.arrowLeft.texture)
           }
         }
       }

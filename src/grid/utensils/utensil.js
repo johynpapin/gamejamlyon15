@@ -70,6 +70,5 @@ export default class Utensil {
       .lineTo((32 - width) / 2 + value, 0)
 
     this.loadingBar.position.set(x, y + 26)
-    console.log(value)
   }
 }

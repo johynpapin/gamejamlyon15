@@ -52,23 +52,11 @@ const resources = [{
   name: 'pot',
   url: '/assets/Marmite_v1.png'
 }, {
-  name: 'arrowTop',
-  url: '/assets/Arrow_Up.png'
-}, {
-  name: 'arrowRight',
-  url: '/assets/Arrow_R.png'
-}, {
-  name: 'arrowDown',
-  url: '/assets/Arrow_Down.png'
-}, {
   name: 'arrowLeft',
-  url: '/assets/Arrow_L.png'
+  url: '/assets/texture_package/Directionnal_Tile_v1-Sheet.json'
 }, {
   name: 'rollLeft',
   url: '/assets/texture_package/Roll_left_v1-Sheet.json'
-}, {
-  name: 'rollDown',
-  url: '/assets/Roll_Basic_v1.png'
 }, {
   name: 'rollTurn',
   url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
@@ -103,7 +91,7 @@ function setup (loader, resources) {
 
   mainContainer.addChild(background)
 
-gameManager.draw(mainContainer, resources)
+  gameManager.draw(mainContainer, resources)
 
   app.stage.addChild(mainContainer)
 
@@ -122,7 +110,10 @@ function gameLoop (resources, delta) {
 }
 
 function scaleScene () {
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79fb0281de552bb17240da2bac6f545086adf3f2
   let w = window.innerWidth
   let h = window.innerWidth / ratio
 
@@ -131,7 +122,10 @@ function scaleScene () {
     h = window.innerHeight
   }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79fb0281de552bb17240da2bac6f545086adf3f2
   mainContainer.scale.x = w / 640
   mainContainer.scale.y = h / 480
   app.renderer.resize(w, h)
