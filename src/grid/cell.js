@@ -15,7 +15,7 @@ export default class Cell {
     return this.ingredient === null
   }
 
-  draw (container, resources) {
+  draw (delta, container, resources) {
     if (this.tile !== null) {
       this.tile.draw(container, resources)
     }
@@ -25,7 +25,7 @@ export default class Cell {
     }
 
     if (this.ingredient !== null) {
-      this.ingredient.draw(container, resources)
+      this.ingredient.draw(delta, container, resources)
     }
   }
 }
