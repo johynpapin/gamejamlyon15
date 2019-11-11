@@ -64,19 +64,36 @@ export default class MovingTile extends Tile {
         this.sprite = new PIXI.AnimatedSprite(resources.arrowLeft.spritesheet.animations['Directionnal_Tile_v1-Sheet'])
         this.sprite.animationSpeed = 0.1
         this.sprite.play()
-
-        if (this.x === this.targetX) {
-          if (this.y < this.targetY) {
-          } else {
-          }
-        } else {
-          if (this.x < this.targetX) {
-            // right
-          } else {
-          }
-        }
       }
       container.addChild(this.sprite)
+    }
+
+    if (!this.conveyorBelt) {
+      if (this.x === this.targetX) {
+        if (this.y < this.targetY) {
+          // down
+          this.sprite.angle = 270
+          this.sprite.pivot.x = this.sprite.width
+          this.sprite.pivot.y = 0
+        } else {
+          // up
+          this.sprite.angle = 90
+          this.sprite.pivot.x = 0
+          this.sprite.pivot.y = this.sprite.height
+        }
+      } else {
+        if (this.x < this.targetX) {
+          // right
+          this.sprite.angle = 180
+          this.sprite.pivot.x = this.sprite.width
+          this.sprite.pivot.y = this.sprite.height
+        } else {
+          // left
+          this.sprite.angle = 0
+          this.sprite.pivot.x = 0
+          this.sprite.pivot.y = 0
+        }
+      }
     }
 
     this.sprite.x = this.x * this.sprite.width

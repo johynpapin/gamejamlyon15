@@ -69,6 +69,9 @@ const resources = [{
 }, {
   name: 'trash',
   url: '/assets/texture_package/Trashbin_v1-Sheet.json'
+}, {
+  name: 'waste',
+  url: '/assets/Space_Caca.png'
 }]
 
 const loader = new PIXI.Loader()

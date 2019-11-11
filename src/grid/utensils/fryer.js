@@ -1,22 +1,11 @@
 import * as PIXI from 'pixi.js'
-import Utensil from './utensil'
 import utensils from './utensils'
+import Utensil from './utensil'
 
 export default class Fryer extends Utensil {
-  constructor (cell, targetCell, targetOpt) {
-    super(cell, targetCell, targetOpt)
-    this.state = utensils.fryer.state
-    this.hasOtherResult = false
-  }
-
-  createTransitions () {
-    const transitions = new Map()
-
-    transitions.set([utensils.knife.state], this.state)
-    transitions.set([utensils.peeler.state], this.state)
-    transitions.set([utensils.pot.state], this.state)
-
-    return transitions
+  constructor (cell, targetCells) {
+    super(cell, targetCells)
+    this.transitions = utensils.fryer.transitions
   }
 
   draw (container, resources, offset) {

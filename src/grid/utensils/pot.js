@@ -1,18 +1,11 @@
 import * as PIXI from 'pixi.js'
-import Utensil from './utensil'
 import utensils from './utensils'
+import Utensil from './utensil'
 
 export default class Pot extends Utensil {
-  constructor (cell, targetCell, targetOpt) {
-    super(cell, targetCell, targetOpt)
-    this.state = utensils.pot.state
-    this.hasOtherResult = false
-  }
-
-  createTransitions () {
-    const transitions = new Map()
-
-    return transitions
+  constructor (cell, targetCells) {
+    super(cell, targetCells)
+    this.transitions = utensils.pot.transitions
   }
 
   draw (container, resources, offset) {

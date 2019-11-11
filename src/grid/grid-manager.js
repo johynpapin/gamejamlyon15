@@ -10,6 +10,7 @@ export default class GridManager {
     this.grid = new Grid(this, gameManager.level)
     this.ticks = 0
     this.addingMovingTile = false
+    this.rotatingMovingTile = false
   }
 
   resolve (dict, tile) {
@@ -45,7 +46,7 @@ export default class GridManager {
     for (let x = 0; x < this.grid.sizeX; x++) {
       for (let y = 0; y < this.grid.sizeY; y++) {
         if (this.grid.cells[x][y].utensil != null) {
-          this.grid.cells[x][y].utensil.next()
+          this.grid.cells[x][y].utensil.next(this.grid)
         }
       }
     }
@@ -103,16 +104,38 @@ export default class GridManager {
   }
 
   addMovingTile () {
+    this.gameManager.paused = true
     this.addingMovingTile = true
   }
 
-  handlePointerDown (event) {
-    if (!this.addingMovingTile) {
-      return
+  rotateMovingTile () {
+    this.gameManager.paused = true
+    this.rotatingMovingTile = true
+  }
+
+  _rotateMovingTile (position) {
+    const cell = this.grid.cells[position.x][position.y]
+
+    if (cell.tile instanceof MovingTile && !cell.tile.conveyorBelt) {
+      if (cell.tile.targetX < cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y - 1
+      } else if (cell.tile.targetX > cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y + 1
+      } else if (cell.tile.targetY < cell.tile.y) {
+        cell.tile.targetX = cell.tile.x + 1
+        cell.tile.targetY = cell.tile.y
+      } else {
+        cell.tile.targetX = cell.tile.x - 1
+        cell.tile.targetY = cell.tile.y
+      }
     }
 
-    this.addingMovingTile = false
+    this.gameManager.paused = false
+  }
 
+  handlePointerDown (event) {
     const position = event.data.getLocalPosition(this.container)
 
     position.x = Math.floor(position.x / 32)
@@ -122,14 +145,27 @@ export default class GridManager {
       position.x >= 0 && position.x < this.grid.sizeX &&
         position.y >= 0 && position.y < this.grid.sizeY
     ) {
-      const cell = this.grid.cells[position.x][position.y]
-      if (cell.tile instanceof TileNeutral && cell.utensil === null) {
-        cell.tile.destroy()
+      if (this.rotatingMovingTile) {
+        this.rotatingMovingTile = false
 
-        cell.tile = new MovingTile(position.x, position.y, {
-          x: position.x - 1,
-          y: position.y
-        })
+        this._rotateMovingTile(position)
+        return
+      }
+
+      if (this.addingMovingTile) {
+        this.addingMovingTile = false
+
+        const cell = this.grid.cells[position.x][position.y]
+        if (cell.tile instanceof TileNeutral && cell.utensil === null) {
+          cell.tile.destroy()
+
+          cell.tile = new MovingTile(position.x, position.y, {
+            x: position.x - 1,
+            y: position.y
+          })
+        }
+
+        this.gameManager.paused = false
       }
     }
   }
