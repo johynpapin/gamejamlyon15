@@ -94,7 +94,7 @@ function setup (loader, resources) {
 
   mainContainer.addChild(background)
 
-  gameManager.draw(mainContainer, resources)
+  gameManager.draw(0, mainContainer, resources)
 
   app.stage.addChild(mainContainer)
 
@@ -104,11 +104,11 @@ function setup (loader, resources) {
 }
 
 function drawLoop (resources, delta) {
-  gameManager.draw(app.stage, resources)
+  gameManager.draw(delta, app.stage, resources)
 }
 
 // The game loop
-function gameLoop (resources, delta) {
+function gameLoop () {
   gameManager.next()
 }
 
