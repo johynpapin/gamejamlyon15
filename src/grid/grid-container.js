@@ -1,6 +1,14 @@
 import * as PIXI from 'pixi.js'
 
 export default class GridContainer extends PIXI.Container {
+  constructor (gridManager) {
+    super()
+
+    this.interactive = true
+
+    this.on('pointerdown', (event) => gridManager.handlePointerDown(event))
+  }
+
   calculateBounds () {
     this._bounds.clear()
     this._calculateBounds()

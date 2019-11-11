@@ -1,13 +1,15 @@
 import * as PIXI from 'pixi.js'
 import Grid from './grid'
 import MovingTile from './tiles/tile-moving'
+import TileNeutral from './tiles/tile-neutral'
 import GridContainer from './grid-container'
 
 export default class GridManager {
   constructor (gameManager) {
     this.gameManager = gameManager
-    this.grid = new Grid(gameManager.level)
+    this.grid = new Grid(this, gameManager.level)
     this.ticks = 0
+    this.addingMovingTile = false
   }
 
   resolve (dict, tile) {
@@ -100,9 +102,61 @@ export default class GridManager {
     }
   }
 
+  addMovingTile () {
+    this.addingMovingTile = true
+  }
+
+  rotateMovingTile (position) {
+    const cell = this.grid.cells[position.x][position.y]
+
+    if (cell.tile instanceof MovingTile) {
+      if (cell.tile.targetX < cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y - 1
+      } else if (cell.tile.targetX > cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y + 1
+      } else if (cell.tile.targetY < cell.tile.y) {
+        cell.tile.targetX = cell.tile.x + 1
+        cell.tile.targetY = cell.tile.y
+      } else {
+        cell.tile.targetX = cell.tile.x - 1
+        cell.tile.targetY = cell.tile.y
+      }
+    }
+  }
+
+  handlePointerDown (event) {
+    const position = event.data.getLocalPosition(this.container)
+
+    position.x = Math.floor(position.x / 32)
+    position.y = Math.floor(position.y / 32)
+
+    if (
+      position.x >= 0 && position.x < this.grid.sizeX &&
+        position.y >= 0 && position.y < this.grid.sizeY
+    ) {
+      if (!this.addingMovingTile) {
+        this.rotateMovingTile(position)
+      }
+
+      this.addingMovingTile = false
+
+      const cell = this.grid.cells[position.x][position.y]
+      if (cell.tile instanceof TileNeutral && cell.utensil === null) {
+        cell.tile.destroy()
+
+        cell.tile = new MovingTile(position.x, position.y, {
+          x: position.x - 1,
+          y: position.y
+        })
+      }
+    }
+  }
+
   draw (container, resources) {
     if (!this.container) {
-      this.container = new GridContainer()
+      this.container = new GridContainer(this)
       this.container.scale.set(1.5)
       this.container.sortableChildren = true
 

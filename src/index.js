@@ -41,34 +41,22 @@ const resources = [{
   url: '/assets/Patate_v1.png'
 }, {
   name: 'peeler',
-  url: '/assets/Econome_Top_Down_v1.png'
+  url: '/assets/texture_package/Econome_Top_Down.json'
 }, {
   name: 'fryer',
-  url: '/assets/Friteuse_Top_Down_v1.png'
+  url: '/assets/texture_package/Friteuse_Top_Down.json'
 }, {
   name: 'knife',
-  url: '/assets/Couteau_v1.png'
+  url: '/assets/texture_package/Couteau_Top_Down.png'
 }, {
   name: 'pot',
   url: '/assets/Marmite_v1.png'
 }, {
-  name: 'arrowTop',
-  url: '/assets/Arrow_Up.png'
-}, {
-  name: 'arrowRight',
-  url: '/assets/Arrow_R.png'
-}, {
-  name: 'arrowDown',
-  url: '/assets/Arrow_Down.png'
-}, {
   name: 'arrowLeft',
-  url: '/assets/Arrow_L.png'
+  url: '/assets/texture_package/Directionnal_Tile_v1-Sheet.json'
 }, {
   name: 'rollLeft',
   url: '/assets/texture_package/Roll_left_v1-Sheet.json'
-}, {
-  name: 'rollDown',
-  url: '/assets/Roll_Basic_v1.png'
 }, {
   name: 'rollTurn',
   url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
@@ -122,8 +110,10 @@ function gameLoop (resources, delta) {
 }
 
 function scaleScene () {
-  console.log('scaling')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79fb0281de552bb17240da2bac6f545086adf3f2
   let w = window.innerWidth
   let h = window.innerWidth / ratio
 
@@ -132,8 +122,10 @@ function scaleScene () {
     h = window.innerHeight
   }
 
-  console.log('hey')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79fb0281de552bb17240da2bac6f545086adf3f2
   mainContainer.scale.x = w / 640
   mainContainer.scale.y = h / 480
   app.renderer.resize(w, h)

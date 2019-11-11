@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js'
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
@@ -5,11 +6,12 @@ export default class Utensil {
     this.cell = cell
     this.targetCells = targetCells
     this.createdIngredients = []
+    this.totalTicks = 3
     this.reinit()
   }
 
   reinit () {
-    this.tics = 3
+    this.ticks = this.totalTicks
   }
 
   next () {
@@ -61,5 +63,27 @@ export default class Utensil {
 
   isFree () {
     return this.cell.ingredient === null
+  }
+
+  drawLoadingBar (container, x, y) {
+    const width = 20
+
+    if (!this.loadingBar) {
+      this.loadingBar = new PIXI.Graphics()
+
+      this.loadingBar.zIndex = 5
+
+      container.addChild(this.loadingBar)
+    }
+
+    this.loadingBar.clear()
+
+    const value = width * ((this.totalTicks - this.ticks) / this.totalTicks)
+
+    this.loadingBar.lineStyle(2, 0x00ff00)
+      .moveTo((32 - width) / 2, 0)
+      .lineTo((32 - width) / 2 + value, 0)
+
+    this.loadingBar.position.set(x, y + 26)
   }
 }

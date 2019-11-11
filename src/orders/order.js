@@ -3,12 +3,13 @@ import * as PIXI from 'pixi.js'
 export default class Order {
   constructor (recipe, name, timer) {
     this.name = name
-    this.dish = recipe // List of ingredients/recipes
+    this.dish = recipe // List { ingredient : state }
     this.timer = timer
   }
 
   draw (container, resources, position) {
     if (!this.container) {
+      this.text = new PIXI.Text(this.name)
       this.container = new PIXI.Container()
 
       this.rectangle = new PIXI.Graphics()
@@ -19,10 +20,10 @@ export default class Order {
 
       this.container.addChild(this.rectangle)
       container.addChild(this.container)
+      this.container.addChild(this.text)
     }
-    if (this.dish !== null) {
-      // const text = new PIXI.Text(this.name)
-      // this.container.addChild(text)
-    }
+    this.text.x = 0
+    this.text.y = 32 * position
+    this.text.text = this.name
   }
 }
