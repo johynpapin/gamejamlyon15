@@ -1,10 +1,12 @@
+import TileConnector from '../tiles/tile-connector'
+
 export default class Ingredient {
   constructor (x, y, grid) {
     this.grid = grid
     this.x = x
     this.y = y
     this.hasMoved = false
-    this.states = []
+    this.states = ['raw']
     this.spriteLoaded = false
     this.dragging = false
     this.draggingData = null
@@ -20,7 +22,13 @@ export default class Ingredient {
   }
 
   addState (state) {
-    this.state.push(state)
+    this.states.push(state)
+  }
+
+  clone () {
+    const newIngredient = new this.constructor(this.x, this.y, this.grid)
+    newIngredient.states = [...this.states]
+    return newIngredient
   }
 
   destroy () {
@@ -66,7 +74,8 @@ export default class Ingredient {
       if (
         position.x >= 0 && position.x < this.grid.sizeX &&
         position.y >= 0 && position.y < this.grid.sizeY &&
-        this.grid.isFree(position.x, position.y)
+        this.grid.isFree(position.x, position.y) &&
+        this.grid.cells[position.x][position.y].tile instanceof TileConnector
       ) {
         this.grid.cells[this.x][this.y].ingredient = null
         this.x = position.x

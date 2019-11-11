@@ -2,14 +2,10 @@ import * as PIXI from 'pixi.js'
 import Waste from './../ingredients/waste'
 
 export default class Utensil {
-  constructor (cell, targetCell, targetOpt) {
+  constructor (cell, targetCells) {
     this.cell = cell
-    this.targetCell = targetCell
-    this.targetOpt = targetOpt
-    this.state = null
-    this.hasOtherResult = false
-    // map -> [key_0, ..., key_n]: 'value'
-    this.transitions = this.createTransitions()
+    this.targetCells = targetCells
+    this.createdIngredients = []
     this.totalTicks = 3
     this.reinit()
   }
@@ -18,36 +14,53 @@ export default class Utensil {
     this.ticks = this.totalTicks
   }
 
-  next () {
-    if (this.ticks === 0) {
-      if ((this.targetOpt == null && this.targetCell.isFree()) || (this.targetOpt != null && this.targetCell.isFree() && this.targetOpt.isFree())) {
-        this.targetCell.ingredient = this.cell.ingredient
-        this.targetCell.ingredient.x = this.targetCell.x
-        this.targetCell.ingredient.y = this.targetCell.y
-        this.cell.ingredient = null
-        this.reinit()
+  next (grid) {
+    if (this.ticks === 0 && this.targetsAreFree()) {
+      this.apply(grid)
+
+      console.log(this.createdIngredients)
+
+      for (let i = 0; i < this.createdIngredients.length; i++) {
+        this.targetCells[i].ingredient = this.createdIngredients[i]
+        this.targetCells[i].ingredient.x = this.targetCells[i].x
+        this.targetCells[i].ingredient.y = this.targetCells[i].y
       }
-    } else if (this.cell.ingredient != null) {
+
+      this.cell.ingredient.destroy()
+      this.cell.ingredient = null
+      this.createdIngredients = null
+
+      this.reinit()
+    } else if (this.cell.ingredient !== null) {
       this.ticks--
     }
   }
 
-  apply (ingredient) {
+  apply (grid) {
     for (const [key, value] of this.transitions) {
-      if (ingredient.containsStates(key)) {
-        ingredient.addState(value)
-        if (this.hasOtherResult) {
-          this.produce()
+      if (this.cell.ingredient.containsStates(key)) {
+        for (const state of value) {
+          const newIngredient = this.cell.ingredient.clone()
+          newIngredient.addState(state)
+          this.createdIngredients.push(newIngredient)
         }
-      } else {
-        ingredient.destroy()
-        this.cell.ingredient = new Waste()
+        return
       }
     }
+    this.createdIngredients.push(new Waste(this.cell.x, this.cell.y, grid))
+  }
+
+  targetsAreFree () {
+    for (const cell of this.targetCells) {
+      if (!cell.isFree()) {
+        return false
+      }
+    }
+    return true
   }
 
   isFree () {
-    return this.cell.isFree()
+    return this.cell.ingredient === null
   }
 
   drawLoadingBar (container, x, y) {
