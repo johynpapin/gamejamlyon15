@@ -28,19 +28,19 @@ export default class OrdersManager {
   }
 
   next () {
-    console.log(this.gameManager.level.maxOrders)
     if (this.number === 0) {
       this.createOrder()
       this.reinit()
     } else if (this.number < this.gameManager.level.maxOrders && this.number < 3) {
       if (this.ticks >= this.threshold) {
-        console.log('in', this.threshold, this.ticks, this.number)
         this.createOrder()
         this.reinit()
       }
     }
+
     for (const ord of this.orders.ordering) {
-      ord.timer -= 1
+      ord.timer--
+
       if (ord.timer <= 0) {
 
       }
@@ -57,6 +57,7 @@ export default class OrdersManager {
 
       stage.addChild(this.container)
     }
+
     this.orders.draw(this.container, resources)
   }
 }
