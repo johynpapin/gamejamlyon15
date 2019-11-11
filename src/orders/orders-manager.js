@@ -39,6 +39,12 @@ export default class OrdersManager {
         this.reinit()
       }
     }
+    for (const ord of this.order.ordering) {
+      ord.timer -= 1
+      if (ord.timer <= 0) {
+
+      }
+    }
 
     this.ticks++
   }
