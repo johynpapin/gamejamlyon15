@@ -34,6 +34,9 @@ const gameManager = new GameManager()
 
 // List of all the images
 const resources = [{
+  name: 'title',
+  url: 'assets/texture_package/Title_Tile_v1.png'
+}, {
   name: 'mainTileNeutral',
   url: 'assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
 }, {
