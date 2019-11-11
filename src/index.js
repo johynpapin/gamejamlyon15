@@ -69,6 +69,9 @@ const resources = [{
 }, {
   name: 'trash',
   url: '/assets/texture_package/Trashbin_v1-Sheet.json'
+}, {
+  name: 'waste',
+  url: '/assets/Space_Caca.png'
 }]
 
 const loader = new PIXI.Loader()
@@ -117,6 +120,7 @@ function scaleScene () {
     w = window.innerHeight * ratio
     h = window.innerHeight
   }
+
   mainContainer.scale.x = w / 640
   mainContainer.scale.y = h / 480
   app.renderer.resize(w, h)

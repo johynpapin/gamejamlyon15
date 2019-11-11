@@ -1,3 +1,5 @@
+import TileConnector from '../tiles/tile-connector'
+
 export default class Ingredient {
   constructor (x, y, grid) {
     this.grid = grid
@@ -72,7 +74,8 @@ export default class Ingredient {
       if (
         position.x >= 0 && position.x < this.grid.sizeX &&
         position.y >= 0 && position.y < this.grid.sizeY &&
-        this.grid.isFree(position.x, position.y)
+        this.grid.isFree(position.x, position.y) &&
+        this.grid.cells[position.x][position.y].tile instanceof TileConnector
       ) {
         this.grid.cells[this.x][this.y].ingredient = null
         this.x = position.x
