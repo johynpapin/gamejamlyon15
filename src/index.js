@@ -50,7 +50,7 @@ const resources = [{
   url: '/assets/Patate_Frites.png'
 }, {
   name: 'potatoChips',
-  url: '/assets/Patate_Frites.png'
+  url: '/assets/Chips.png'
 }, {
   name: 'peeler',
   url: '/assets/texture_package/Econome_Top_Down.json'
