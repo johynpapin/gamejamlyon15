@@ -26,7 +26,7 @@ export default class Utensil {
 
       this.cell.ingredient.destroy()
       this.cell.ingredient = null
-      this.createdIngredients = null
+      this.createdIngredients = []
 
       this.reinit()
     } else if (this.cell.ingredient !== null) {

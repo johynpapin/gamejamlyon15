@@ -69,9 +69,9 @@ export default class GameManager {
     this.achieved += 1
   }
 
-  draw (stage, resources) {
+  draw (delta, stage, resources) {
     this.ordersManager.draw(stage, resources)
-    this.gridManager.draw(stage, resources)
+    this.gridManager.draw(delta, stage, resources)
     this.menu.draw(stage, resources)
   }
 }

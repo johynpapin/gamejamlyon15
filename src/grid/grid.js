@@ -85,10 +85,10 @@ export default class Grid {
     return cell.utensil !== null && !cell.utensil.isFree()
   }
 
-  draw (container, resources) {
+  draw (delta, container, resources) {
     for (const line of this.cells) {
       for (const cell of line) {
-        cell.draw(container, resources)
+        cell.draw(delta, container, resources)
       }
     }
   }

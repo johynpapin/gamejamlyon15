@@ -3,6 +3,8 @@ import TileConnector from '../tiles/tile-connector'
 export default class Ingredient {
   constructor (x, y, grid) {
     this.grid = grid
+    this.xValue = x
+    this.yValue = y
     this.x = x
     this.y = y
     this.hasMoved = false
@@ -10,6 +12,43 @@ export default class Ingredient {
     this.spriteLoaded = false
     this.dragging = false
     this.draggingData = null
+    this.deltas = 0
+  }
+
+  get x () {
+    return this.xValue
+  }
+
+  set x (value) {
+    if (this.lastX !== value) {
+      this.deltas = 0
+    }
+
+    this.lastX = this.xValue
+
+    if (!this.lastX) {
+      this.lastX = 0
+    }
+
+    this.xValue = value
+  }
+
+  get y () {
+    return this.yValue
+  }
+
+  set y (value) {
+    if (this.lastY !== value) {
+      this.deltas = 0
+    }
+
+    this.lastY = this.yValue
+
+    if (!this.lastY) {
+      this.lastY = 0
+    }
+
+    this.yValue = value
   }
 
   containsStates (requiredStates) {
@@ -91,7 +130,9 @@ export default class Ingredient {
   onDragMove () {
   }
 
-  draw () {
+  draw (delta) {
+    this.deltas += delta
+
     if (!this.spriteLoaded) {
       this.spriteLoaded = true
       this.sprite.zIndex = 2
@@ -106,7 +147,20 @@ export default class Ingredient {
       return
     }
 
-    this.sprite.x = this.x * this.sprite.width + this.sprite.width / 2
-    this.sprite.y = this.y * this.sprite.height + this.sprite.height / 2
+    const targetX = this.x * this.sprite.width + this.sprite.width / 2
+    const targetY = this.y * this.sprite.height + this.sprite.height / 2
+
+    const lastTargetX = this.lastX * this.sprite.width + this.sprite.width / 2
+    const lastTargetY = this.lastY * this.sprite.height + this.sprite.height / 2
+
+    if (this.deltas > 60) {
+      this.sprite.x = targetX
+      this.sprite.y = targetY
+    } else {
+      this.sprite.x = lastTargetX - ((lastTargetX - targetX) / 60) * this.deltas
+      this.sprite.y = lastTargetY - ((lastTargetY - targetY) / 60) * this.deltas % 60
+    }
+
+    console.log(targetX, lastTargetX, this.sprite.x)
   }
 }
