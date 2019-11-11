@@ -17,6 +17,18 @@ export default class Menu {
         })
       }
     })
+
+    this.movingTile = new Button({
+      label: 'Add a moving tile',
+      width: 128,
+      height: 32,
+      fontSize: 14,
+      onTap: () => {
+        this.gameManager.gridManager.addMovingTile()
+      }
+    })
+
+    this.movingTile.y = 50
   }
 
   draw (container, resources) {
@@ -24,6 +36,8 @@ export default class Menu {
       this.container = new PIXI.Container()
 
       this.container.addChild(this.pauseButton)
+
+      this.container.addChild(this.movingTile)
 
       container.addChild(this.container)
     }

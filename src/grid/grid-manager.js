@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js'
 import Grid from './grid'
 import MovingTile from './tiles/tile-moving'
+import TileNeutral from './tiles/tile-neutral'
 import GridContainer from './grid-container'
 
 export default class GridManager {
@@ -8,6 +9,7 @@ export default class GridManager {
     this.gameManager = gameManager
     this.grid = new Grid(this, gameManager.level)
     this.ticks = 0
+    this.addingMovingTile = false
   }
 
   resolve (dict, tile) {
@@ -100,9 +102,41 @@ export default class GridManager {
     }
   }
 
+  addMovingTile () {
+    this.addingMovingTile = true
+  }
+
+  handlePointerDown (event) {
+    if (!this.addingMovingTile) {
+      return
+    }
+
+    this.addingMovingTile = false
+
+    const position = event.data.getLocalPosition(this.container)
+
+    position.x = Math.floor(position.x / 32)
+    position.y = Math.floor(position.y / 32)
+
+    if (
+      position.x >= 0 && position.x < this.grid.sizeX &&
+        position.y >= 0 && position.y < this.grid.sizeY
+    ) {
+      const cell = this.grid.cells[position.x][position.y]
+      if (cell.tile instanceof TileNeutral && cell.utensil === null) {
+        cell.tile.destroy()
+
+        cell.tile = new MovingTile(position.x, position.y, {
+          x: position.x - 1,
+          y: position.y
+        })
+      }
+    }
+  }
+
   draw (container, resources) {
     if (!this.container) {
-      this.container = new GridContainer()
+      this.container = new GridContainer(this)
       this.container.scale.set(1.5)
       this.container.sortableChildren = true
 

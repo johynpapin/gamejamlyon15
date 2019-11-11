@@ -3,4 +3,9 @@ export default class Tile {
     this.x = x
     this.y = y
   }
+
+  destroy () {
+    // TODO: bad
+    this.sprite.visible = false
+  }
 }
