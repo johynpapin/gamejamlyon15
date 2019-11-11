@@ -7,6 +7,10 @@ export default class Order {
     this.timer = timer
   }
 
+  destroy () {
+    this.container.visible = false
+  }
+
   draw (container, resources, position) {
     if (!this.container) {
       this.text = new PIXI.Text(this.name)
@@ -25,5 +29,10 @@ export default class Order {
     this.text.x = 0
     this.text.y = 32 * position
     this.text.text = this.name
+
+    this.rectangle.clear()
+    this.rectangle.beginFill(0xffff00)
+    this.rectangle.lineStyle(2, 0xff0000)
+    this.rectangle.drawRect(0, 32 * position, 128, 32)
   }
 }
