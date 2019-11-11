@@ -29,7 +29,7 @@ export default class Utensil {
       this.createdIngredients = []
 
       this.reinit()
-    } else if (this.cell.ingredient !== null) {
+    } else if (this.cell.ingredient !== null && this.ticks > 0) {
       this.ticks--
     }
   }

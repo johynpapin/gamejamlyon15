@@ -1,4 +1,5 @@
 import TileConnector from '../tiles/tile-connector'
+import MovingTile from '../tiles/tile-moving'
 
 export default class Ingredient {
   constructor (x, y, grid) {
@@ -98,9 +99,11 @@ export default class Ingredient {
   }
 
   onDragStart (event) {
-    this.sprite.alpha = 0.75
-    this.draggingData = event.data
-    this.dragging = true
+    if (this.grid.cells[this.x][this.y].tile instanceof MovingTile && this.grid.cells[this.x][this.y].tile.conveyorBelt) {
+      this.sprite.alpha = 0.75
+      this.draggingData = event.data
+      this.dragging = true
+    }
   }
 
   onDragEnd (event) {
