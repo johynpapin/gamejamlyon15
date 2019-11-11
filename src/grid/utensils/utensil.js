@@ -14,14 +14,16 @@ export default class Utensil {
     this.ticks = this.totalTicks
   }
 
-  next () {
+  next (grid) {
     if (this.ticks === 0 && this.targetsAreFree()) {
-      this.apply()
+      this.apply(grid)
+
+      console.log(this.createdIngredients)
 
       for (let i = 0; i < this.createdIngredients.length; i++) {
         this.targetCells[i].ingredient = this.createdIngredients[i]
-        this.targetCells[i].ingredient.x = this.createdIngredients.x
-        this.targetCells[i].ingredient.y = this.createdIngredients.y
+        this.targetCells[i].ingredient.x = this.targetCells[i].x
+        this.targetCells[i].ingredient.y = this.targetCells[i].y
       }
 
       this.cell.ingredient.destroy()
@@ -34,8 +36,7 @@ export default class Utensil {
     }
   }
 
-  apply () {
-    console.log('on apply')
+  apply (grid) {
     for (const [key, value] of this.transitions) {
       if (this.cell.ingredient.containsStates(key)) {
         for (const state of value) {
@@ -44,10 +45,9 @@ export default class Utensil {
           this.createdIngredients.push(newIngredient)
         }
         return
-      } else {
-        this.createdIngredients.push(new Waste())
       }
     }
+    this.createdIngredients.push(new Waste(this.cell.x, this.cell.y, grid))
   }
 
   targetsAreFree () {

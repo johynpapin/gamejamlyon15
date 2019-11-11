@@ -24,7 +24,7 @@ export default class Level1 {
 
     const key1 = {
       cell: [1, 0],
-      targetCells: [[1, 1], [2, 0]]
+      targetCells: [[1, 1], [0, 0]]
     }
     utensilsMap.set(key1, utensils.peeler.class)
 
