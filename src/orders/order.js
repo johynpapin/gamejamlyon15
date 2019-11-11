@@ -29,6 +29,9 @@ export default class Order {
 
     this.text.x = 0
     this.text.y = 32 * position
+    if (this.timer < 0) {
+      this.timer = 0
+    }
     this.text.text = this.name + ' ' + this.timer
 
     this.rectangle.clear()
