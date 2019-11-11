@@ -15,10 +15,8 @@ export default class Utensil {
   }
 
   next () {
-    if (this.tics === 0 && this.targetsAreFree()) {
+    if (this.ticks === 0 && this.targetsAreFree()) {
       this.apply()
-
-      console.log(this.createdIngredients)
 
       for (let i = 0; i < this.createdIngredients.length; i++) {
         this.targetCells[i].ingredient = this.createdIngredients[i]
@@ -32,7 +30,7 @@ export default class Utensil {
 
       this.reinit()
     } else if (this.cell.ingredient !== null) {
-      this.tics--
+      this.ticks--
     }
   }
 
