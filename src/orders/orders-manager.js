@@ -39,7 +39,7 @@ export default class OrdersManager {
         this.reinit()
       }
     }
-    for (const ord of this.order.ordering) {
+    for (const ord of this.orders.ordering) {
       ord.timer -= 1
       if (ord.timer <= 0) {
 
