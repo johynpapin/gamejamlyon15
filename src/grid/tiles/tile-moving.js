@@ -15,8 +15,6 @@ export default class MovingTile extends Tile {
   }
 
   apply (grid, id) {
-    console.log(this)
-
     const cell = grid.cells[this.x][this.y]
     const beanY = grid.sizeY
     // when an ingredient is going in the bean

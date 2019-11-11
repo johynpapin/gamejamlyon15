@@ -106,13 +106,27 @@ export default class GridManager {
     this.addingMovingTile = true
   }
 
-  handlePointerDown (event) {
-    if (!this.addingMovingTile) {
-      return
+  rotateMovingTile (position) {
+    const cell = this.grid.cells[position.x][position.y]
+
+    if (cell.tile instanceof MovingTile) {
+      if (cell.tile.targetX < cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y - 1
+      } else if (cell.tile.targetX > cell.tile.x) {
+        cell.tile.targetX = cell.tile.x
+        cell.tile.targetY = cell.tile.y + 1
+      } else if (cell.tile.targetY < cell.tile.y) {
+        cell.tile.targetX = cell.tile.x + 1
+        cell.tile.targetY = cell.tile.y
+      } else {
+        cell.tile.targetX = cell.tile.x - 1
+        cell.tile.targetY = cell.tile.y
+      }
     }
+  }
 
-    this.addingMovingTile = false
-
+  handlePointerDown (event) {
     const position = event.data.getLocalPosition(this.container)
 
     position.x = Math.floor(position.x / 32)
@@ -122,6 +136,12 @@ export default class GridManager {
       position.x >= 0 && position.x < this.grid.sizeX &&
         position.y >= 0 && position.y < this.grid.sizeY
     ) {
+      if (!this.addingMovingTile) {
+        this.rotateMovingTile(position)
+      }
+
+      this.addingMovingTile = false
+
       const cell = this.grid.cells[position.x][position.y]
       if (cell.tile instanceof TileNeutral && cell.utensil === null) {
         cell.tile.destroy()
