@@ -14,8 +14,8 @@ export default class Level1 {
   }
 
   orders () {
-    const order1 = new Order([{ ingredient: Potato, states: ['peeling', 'fry'] }], 'chips', 100)
-    const order2 = new Order([{ ingredient: Potato, states: ['peel', 'fry'] }], 'frite', 100)
+    const order1 = new Order([{ ingredient: Potato, states: ['peel', 'fry'] }], 'frite', 100)
+    const order2 = new Order([{ ingredient: Potato, states: ['peeling', 'fry'] }], 'chips', 100)
     this.order = [order1, order2]
   }
 
