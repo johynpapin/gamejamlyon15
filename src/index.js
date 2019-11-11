@@ -35,10 +35,10 @@ const gameManager = new GameManager()
 // List of all the images
 const resources = [{
   name: 'mainTileNeutral',
-  url: '/assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
+  url: 'assets/texture_package/Main_Tile_Neutral_v2-Sheet.json'
 }, {
   name: 'potato',
-  url: '/assets/Patate_v1.png'
+  url: 'assets/Patate_v1.png'
 }, {
   name: 'potatoPeeling',
   url: '/assets/Patate_Peluche.png'
@@ -53,40 +53,40 @@ const resources = [{
   url: '/assets/Chips.png'
 }, {
   name: 'peeler',
-  url: '/assets/texture_package/Econome_Top_Down.json'
+  url: 'assets/texture_package/Econome_Top_Down.json'
 }, {
   name: 'fryer',
-  url: '/assets/texture_package/Friteuse_Top_Down.json'
+  url: 'assets/texture_package/Friteuse_Top_Down.json'
 }, {
   name: 'knife',
-  url: '/assets/texture_package/Couteau_Top_Down.png'
+  url: 'assets/texture_package/Couteau_Top_Down.png'
 }, {
   name: 'pot',
-  url: '/assets/Marmite_v1.png'
+  url: 'assets/Marmite_v1.png'
 }, {
   name: 'arrowLeft',
-  url: '/assets/texture_package/Directionnal_Tile_v1-Sheet.json'
+  url: 'assets/texture_package/Directionnal_Tile_v1-Sheet.json'
 }, {
   name: 'rollLeft',
-  url: '/assets/texture_package/Roll_left_v1-Sheet.json'
+  url: 'assets/texture_package/Roll_left_v1-Sheet.json'
 }, {
   name: 'rollTurn',
-  url: '/assets/texture_package/Roll_Turn_v2-Sheet.json'
+  url: 'assets/texture_package/Roll_Turn_v2-Sheet.json'
 }, {
   name: 'launcher',
-  url: '/assets/texture_package/Sp_Launcher_v1-Sheet.json'
+  url: 'assets/texture_package/Sp_Launcher_v1-Sheet.json'
 }, {
   name: 'output',
-  url: '/assets/texture_package/Assiette_v1-Sheet.json'
+  url: 'assets/texture_package/Assiette_v1-Sheet.json'
 }, {
   name: 'background',
-  url: '/assets/texture_package/Background.json'
+  url: 'assets/texture_package/Background.json'
 }, {
   name: 'trash',
-  url: '/assets/texture_package/Trashbin_v1-Sheet.json'
+  url: 'assets/texture_package/Trashbin_v1-Sheet.json'
 }, {
   name: 'waste',
-  url: '/assets/Space_Caca.png'
+  url: 'assets/Space_Caca.png'
 }]
 
 const loader = new PIXI.Loader()
@@ -148,7 +148,7 @@ window.addEventListener('resize', scaleScene)
 // Audio
 
 const sound = new Howl({
-  src: ['/assets/sky-factory-zone-Music/sky-factory-zone.mp3'],
+  src: ['assets/sky-factory-zone-Music/sky-factory-zone.mp3'],
   loop: true
 })
 

@@ -19,7 +19,7 @@ module.exports = {
       to: path.resolve(__dirname, 'dist/assets')
     }]),
     new HtmlWebpackPlugin({
-      title: 'Game Jam Lyon 15'
+      title: 'Foozzle'
     })
   ],
   output: {
