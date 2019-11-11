@@ -19,6 +19,7 @@ export default class MovingTile extends Tile {
     // when an ingredient is going in the bean
     if (this.targetX < 0 && cell.ingredient) {
       if (this.targetY === grid.sizeY - 3) {
+        console.log('lalalala')
         grid.gridManager.gameManager.check(cell.ingredient)
       }
       cell.ingredient.sprite.visible = false

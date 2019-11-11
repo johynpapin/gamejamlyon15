@@ -12,16 +12,21 @@ export default class GameManager {
     this.menu = new Menu(this)
     this.achieved = 0
     this.paused = false
+    this.gameOver = false
   }
 
   check (ingredient) {
     let boo = true
-    for (const indice in this.level.orders) {
-      if (ingredient.instanceof(this.level.order[indice].ingredient)) {
-        for (const state1 of this.level.order[indice].state) {
+    for (const indice in this.level.order) {
+      console.log(this.level.order[indice].dish[0].states)
+      if (ingredient instanceof this.level.order[indice].dish[0].ingredient) {
+        for (const state1 of this.level.order[indice].dish[0].states) {
           if (boo) {
             boo = false
-            for (const state2 of this.ingredient.states) {
+            console.log(ingredient.states)
+            for (const state2 of ingredient.states) {
+              console.log(state1, state2)
+              console.log(state1, state2)
               if (state1 === state2) {
                 boo = true
               }
@@ -30,6 +35,8 @@ export default class GameManager {
             return false
           }
         }
+        console.log('\n')
+        console.log('ICICIEIEFFEI')
         this.ordersManager.orders.splice(indice, 1)
         this.ordersManager.orders.number -= 1
         this.notifyResolveOrder()
@@ -40,6 +47,11 @@ export default class GameManager {
   }
 
   next () {
+    if (this.gameOver) {
+      console.log('Game over looser')
+      return
+    }
+
     if (this.paused) {
       return
     }
