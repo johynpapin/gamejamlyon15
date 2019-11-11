@@ -9,6 +9,6 @@ export default class Potato extends Ingredient {
       container.addChild(this.sprite)
     }
 
-    super.draw(delta)
+    super.draw(container, delta)
   }
 }

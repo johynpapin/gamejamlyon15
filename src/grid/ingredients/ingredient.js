@@ -1,10 +1,11 @@
 import TileConnector from '../tiles/tile-connector'
+import MovingTile from '../tiles/tile-moving'
 
 export default class Ingredient {
   constructor (x, y, grid) {
     this.grid = grid
     this.xValue = x
-    this.yValue = y
+    this.yValue = y - 1
     this.x = x
     this.y = y
     this.hasMoved = false
@@ -13,6 +14,7 @@ export default class Ingredient {
     this.dragging = false
     this.draggingData = null
     this.deltas = 0
+    this.destroyed = false
   }
 
   get x () {
@@ -71,10 +73,8 @@ export default class Ingredient {
   }
 
   destroy () {
-    if (this.sprite) {
-      // TODO: bad
-      this.sprite.visible = false
-    }
+    this.destroyed = true
+    this.container.removeChild(this.sprite)
   }
 
   initDrag () {
@@ -98,9 +98,11 @@ export default class Ingredient {
   }
 
   onDragStart (event) {
-    this.sprite.alpha = 0.75
-    this.draggingData = event.data
-    this.dragging = true
+    if (this.grid.cells[this.x][this.y].tile instanceof MovingTile && this.grid.cells[this.x][this.y].tile.conveyorBelt) {
+      this.sprite.alpha = 0.75
+      this.draggingData = event.data
+      this.dragging = true
+    }
   }
 
   onDragEnd (event) {
@@ -119,6 +121,8 @@ export default class Ingredient {
         this.grid.cells[this.x][this.y].ingredient = null
         this.x = position.x
         this.y = position.y
+        this.lastX = this.x
+        this.lastY = this.y
         this.grid.cells[position.x][position.y].ingredient = this
       }
 
@@ -130,10 +134,11 @@ export default class Ingredient {
   onDragMove () {
   }
 
-  draw (delta) {
+  draw (container, delta) {
     this.deltas += delta
 
     if (!this.spriteLoaded) {
+      this.container = container
       this.spriteLoaded = true
       this.sprite.zIndex = 2
       this.initDrag()
@@ -160,7 +165,5 @@ export default class Ingredient {
       this.sprite.x = lastTargetX - ((lastTargetX - targetX) / 60) * this.deltas
       this.sprite.y = lastTargetY - ((lastTargetY - targetY) / 60) * this.deltas % 60
     }
-
-    console.log(targetX, lastTargetX, this.sprite.x)
   }
 }

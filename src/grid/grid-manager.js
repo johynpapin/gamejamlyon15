@@ -65,42 +65,11 @@ export default class GridManager {
     this.nextUtensils()
 
     // Spawn new ingredient
-    if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0)) {
+    if (!this.grid.hasIngredient(this.grid.sizeX - 1, 0) && (Math.random() < 0.2)) {
       this.spawnIngredient()
     }
 
     this.ticks++
-  }
-
-  chainIngredient (cell) {
-    const cycle = false
-    const cycleCell = cell
-    let currentCell = cell
-    const stack = []
-
-    while ((currentCell.tile instanceof MovingTile) && !this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY) && !this.grid.isFree(currentCell.tile.targetX, currentCell.tile.targetY)) {
-      stack.push(currentCell)
-      currentCell = this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY]
-    }
-    if (!(currentCell.tile instanceof MovingTile) || this.grid.isFullUtensil(currentCell.tile.targetX, currentCell.tile.targetY)) {
-      while (stack.length > 0) {
-        currentCell = stack.pop()
-        currentCell.ingredient.hasMoved = true
-      }
-    } else {
-      while (stack.length > 0) {
-        currentCell = stack.pop()
-        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient = currentCell.ingredient
-        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.x = currentCell.tile.targetX
-        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.y = currentCell.tile.targetY
-        this.grid.cells[currentCell.tile.targetX][currentCell.tile.targetY].ingredient.hasMoved = true
-      }
-      if (cycle) {
-        this.grid.cells[cycleCell.tile.targetX][cycleCell.tile.targetY].ingredient = cycleCell.ingredient
-      } else {
-        this.grid.cells[cycleCell.ingredient.x][cycleCell.ingredient.y].ingredient = null
-      }
-    }
   }
 
   addMovingTile () {
@@ -181,8 +150,17 @@ export default class GridManager {
       this.trash.animationSpeed = 0.1
       this.trash.play()
 
+      this.output = new PIXI.AnimatedSprite(resources.output.spritesheet.animations['Assiette_v1-Sheet'])
+      this.output.scale.set(1.5)
+      this.output.animationSpeed = 0.1
+      this.output.angle = 180
+      this.output.pivot.x = this.output.width
+      this.output.pivot.y = this.output.height
+      this.output.play()
+
       container.addChild(this.container)
       container.addChild(this.trash)
+      container.addChild(this.output)
     }
 
     this.container.x = 640 / 2 - this.container.width / 2
@@ -190,6 +168,9 @@ export default class GridManager {
 
     this.trash.x = this.container.x - this.trash.width
     this.trash.y = this.container.y + this.container.height - this.trash.height
+
+    this.output.x = this.container.x - this.output.width - this.output.width / 2
+    this.output.y = this.container.y + this.container.height - this.output.height * 3 - this.output.height / 2
 
     this.grid.draw(delta, this.container, resources)
   }

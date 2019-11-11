@@ -5,9 +5,9 @@ import Potato from '../grid/ingredients/potato'
 
 export default class Level2 {
   constructor () {
-    this.sizeX = 3
-    this.sizeY = 3
-    this.maxOrders = 3
+    this.sizeX = 4
+    this.sizeY = 4
+    this.maxOrders = 5
     this.orders()
     this.utensilsMap = this.initUtensils()
     this.ingredients = this.initIngredients()
@@ -23,16 +23,14 @@ export default class Level2 {
     const utensilsMap = new Map()
 
     const key1 = {
-      cell: { x: 1, y: 0 },
-      targetCell: { x: 1, y: 1 },
-      targetOpt: { x: 2, y: 0 }
+      cell: [1, 0],
+      targetCells: [[1, 1], [0, 0]]
     }
     utensilsMap.set(key1, utensils.peeler.class)
 
     const key2 = {
-      cell: { x: 1, y: 2 },
-      targetCell: { x: 0, y: 2 },
-      targetOpt: null
+      cell: [1, 2],
+      targetCells: [[0, 2]]
     }
     utensilsMap.set(key2, utensils.fryer.class)
 
