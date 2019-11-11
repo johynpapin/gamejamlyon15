@@ -19,7 +19,7 @@ export default class Order {
       this.rectangle = new PIXI.Graphics()
 
       this.rectangle.beginFill(0xffff00)
-      this.rectangle.lineStyle(2, 0xff0000)
+      this.rectangle.lineStyle(2, 0x3399ff)
       this.rectangle.drawRect(0, 32 * position, 128, 32)
 
       this.container.addChild(this.rectangle)
@@ -36,7 +36,7 @@ export default class Order {
 
     this.rectangle.clear()
     this.rectangle.beginFill(0xffff00)
-    this.rectangle.lineStyle(2, 0xff0000)
+    this.rectangle.lineStyle(2, 0x3399ff)
     this.rectangle.drawRect(0, 32 * position, 128, 32)
   }
 }
