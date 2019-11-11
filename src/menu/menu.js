@@ -29,6 +29,18 @@ export default class Menu {
     })
 
     this.movingTile.y = 50
+
+    this.rotateMovingTile = new Button({
+      label: 'Rotate a moving tile',
+      width: 132,
+      height: 32,
+      fontSize: 14,
+      onTap: () => {
+        this.gameManager.gridManager.rotateMovingTile()
+      }
+    })
+
+    this.rotateMovingTile.y = 100
   }
 
   draw (container, resources) {
@@ -38,6 +50,7 @@ export default class Menu {
       this.container.addChild(this.pauseButton)
 
       this.container.addChild(this.movingTile)
+      this.container.addChild(this.rotateMovingTile)
 
       container.addChild(this.container)
     }

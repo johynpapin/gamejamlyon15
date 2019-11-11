@@ -10,6 +10,7 @@ export default class GridManager {
     this.grid = new Grid(this, gameManager.level)
     this.ticks = 0
     this.addingMovingTile = false
+    this.rotatingMovingTile = false
   }
 
   resolve (dict, tile) {
@@ -107,7 +108,12 @@ export default class GridManager {
     this.addingMovingTile = true
   }
 
-  rotateMovingTile (position) {
+  rotateMovingTile () {
+    this.gameManager.paused = true
+    this.rotatingMovingTile = true
+  }
+
+  _rotateMovingTile (position) {
     const cell = this.grid.cells[position.x][position.y]
 
     if (cell.tile instanceof MovingTile && !cell.tile.conveyorBelt) {
@@ -125,6 +131,8 @@ export default class GridManager {
         cell.tile.targetY = cell.tile.y
       }
     }
+
+    this.gameManager.paused = false
   }
 
   handlePointerDown (event) {
@@ -137,24 +145,28 @@ export default class GridManager {
       position.x >= 0 && position.x < this.grid.sizeX &&
         position.y >= 0 && position.y < this.grid.sizeY
     ) {
-      if (!this.addingMovingTile) {
-        this.rotateMovingTile(position)
+      if (this.rotatingMovingTile) {
+        this.rotatingMovingTile = false
+
+        this._rotateMovingTile(position)
         return
       }
 
-      this.addingMovingTile = false
+      if (this.addingMovingTile) {
+        this.addingMovingTile = false
 
-      const cell = this.grid.cells[position.x][position.y]
-      if (cell.tile instanceof TileNeutral && cell.utensil === null) {
-        cell.tile.destroy()
+        const cell = this.grid.cells[position.x][position.y]
+        if (cell.tile instanceof TileNeutral && cell.utensil === null) {
+          cell.tile.destroy()
 
-        cell.tile = new MovingTile(position.x, position.y, {
-          x: position.x - 1,
-          y: position.y
-        })
+          cell.tile = new MovingTile(position.x, position.y, {
+            x: position.x - 1,
+            y: position.y
+          })
+        }
+
+        this.gameManager.paused = false
       }
-
-      this.gameManager.paused = false
     }
   }
 
