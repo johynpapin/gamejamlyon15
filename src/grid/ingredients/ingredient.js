@@ -4,7 +4,7 @@ export default class Ingredient {
     this.x = x
     this.y = y
     this.hasMoved = false
-    this.states = []
+    this.states = ['raw']
     this.spriteLoaded = false
     this.dragging = false
     this.draggingData = null

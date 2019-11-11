@@ -12,7 +12,7 @@ export default class Cell {
   }
 
   isFree () {
-    return this.ingredient == null
+    return this.ingredient === null
   }
 
   draw (container, resources, offset) {

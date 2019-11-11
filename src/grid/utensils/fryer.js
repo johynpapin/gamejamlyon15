@@ -5,7 +5,6 @@ import Utensil from './utensil'
 export default class Fryer extends Utensil {
   constructor (cell, targetCells) {
     super(cell, targetCells)
-    this.states = utensils.fryer.states
     this.transitions = utensils.fryer.transitions
   }
 

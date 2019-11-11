@@ -6,28 +6,43 @@ import Pot from './pot'
 export default {
   knife: {
     class: Knife,
-    states: 'cut'
+    // 'cut'
+    transitions: new Map()
   },
   peeler: {
     class: Peeler,
-    states: ['peel', 'peeling'],
-    transitions: [[], ['cut'], ['cooked']]
+    transitions: new Map(
+      [
+        [['raw'], ['peel', 'peeling']],
+        [['cut'], ['peel', 'peeling']],
+        [['cooked'], ['peel', 'peeling']]
+      ]
+    )
   },
   pot: {
     class: Pot,
-    states: 'cooked'
+    // 'cooked'
+    transitions: new Map()
   },
   fryer: {
     class: Fryer,
-    states: 'fry',
-    transitions: [['cut'], ['peel'], ['peeling'], ['cooked']]
+    transitions: new Map(
+      [
+        [['cut'], ['fry']],
+        [['peel'], ['fry']],
+        [['peeling'], ['fry']],
+        [['cooked'], ['fry']]
+      ]
+    )
   }
   // blender: {
   //   class: Blender,
-  //   states: 'blend'
+  //   'blend'
+  //   transitions: new Map()
   // },
   // pan: {
   //   class: Pan,
-  //   states: 'sauteed'
+  //   'sauteed'
+  //   transitions: new Map()
   // }
 }

@@ -5,7 +5,6 @@ import Utensil from './utensil'
 export default class Pot extends Utensil {
   constructor (cell, targetCells) {
     super(cell, targetCells)
-    this.states = utensils.pot.states
     this.transitions = utensils.pot.transitions
   }
 

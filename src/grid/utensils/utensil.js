@@ -16,34 +16,38 @@ export default class Utensil {
     if (this.tics === 0 && this.targetsAreFree()) {
       this.apply()
 
+      console.log(this.createdIngredients)
+
       for (let i = 0; i < this.createdIngredients.length; i++) {
         this.targetCells[i].ingredient = this.createdIngredients[i]
         this.targetCells[i].ingredient.x = this.createdIngredients.x
         this.targetCells[i].ingredient.y = this.createdIngredients.y
       }
 
+      this.cell.ingredient.destroy()
       this.cell.ingredient = null
       this.createdIngredients = null
 
       this.reinit()
-    } else if (this.cell.ingredient != null) {
+    } else if (this.cell.ingredient !== null) {
       this.tics--
     }
   }
 
   apply () {
-    for (const states of this.transitions) {
-      if (this.cell.ingredient.containsStates(states)) {
-        for (const state of this.states) {
+    console.log('on apply')
+    for (const [key, value] of this.transitions) {
+      if (this.cell.ingredient.containsStates(key)) {
+        for (const state of value) {
           const newIngredient = this.cell.ingredient.clone()
           newIngredient.addState(state)
           this.createdIngredients.push(newIngredient)
         }
+        return
       } else {
         this.createdIngredients.push(new Waste())
       }
     }
-    this.cell.ingredient.destroy()
   }
 
   targetsAreFree () {
@@ -56,6 +60,6 @@ export default class Utensil {
   }
 
   isFree () {
-    return this.cell.isFree()
+    return this.cell.ingredient === null
   }
 }

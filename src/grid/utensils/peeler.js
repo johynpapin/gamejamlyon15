@@ -5,7 +5,6 @@ import Utensil from './utensil'
 export default class Peeler extends Utensil {
   constructor (cell, targetCells) {
     super(cell, targetCells)
-    this.states = utensils.peeler.states
     this.transitions = utensils.peeler.transitions
   }
 
