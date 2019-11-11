@@ -2,6 +2,15 @@ import * as PIXI from 'pixi.js'
 import Ingredient from './ingredient'
 
 export default class Potato extends Ingredient {
+  constructor (x, y, grid) {
+    super(x, y, grid)
+    this.checkSprite()
+  }
+
+  checkSprite () {
+
+  }
+
   draw (delta, container, resources, offset) {
     if (!this.sprite) {
       this.sprite = new PIXI.Sprite(resources.potato.texture)

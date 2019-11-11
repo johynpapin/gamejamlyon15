@@ -40,6 +40,15 @@ const resources = [{
   name: 'potato',
   url: '/assets/Patate_v1.png'
 }, {
+  name: 'potatoPeeling',
+  url: '/assets/Patate_Peluche.png'
+}, {
+  name: 'potatoPeel',
+  url: '/assets/Patate_Peluche.png'
+}, {
+  name: 'potatoFries',
+  url: '/assets/Patate_Frites.png'
+}, {
   name: 'peeler',
   url: '/assets/texture_package/Econome_Top_Down.json'
 }, {
