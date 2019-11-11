@@ -170,7 +170,7 @@ export default class GridManager {
     }
   }
 
-  draw (container, resources) {
+  draw (delta, container, resources) {
     if (!this.container) {
       this.container = new GridContainer(this)
       this.container.scale.set(1.5)
@@ -191,6 +191,6 @@ export default class GridManager {
     this.trash.x = this.container.x - this.trash.width
     this.trash.y = this.container.y + this.container.height - this.trash.height
 
-    this.grid.draw(this.container, resources)
+    this.grid.draw(delta, this.container, resources)
   }
 }
