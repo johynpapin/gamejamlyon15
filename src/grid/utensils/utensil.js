@@ -46,6 +46,7 @@ export default class Utensil {
       }
     }
     this.createdIngredients.push(new Waste(this.cell.x, this.cell.y, grid))
+    grid.gridManager.gameManager.gameOver = true
   }
 
   targetsAreFree () {

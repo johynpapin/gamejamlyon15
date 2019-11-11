@@ -12,6 +12,7 @@ export default class GameManager {
     this.menu = new Menu(this)
     this.achieved = 0
     this.paused = false
+    this.gameOver = false
   }
 
   check (ingredient) {
@@ -40,6 +41,11 @@ export default class GameManager {
   }
 
   next () {
+    if (this.gameOver) {
+      console.log('Game over looser')
+      return
+    }
+
     if (this.paused) {
       return
     }
