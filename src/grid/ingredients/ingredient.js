@@ -74,6 +74,7 @@ export default class Ingredient {
 
   destroy () {
     this.destroyed = true
+    this.container.removeChild(this.sprite)
   }
 
   initDrag () {
@@ -133,10 +134,11 @@ export default class Ingredient {
   onDragMove () {
   }
 
-  draw (delta) {
+  draw (container, delta) {
     this.deltas += delta
 
     if (!this.spriteLoaded) {
+      this.container = container
       this.spriteLoaded = true
       this.sprite.zIndex = 2
       this.initDrag()
@@ -162,10 +164,6 @@ export default class Ingredient {
     } else {
       this.sprite.x = lastTargetX - ((lastTargetX - targetX) / 60) * this.deltas
       this.sprite.y = lastTargetY - ((lastTargetY - targetY) / 60) * this.deltas % 60
-    }
-
-    if (this.destroyed) {
-
     }
   }
 }

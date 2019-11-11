@@ -26,6 +26,7 @@ export default class Order {
       container.addChild(this.container)
       this.container.addChild(this.text)
     }
+
     this.text.x = 0
     this.text.y = 32 * position
     this.text.text = this.name + ' ' + this.timer
