@@ -103,13 +103,14 @@ export default class GridManager {
   }
 
   addMovingTile () {
+    this.gameManager.paused = true
     this.addingMovingTile = true
   }
 
   rotateMovingTile (position) {
     const cell = this.grid.cells[position.x][position.y]
 
-    if (cell.tile instanceof MovingTile) {
+    if (cell.tile instanceof MovingTile && !cell.tile.conveyorBelt) {
       if (cell.tile.targetX < cell.tile.x) {
         cell.tile.targetX = cell.tile.x
         cell.tile.targetY = cell.tile.y - 1
@@ -138,6 +139,7 @@ export default class GridManager {
     ) {
       if (!this.addingMovingTile) {
         this.rotateMovingTile(position)
+        return
       }
 
       this.addingMovingTile = false
@@ -151,6 +153,8 @@ export default class GridManager {
           y: position.y
         })
       }
+
+      this.gameManager.paused = false
     }
   }
 
